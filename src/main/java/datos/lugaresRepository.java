@@ -5,15 +5,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Negocio.Localizacion.lugar;
+import Negocio.busquedadelugaresporelusuario.Lugar;
 
 public class lugaresRepository {
 	// our SQL SELECT query. 
     // if you only need a few columns, specify them by name instead of using "*"
     
-	public ArrayList<lugar> consultarLugaresporCoordenadas() throws Exception{
+	public ArrayList<Lugar> consultarLugaresporCoordenadas() throws Exception{
 	Connection con = new conexionMysql().obtenerConexion();
-	ArrayList<lugar> lugares = new ArrayList<lugar>();
+	ArrayList<Lugar> lugares = new ArrayList<Lugar>();
 	String query = "SELECT * FROM lugar";
 	
     // create the java statement
@@ -29,7 +29,7 @@ public class lugaresRepository {
       String nombre = rs.getString("nombre");
       String coordenadas = rs.getString("coordenadas");
       String descripcion = rs.getString("descripcion");
-      lugar lugar = new lugar(nombre, descripcion, coordenadas);
+      Lugar lugar = new Lugar(nombre, descripcion, coordenadas);
       // print the results
       lugares.add(lugar);
     }

@@ -1,11 +1,12 @@
-package negocio.Localizacion;
+package Negocio.busquedadelugaresporelusuario;
 
-public class lugar {
+public class Lugar {
 	private String nombre;
 	private String descripcion;
 	private String coordenadas;
+	String a;
 	
-	public lugar(String nombre,String descripcion, String coordenadas){
+	public Lugar(String nombre,String descripcion, String coordenadas){
 		this.nombre=nombre;
 		this.descripcion=descripcion;
 		this.coordenadas=coordenadas;
@@ -33,6 +34,10 @@ public class lugar {
 		// TODO Auto-generated method stub
 		return nombre;
 	}
-	
+	public String getInformacion() {
+		// TODO Auto-generated method stub
+		a = "descripcion";
+		return a;
 
+ }
 }

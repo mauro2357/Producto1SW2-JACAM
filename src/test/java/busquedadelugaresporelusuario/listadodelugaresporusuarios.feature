@@ -20,4 +20,3 @@ Feature: Como usuario quiero tener un listado de las caracteristicas del lugar q
 	    Given El usuario va a consultar el lugar
 	    When Se ubican todos los lugares cercanos a el
 	    Then Se notifica un listado de los lugares encontrados
-	     
