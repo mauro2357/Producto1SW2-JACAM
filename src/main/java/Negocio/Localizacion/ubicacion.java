@@ -2,15 +2,38 @@ package Negocio.Localizacion;
 
 public class ubicacion {
 	private String coordenadas;
-
-	public boolean gps() {
-		// TODO Auto-generated method stub
-		GPS gps = new GPS();
-		if (gps.on()==true){
-			coordenadas="Ubicado";
-			return true;
+	private String estado;
+	
+	public ubicacion(){
+		
+	}
+	public void datos(String estado, String coordenadas){
+		
+		this.estado=estado;
+		this.coordenadas=coordenadas;
+		System.out.println(estado);
+		System.out.println(coordenadas);
+		
+	}
+	public Boolean gps(){
+		if(this.estado== "si"){
+			return(true);
 		}
-		return false;
+		else{
+			return(false);
+		}
+		
+	}
+	public String estado(){
+		boolean esta=this.gps();
+		System.out.println(esta);
+		if(esta==true){
+			return(this.getCoordenadas());
+			
+		}
+		else{
+			return(this.getMensaje());
+		}
 	}
 
 	public String getCoordenadas() {
