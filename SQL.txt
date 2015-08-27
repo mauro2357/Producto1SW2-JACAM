@@ -1,116 +1,216 @@
 CREATE TABLE Lugar
 (
-  lug_id Int NOT NULL,
-  lug_nombre Varchar(100) NOT NULL,
-  lug_telefono Int NOT NULL,
-  lug_coordenadas Varchar(100) NOT NULL,
-  pro_id Int,
-  cat_id Int,
-  lug_descripcion Varchar(150) NOT NULL
+  
+lug_id Int NOT NULL,
+  
+lug_nombre Varchar(100) NOT NULL,
+  
+lug_telefono Int NOT NULL,
+  
+lug_coordenadas Varchar(100) NOT NULL,
+  
+pro_email Varchar(50),
+  
+cat_id Int,
+  
+lug_descripcion Varchar(150) NOT NULL
 )
 ;
+
+
 
 ALTER TABLE Lugar ADD PRIMARY KEY (lug_id)
 ;
 
-CREATE INDEX IX_Relationship3 ON Lugar (pro_id)
+
+CREATE INDEX IX_Relationship3 ON Lugar (pro_email)
 ;
+
 
 CREATE INDEX IX_Relationship4 ON Lugar (cat_id)
 ;
 
+
+
 -- Table Propietario
+
 
 CREATE TABLE Propietario
 (
-  pro_id Int NOT NULL,
-  pro_nombre Varchar(200) NOT NULL,
-  pro_telefono Int NOT NULL,
-  pro_contrasena Varchar(20) NOT NULL
+  
+pro_email varchar(50) NOT NULL,
+  
+pro_nombre Varchar(200) NOT NULL,
+  
+pro_telefono Int,
+  
+pro_password Varchar(30) NOT NULL
 )
 ;
 
-ALTER TABLE Propietario ADD PRIMARY KEY (pro_id)
+
+
+ALTER TABLE Propietario ADD PRIMARY KEY (pro_email)
 ;
+
+
 
 -- Table Categorias
 
+
 CREATE TABLE Categorias
 (
-  cat_id Int NOT NULL,
-  cat_nombre Varchar(100) NOT NULL
+  
+cat_id Int NOT NULL,
+  
+cat_nombre Varchar(100) NOT NULL
 )
 ;
+
 
 ALTER TABLE Categorias ADD PRIMARY KEY (cat_id)
 ;
 
+
+
 -- Table Usuarios
+
 
 CREATE TABLE Usuarios
 (
-  usu_email Varchar(50) NOT NULL,
-  usu_nombre Varchar(50) NOT NULL,
-  usu_gps Varchar(2) NOT NULL,
-  usu_coordenas Varchar(100) NOT NULL
+  
+usu_email Varchar(50) NOT NULL,
+  
+usu_nombre Varchar(50) NOT NULL,
+  
+usu_gps Varchar(2) NOT NULL,
+  
+usu_coordenas Varchar(100) 
+
+;
+usu_password Varchar(30) NOT NULL
 )
 ;
+
+
 
 ALTER TABLE Usuarios ADD PRIMARY KEY (usu_email)
 ;
 
+
+
 -- Table Favoritos
+
+
 
 CREATE TABLE Favoritos
 (
-  usu_email Varchar(50) NOT NULL,
-  lug_id Int NOT NULL
+  
+usu_email Varchar(50) NOT NULL,
+  
+lug_id Int NOT NULL
 )
 ;
+
 
 ALTER TABLE Favoritos ADD PRIMARY KEY (usu_email,lug_id)
 ;
 
+
+
 -- Create relationships section ------------------------------------------------- 
 
-ALTER TABLE Lugar ADD CONSTRAINT Relationship3 FOREIGN KEY (pro_id) REFERENCES Propietario (pro_id) ON DELETE NO ACTION ON UPDATE NO ACTION
+
+
+ALTER TABLE Lugar ADD CONSTRAINT Relationship3 FOREIGN KEY (pro_email) REFERENCES Propietario (pro_email) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
+
 
 ALTER TABLE Lugar ADD CONSTRAINT Relationship4 FOREIGN KEY (cat_id) REFERENCES Categorias (cat_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
+
 ALTER TABLE Favoritos ADD CONSTRAINT Relationship5 FOREIGN KEY (usu_email) REFERENCES Usuarios (usu_email) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
+
 
 ALTER TABLE Favoritos ADD CONSTRAINT Relationship6 FOREIGN KEY (lug_id) REFERENCES Lugar (lug_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ;
 
 
 
-INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('1', 'Restaurantes');
-INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('2', 'Bares');
-INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('3', 'Hoteles');
-INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('4', 'Universidades');
-INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('5', 'Centros Comerciales');
-
-INSERT INTO `bdsoftware2`.`propietario` (`pro_id`, `pro_nombre`, `pro_telefono`, `pro_contrasena`) VALUES ('1036956927', 'Mauricio Cardona Jaramillo', '6146505', 'macaja');
-INSERT INTO `bdsoftware2`.`propietario` (`pro_id`, `pro_nombre`, `pro_telefono`, `pro_contrasena`) VALUES ('1040045483', 'Maria Alejandra Ocampo Rios', '5530101', 'maria');
-INSERT INTO `bdsoftware2`.`propietario` (`pro_id`, `pro_nombre`, `pro_telefono`, `pro_contrasena`) VALUES ('1017224720', 'Camillo Restrepo Ramirez', '5628542', 'negro');
-INSERT INTO `bdsoftware2`.`propietario` (`pro_id`, `pro_nombre`, `pro_telefono`, `pro_contrasena`) VALUES ('1036954043', 'John Alexander Castaño Henao', '5313495', 'alexander');
-INSERT INTO `bdsoftware2`.`propietario` (`pro_id`, `pro_nombre`, `pro_telefono`, `pro_contrasena`) VALUES ('1036948759', 'Maria Alejandra Rendon Baena', '5611991', 'aleja');
 
 
-INSERT INTO `bdsoftware2`.`usuarios` (`usu_email`, `usu_nombre`, `usu_gps`, `usu_coordenas`) VALUES ('juan10268@hotmail.com', 'Juan Pablo Urrea', 'si', '545.88872.444');
-INSERT INTO `bdsoftware2`.`usuarios` (`usu_email`, `usu_nombre`, `usu_gps`, `usu_coordenas`) VALUES ('pedro128@hotmail.com', 'Pedro Antonio Montoya', 'no', '1');
-INSERT INTO `bdsoftware2`.`usuarios` (`usu_email`, `usu_nombre`, `usu_gps`, `usu_coordenas`) VALUES ('santiagoh@hotmail.com', 'Santiago Herrera', 'si', '548.3587.1585');
-INSERT INTO `bdsoftware2`.`usuarios` (`usu_email`, `usu_nombre`, `usu_gps`, `usu_coordenas`) VALUES ('juliana.62@hotmail.com', 'Juliana Bedoya', 'si', '578.3659.8848');
+INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('1', 'Restaurantes');
 
-INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_id`, `cat_id`, `lug_descripcion`) VALUES ('900547836', 'Subway', '5555555', '458.4878.988', '1040045483', '1', 'vendemos deliciosos sanduches');
-INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_id`, `cat_id`, `lug_descripcion`) VALUES ('548726358', 'San Nicolas', '3257894', '4587.2578.999', '1036948759', '5', 'el centro comercial para vivir en grande');
-INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_id`, `cat_id`, `lug_descripcion`) VALUES ('24876398', 'Las Falabellas', '28793356', '4597.588.588', '1036954043', '1', 'hay ponnis');
-INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_id`, `cat_id`, `lug_descripcion`) VALUES ('800015479', 'View', '22487933', '549.8775.8888', '1036956927', '2', 'para rumbear');
-INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_id`, `cat_id`, `lug_descripcion`) VALUES ('800365792', 'UCO', '5587935', '578.887.4836', '1017224720', '4', 'a la verdad por la fe y la ciencia');
 
-INSERT INTO `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) VALUES ('santiagoh@hotmail.com', '24876398');
-INSERT INTO `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) VALUES ('juan10268@hotmail.com', '548726358');
-INSERT INTO `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) VALUES ('santiagoh@hotmail.com', '800365792');
+INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('2', 'Bares');
+
+
+INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('3', 'Hoteles');
+
+
+INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('4', 'Universidades');
+
+
+INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('5', 'Centros Comerciales');
+
+
+
+
+INSERT INTO `bdsoftware2`.`propietario` (`pro_email`, `pro_nombre`, `pro_telefono`, `pro_password`) VALUES ('cardonajaramillomauricio@gmail.com', 'Mauricio Cardona Jaramillo', '6146505', 'macaja');
+
+
+INSERT INTO `bdsoftware2`.`propietario` (`pro_email`, `pro_nombre`, `pro_telefono`, `pro_password`) VALUES ('maria@gmail.com', 'Maria Alejandra Ocampo Rios', '5530101', 'maria');
+
+
+INSERT INTO `bdsoftware2`.`propietario` (`pro_email`, `pro_nombre`, `pro_telefono`, `pro_password`) VALUES ('camilo_RR@gmail.com', 'Camillo Restrepo Ramirez', '5628542', 'negro');
+
+
+INSERT INTO `bdsoftware2`.`propietario` (`pro_email`, `pro_nombre`, `pro_telefono`, `pro_password`) VALUES ('j_alexander12@hotmail.com', 'John Alexander Castaño Henao', '5313495', 'alexander');
+
+
+INSERT INTO `bdsoftware2`.`propietario` (`pro_email`, `pro_nombre`, `pro_telefono`, `pro_password`) VALUES ('aleja@gmail.com', 'Maria Alejandra Rendon Baena', '5611991', 'aleja');
+
+
+
+
+
+INSERT INTO `bdsoftware2`.`usuarios` (`usu_email`, `usu_nombre`, `usu_gps`, `usu_coordenas`, `usu_password`) VALUES ('juan10268@hotmail.com', 'Juan Pablo Urrea', 'si', '545.88872.444','jpu');
+
+
+INSERT INTO `bdsoftware2`.`usuarios` (`usu_email`, `usu_nombre`, `usu_gps`, `usu_coordenas`, `usu_password`) VALUES ('pedro128@hotmail.com', 'Pedro Antonio Montoya', 'no', '1','pam');
+
+
+INSERT INTO `bdsoftware2`.`usuarios` (`usu_email`, `usu_nombre`, `usu_gps`, `usu_coordenas`, `usu_password`) VALUES ('santiagoh@hotmail.com', 'Santiago Herrera', 'si', '548.3587.1585','sh');
+
+
+INSERT INTO `bdsoftware2`.`usuarios` (`usu_email`, `usu_nombre`, `usu_gps`, `usu_coordenas`, `usu_password`) VALUES ('juliana.62@hotmail.com', 'Juliana Bedoya', 'si', '578.3659.8848','jb');
+
+
+
+
+INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_email`, `cat_id`, `lug_descripcion`) VALUES ('900547836', 'Subway', '5555555', '458.4878.988', 'camilo_RR@gmail.com', '1', 'vendemos deliciosos sanduches');
+
+
+INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_email`, `cat_id`, `lug_descripcion`) VALUES ('548726358', 'San Nicolas', '3257894', '4587.2578.999', 'j_alexander12@hotmail.com', '5', 'el centro comercial para vivir en grande');
+
+
+INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_email`, `cat_id`, `lug_descripcion`) VALUES ('24876398', 'Las Falabellas', '28793356', '4597.588.588', 'aleja@gmail.com', '1', 'hay ponnis');
+
+
+INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_email`, `cat_id`, `lug_descripcion`) VALUES ('800015479', 'View', '22487933', '549.8775.8888', 'cardonajaramillomauricio@gmail.com', '2', 'para rumbear');
+
+
+INSERT INTO `bdsoftware2`.`lugar` (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_email`, `cat_id`, `lug_descripcion`) VALUES ('800365792', 'UCO', '5587935', '578.887.4836', 'maria@gmail.com', '4', 'a la verdad por la fe y la ciencia');
+
+
+
+
+INSERT INTO `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) VALUES ('santiagoh@hotmail.com', '24876398');
+
+
+INSERT INTO `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) VALUES ('juan10268@hotmail.com', '548726358');
+
+
+INSERT INTO `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) VALUES ('santiagoh@hotmail.com', '800365792');

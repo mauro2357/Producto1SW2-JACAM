@@ -1,0 +1,18 @@
+<form method="post" action="enlace">
+Direccion de correo electronico: </br>
+<input type="text" name="correo" class="textbox" autofocus required></br>
+Password:</br>
+<input type="password" name="clave" class="textbox" required></br>
+Nombres:</br>
+<input type="text" name="nombres" class="textbox" required></br>
+Apellidos:</br>
+<input type="text" name="apellidos" class="textbox" required></br>
+Sexo:</br>
+<select name="sexo">
+<option value="M">Masculino</option>
+<option value="F">Femenino</option>
+</select></br>
+<div class="bsub">
+<input type="submit" name="ok" value="crear" class="button login sub">
+</div>
+</form>
