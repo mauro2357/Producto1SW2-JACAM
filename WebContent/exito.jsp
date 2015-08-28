@@ -1,3 +1,4 @@
+<%@page import java.util.ArrayList; %>
 <%if(session.getAttribute("email") == null){%>
 <jsp:forward page="index.jsp"></jsp:forward>
 <%} %>
@@ -6,9 +7,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>East Sites</title>
 <link rel="stylesheet" type="text/css" href="estilo.css">
+<script type="text/javascript" src="validacion.js" ></script>
 <script>
 function loadXMLDoc()
 {
@@ -25,35 +26,35 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-    document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    document.getElementById("arsenal").innerHTML=xmlhttp.responseText;
     }
   }
-xmlhttp.open("GET","consulta.txt",true);
+xmlhttp.open("GET","rr.jsp",true);
 xmlhttp.send();
 }
 </script>
 </head>
-<body class = "cuerpo">
+<body class="cuerpo">
 <form method="post" action="enlace">    
-<input type="submit" name="ok" value="Salir" class="button salir">
+    <input type="submit" name="ok" value="Salir" class="button salir">
 </form>
 <section id="ban">
-<h1>East Sites </h1></br>
-<div id="header1" style=" background:rgb(210, 210, 210)">
-<ul class="nav">
-				<li><a href="">Lugares</a>
-					<ul>
-					    <li><a href="">Restaurantes</a></li>
-					    <li><a href="">Hoteles</a></li>
-					    <li><a href="">Bares</a></li>
-					    <li><a href="">Centros Comerciales</a></li>
-					    <li><a href="">Universidades</a></li>   
-                     </ul>
-				</li>
-				</li>
-</ul>
-</div>
+<h1>Busqueda de Lugares</h1></br>
+<form method="post" action ="enlace">
+Tipo:</br>
+<select name="tipo">
+<option value="restaurantes">Restaurante</option>
+<option value="hoteles">Hoteles</option>
+<option value="bares">Bares</option>
+<option value="centros comerciales">Centros Comerciales</option>
+<option value="universidades">Universidades</option>
+<input type="submit" name="ok" value="tipos" class="button">
+
+</select></br>
+
+</form>
 </section>
+
 
 <!-- Main -->
 
@@ -62,7 +63,8 @@ xmlhttp.send();
 <section class="box special">
 
 <header class="major">
-
+<% ArrayList<String> lugares = request.getAttribute("lugares");
+%>
 <h2>Be Happy.
 
 <br />

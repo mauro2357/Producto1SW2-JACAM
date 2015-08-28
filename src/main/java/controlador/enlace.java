@@ -1,6 +1,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -109,6 +111,19 @@ public class enlace extends HttpServlet {
     	  javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
   		  rd.forward(request, response);
       }
-	}
+      if (accion.equalsIgnoreCase("tipos")){
+    	  String tipo= request.getParameter("tipo");
+    	  System.out.println(tipo);
+    	  bdinstrucciones ins = new bdinstrucciones();
+    	  ArrayList<String> lugares =ins.recibir(tipo);
+    	  request.setAttribute("lugares", lugares);
+    	  javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("exito.jsp");
+  		 rd.forward(request, response);  
+      }
+      
+      }
+	
+	
+	
 
 }

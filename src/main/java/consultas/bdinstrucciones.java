@@ -81,4 +81,14 @@ public class bdinstrucciones {
 			return 0;		
 	}
 	
+	public ArrayList<String> recibir(String tipo){
+		if (datos.isEmpty()==false){
+			datos.clear();
+		}		
+		String sql = "SELECT lug_nombre as Lugares,lug_coordenadas as Coordenadas From lugar natural join categorias WHERE cat_nombre='"+tipo+"'";
+		hacer.consultar(sql);
+		datos=hacer.getColumnData();
+		return datos;
+	}
+	
 }
