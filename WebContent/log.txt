@@ -8,6 +8,6 @@ Password: </br>
 <input type="password" name="password" class="textbox" placeholder="Password" required></br>
 </div>
 <div class="bsub">
-<input type="submit" name="ok" value="entrar" class="button login sub">
+<input type="submit" name="ok" value="Entrar" class="button login sub">
 </div>
 </form>

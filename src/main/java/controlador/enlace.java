@@ -1,4 +1,4 @@
-package controlador;
+package Controlador;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import consultas.bdinstrucciones;
 
@@ -37,73 +38,76 @@ public class enlace extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-		
+		doGet(request, response);		
 		HttpSession sesion = request.getSession();
         String email, pass;
         String accion = request.getParameter("ok");
-      if(accion.equalsIgnoreCase("entrar")){
-    	  
-        email = request.getParameter("mail").toLowerCase();
-        pass = request.getParameter("password");
-        System.out.println(email);
-        System.out.println(pass);
-        bdinstrucciones ins = new bdinstrucciones();
-        int ver = ins.validarUs(email, pass);
-        
-        //deberíamos buscar el usuario en la base de datos, pero dado que se escapa de este tema, ponemos un ejemplo en el mismo código
-        if(ver==1 && sesion.getAttribute("email") == null){
-            //si coincide usuario y password y además no hay sesión iniciada
-            sesion.setAttribute("email", email);
-            //redirijo a página con información de login exitoso
-            javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("exito.jsp");
-    		rd.forward(request, response);
-        }else{
-            //lógica para login inválido
-        	String invalido = "Usuario o contraseña incorrectos";
-        	request.setAttribute("loginvalido", invalido);
-        	javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-    		rd.forward(request, response);
-        }
+        if(accion.equalsIgnoreCase("entrar")){    	  
+        	email = request.getParameter("mail").toLowerCase();
+        	pass = request.getParameter("password");
+        	System.out.println(email);
+        	System.out.println(pass);
+        	bdinstrucciones ins = new bdinstrucciones();
+        	int ver = ins.validarUs(email, pass);        
+	        //deberíamos buscar el usuario en la base de datos, pero dado que se escapa de este tema, ponemos un ejemplo en el mismo código
+	        if(ver==1 && sesion.getAttribute("email") == null){
+	            //si coincide usuario y password y además no hay sesión iniciada
+	            sesion.setAttribute("email", email);
+	            //redirijo a página con información de login exitoso
+	            javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("exito.jsp");
+	    		rd.forward(request, response);
+	        }else{
+	            //lógica para login inválido
+	        	String invalido = "Usuario o contraseña incorrectos";
+	        	System.out.println(invalido);
+	        	request.setAttribute("loginvalido", invalido);
+	        	javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+	    		rd.forward(request, response);
+	        }
       }
       if(accion.equalsIgnoreCase("crear")){
     	  String correo= request.getParameter("correo").toLowerCase();
-          String clave = request.getParameter("clave");
-          String nombres = request.getParameter("nombres");
-          String apellidos = request.getParameter("apellidos");
-          String sexo = request.getParameter("sexo");
-          
+          String clave = request.getParameter("clave2");
+          String nombre = request.getParameter("nombre");
+          String tipo = request.getParameter("tipo");
+          System.out.println(tipo);
           bdinstrucciones ins = new bdinstrucciones();
-          int ver = ins.crearUs(correo, clave, nombres, apellidos, sexo);
-    	  if(ver==1 && sesion.getAttribute("email") == null){
-    		  System.out.println(correo);
-              System.out.println(clave);
-              System.out.println(nombres);
-              System.out.println(apellidos);
-              System.out.println(sexo);
-              ins.crearUs(correo, clave, nombres, apellidos, sexo);
-              
-              sesion.setAttribute("email", correo);
-              
-            javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("exito.jsp");
-      		rd.forward(request, response);
-    	  }
+          if(tipo.equalsIgnoreCase("usuario") ){
+        	  int ver = ins.crearUs(correo, clave, nombre);
+        	  if(ver==1 && sesion.getAttribute("email") == null){
+        		  sesion.setAttribute("email", correo);  		  	
+    		  		ins.crearUs(correo, clave, nombre); 
+    		  		javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("exito.jsp");
+    	      		rd.forward(request, response);
+        	  }
+        	  
+          }
+          if(tipo.equalsIgnoreCase("propietario") ){
+        	  int ver = ins.crearPr(correo, clave, nombre);
+        	  if(ver==1 && sesion.getAttribute("email") == null){
+        		  sesion.setAttribute("email", correo);  		  	
+    		  		ins.crearPr(correo, clave, nombre); 
+    		  		javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("exito.jsp");
+    	      		rd.forward(request, response);
+        	  }
+        	  
+          }    
+	            
     	  else{
-    		  System.out.println("servlet, bad");
-    		  String reginv = "El email ya esta en uso.";
-          	  request.setAttribute("reginvalido", reginv);
-    		  javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        		rd.forward(request, response);
-          
+    		  	System.out.println("servlet, bad");
+    		  	String reginv = "El email"+correo+" ya esta en uso.";
+    		  	request.setAttribute("reginvalido", reginv);
+    		  	javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        		rd.forward(request, response);          
     	 }
-      }
+}
       
       
       
       if(accion.equalsIgnoreCase("salir")){
     	  sesion.invalidate();
     	  javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-  		rd.forward(request, response);
+  		  rd.forward(request, response);
       }
 	}
 

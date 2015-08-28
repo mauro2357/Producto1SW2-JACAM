@@ -1,18 +1,18 @@
-<form method="post" action="enlace">
+<form method="post" action="enlace" onsubmit="return validarPassword();">
 Direccion de correo electronico: </br>
-<input type="text" name="correo" class="textbox" autofocus required></br>
+<input type="text" name="correo" class="textbox" placeholder="Email"autofocus required></br>
 Password:</br>
-<input type="password" name="clave" class="textbox" required></br>
-Nombres:</br>
-<input type="text" name="nombres" class="textbox" required></br>
-Apellidos:</br>
-<input type="text" name="apellidos" class="textbox" required></br>
-Sexo:</br>
-<select name="sexo">
-<option value="M">Masculino</option>
-<option value="F">Femenino</option>
+<input type="password" name="clave1" class="textbox" placeholder="Password"required></br>
+Confirmar Password:</br>
+<input type="password" name="clave2" class="textbox" placeholder="Confirm Password"required></br>
+Nombre(s) y Apellidos:</br>
+<input type="text" name="nombre" class="textbox" placeholder="Nombre"required></br>
+Tipo:</br>
+<select name="tipo">
+<option value="usuario">Usuario</option>
+<option value="propietario">Propietario</option>
 </select></br>
 <div class="bsub">
-<input type="submit" name="ok" value="crear" class="button login sub">
+<input type="submit" name="ok" value="Crear" class="button login sub">
 </div>
-</form>
+</form>	

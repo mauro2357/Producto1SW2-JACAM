@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class conexionMysql {
 	private String sql;
+	int rs = 0;
 	private ArrayList<String> columnData = new ArrayList<String>();
 	
 	public conexionMysql(){
@@ -22,7 +23,7 @@ public class conexionMysql {
 	    String password = "root";
 	    Class.forName(driver);
 	    Connection con = DriverManager.getConnection(connection, user, password);
-	    System.out.println(con);
+	    //System.out.println(con);
 	    return(con);
 	  }
 	public void consultar(String query){
@@ -57,7 +58,7 @@ public class conexionMysql {
 	        int i = 0;
 	        while (i < columns.getColumnCount()) {
 	          i++;
-	          System.out.print(columns.getColumnName(i));
+	          //System.out.print(columns.getColumnName(i));
 	          columnNames.add(columns.getColumnName(i));
 	        }
 	        System.out.print("\n");
@@ -74,7 +75,7 @@ public class conexionMysql {
 
 	      }
 	    } catch (Exception e) {
-	      System.out.println("Exception: " + e.toString());
+	    	e.printStackTrace();
 	    }
 
 	    finally {
@@ -89,14 +90,13 @@ public class conexionMysql {
 	          conn.close();
 	        }
 	      } catch (Exception mysqlEx) {
-	        System.out.println(mysqlEx.toString());
+	    	  mysqlEx.printStackTrace();
 	      }
 
 	    }
 		
 	}
 	public void ingresar(String sql){
-		this.sql=sql;
 	    // JDBC driver name and database URL
 	    String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	    String DB_URL = "jdbc:mysql://localhost/bdsoftware2";
@@ -106,7 +106,6 @@ public class conexionMysql {
 	    String PASS = "root"; // This too!
 
 	    Statement stmt = null;
-	    int rs = 0;
 	    Connection conn = null;
 	    ArrayList<String> columnNames = new ArrayList<String>();
 	    
@@ -123,7 +122,7 @@ public class conexionMysql {
 	      rs = stmt.executeUpdate(sql);
 	     System.out.println("al crear: "+rs);
 	    } catch (Exception e) {
-	      System.out.println("Exception: " + e.toString());
+	      e.printStackTrace();
 	    }
 
 	    finally {
@@ -136,9 +135,8 @@ public class conexionMysql {
 	          conn.close();
 	        }
 	      } catch (Exception mysqlEx) {
-	        System.out.println(mysqlEx.toString());
+	        mysqlEx.printStackTrace();
 	      }
-
 	    }
 	  
 	}
