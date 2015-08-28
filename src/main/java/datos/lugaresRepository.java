@@ -5,15 +5,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Negocio.Localizacion.lugar;
+import Negocio.busquedadelugaresporelusuario.Lugar;
 
 public class lugaresRepository {
 	// our SQL SELECT query. 
     // if you only need a few columns, specify them by name instead of using "*"
     
-	public ArrayList<lugar> consultarLugaresporCoordenadas() throws Exception{
+	public ArrayList<Lugar> consultarLugaresporCoordenadas() throws Exception{
 	Connection con = new conexionMysql().obtenerConexion();
-	ArrayList<lugar> lugares = new ArrayList<lugar>();
+	ArrayList<Lugar> lugares = new ArrayList<Lugar>();
 	String query = "SELECT * FROM lugar";
 	
     // create the java statement
@@ -29,7 +29,7 @@ public class lugaresRepository {
       String nombre = rs.getString("nombre");
       String coordenadas = rs.getString("coordenadas");
       String descripcion = rs.getString("descripcion");
-      lugar lugar = new lugar(nombre, descripcion, coordenadas);
+      Lugar lugar = new Lugar(nombre, descripcion, coordenadas);
       // print the results
       lugares.add(lugar);
     }
@@ -37,4 +37,16 @@ public class lugaresRepository {
     st.close();
     return lugares;
  }
+	public void registrarLocal(int id,String nombre,int telefono,String coordenadas,int  propietario,int categoria,String descripcion) throws Exception{
+		Connection con = new conexionMysql().obtenerConexion();
+		String query = "INSERT INTO lugar (lug_id, lug_nombre, lug_telefono, lug_coordenadas, pro_id,cat_id,lug_descripcion) VALUES ('"+id+"','"+nombre+"','"+telefono+"','"+coordenadas+"','"+propietario+"','"+categoria+"','"+descripcion+"')";
+		Statement st = con.createStatement();
+		int result = st.executeUpdate(query);
+		if(result == 1){
+    		System.out.println("Se ingreso el lugar Correctamente");
+    	}else{
+    		System.out.println("NO se ingresó el lugar");
+    	}
+		st.close();
+	}
 }

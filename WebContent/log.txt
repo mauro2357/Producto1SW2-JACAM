@@ -1,0 +1,13 @@
+<form method="post" action="enlace">
+Email:</br>
+<div class="divtext">
+<input type="text" name="mail" placeholder="Email" class="textbox" autofocus required></br>
+</div>
+Password: </br>
+<div class="divtext">
+<input type="password" name="password" class="textbox" placeholder="Password" required></br>
+</div>
+<div class="bsub">
+<input type="submit" name="ok" value="Entrar" class="button login sub">
+</div>
+</form>
