@@ -1,11 +1,14 @@
 package presentacion;
 
-import datos.lugaresRepository;
+import java.util.ArrayList;
+
+import Negocio.busquedadelugaresporelusuario.Lugar;
+import datos.LugaresRepository;
 
 public class consultaLugaresFacade {
-	
-	public static void main(String[]args) throws Exception{
-		lugaresRepository lugaresRepository= new lugaresRepository();
-		System.out.println(lugaresRepository.consultarLugaresporCoordenadas());
+	public ArrayList<Lugar> main() throws Exception{
+		LugaresRepository lugaresRepository= new LugaresRepository();
+		ArrayList<Lugar> x = lugaresRepository.consultarLugaresporCoordenadas ();
+		return x;
 	}
 }

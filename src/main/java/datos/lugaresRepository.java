@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 import Negocio.busquedadelugaresporelusuario.Lugar;
 
-public class lugaresRepository {
+public class LugaresRepository {
 	// our SQL SELECT query. 
     // if you only need a few columns, specify them by name instead of using "*"
     
 	public ArrayList<Lugar> consultarLugaresporCoordenadas() throws Exception{
-	Connection con = new conexionMysql().obtenerConexion();
+	Connection con = new ConexionMysql().ObtenerConexion();
 	ArrayList<Lugar> lugares = new ArrayList<Lugar>();
 	String query = "SELECT * FROM lugar";
 	
@@ -38,7 +38,7 @@ public class lugaresRepository {
     return lugares;
  }
 	public void registrarLocal(int id,String nombre,int telefono,String coordenadas,int  propietario,int categoria,String descripcion) throws Exception{
-		Connection con = new conexionMysql().obtenerConexion();
+		Connection con = new ConexionMysql().ObtenerConexion();
 		String query = "INSERT INTO lugar (lug_id, lug_nombre, lug_telefono, lug_coordenadas, pro_id,cat_id,lug_descripcion) VALUES ('"+id+"','"+nombre+"','"+telefono+"','"+coordenadas+"','"+propietario+"','"+categoria+"','"+descripcion+"')";
 		Statement st = con.createStatement();
 		int result = st.executeUpdate(query);
