@@ -21,7 +21,7 @@ public class ListadoDeLugaresPorElUsuario {
 	@When("^El lugar ya no existe.$")
 	public void el_lugar_ya_no_existe() throws Throwable {
 		// Express the Regexp above with the code you wish you had
-        usuario.consultarlugares();
+        usuario.consultarLugares();
 	}
 
 	@Then("^Se notifica que este lugar ya no existe.$")
@@ -35,7 +35,7 @@ public class ListadoDeLugaresPorElUsuario {
 	@When("^Encuentra el lugar.$")
 	public void encuentra_el_lugar() throws Throwable {
 	    // Express the Regexp above with the code you wish you had
-		usuario.consultarlugares();
+		usuario.consultarLugares();
 		Assert.assertTrue(usuario.getLugares().size()>0);
 	}
 
@@ -51,7 +51,7 @@ public class ListadoDeLugaresPorElUsuario {
 	@When("^Encuentra el lugar pero este cambio su ubicacion.$")
 	public void encuentra_el_lugar_pero_este_cambio_su_ubicacion() throws Throwable {
 	    // Express the Regexp above with the code you wish you had
-		usuario.consultarlugares();
+		usuario.consultarLugares();
 		
 	}
 
@@ -65,7 +65,7 @@ public class ListadoDeLugaresPorElUsuario {
 	@When("^El lugar no esta registrado en la aplicacion.$")
 	public void el_lugar_no_esta_registrado_en_la_aplicacion() throws Throwable {
 	    // Express the Regexp above with the code you wish you had
-		usuario.consultarlugares();
+		usuario.consultarLugares();
 	}
 
 	@Then("^Se notifica que este lugar no ha sido registrado aun en la aplicacion.$")
@@ -79,7 +79,7 @@ public class ListadoDeLugaresPorElUsuario {
 	@When("^Se ubican todos los lugares cercanos a el.$")
 	public void se_ubican_todos_los_lugares_cercanos_a_el() throws Throwable {
 	    // Express the Regexp above with the code you wish you had
-		usuario.consultarlugares();
+		usuario.consultarLugares();
 	}
 
 	@Then("^Se notifica un listado de los lugares encontrados.$")

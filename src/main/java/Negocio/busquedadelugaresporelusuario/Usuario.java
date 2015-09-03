@@ -60,4 +60,12 @@ public class Usuario {
 		x = y.main();
 		return x;
 	}
+	Lugar lugares;
+	public ArrayList<Lugar> getLugares() {		
+		ArrayList b = new ArrayList();
+		lugares  = new Lugar("Toscana", "descripcion","coordenadas");
+		b.add(lugares);
+	
+		return b;
+	}
 }
