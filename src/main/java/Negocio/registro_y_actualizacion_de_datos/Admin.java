@@ -18,6 +18,5 @@ public class Admin {
 	public boolean consulta_cliente(){
 		return true; //if(objeto cliente existe en el array) return true
 	}
-	
 
 }

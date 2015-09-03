@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 <%@page import java.util.ArrayList; %>
+=======
+>>>>>>> origin/master
 <%if(session.getAttribute("email") == null){%>
 <jsp:forward page="index.jsp"></jsp:forward>
 <%} %>
@@ -7,6 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<<<<<<< HEAD
 <title>East Sites</title>
 <link rel="stylesheet" type="text/css" href="estilo.css">
 <script type="text/javascript" src="validacion.js" ></script>
@@ -81,3 +85,14 @@ Descubre nuevos sitios.</h2>
 
 </body>
 </html>
+=======
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form method="post" action="enlace">    
+    <input type="submit" name="ok" value="Salir" class="button salir">
+    </form>
+</body>
+</html>
+>>>>>>> origin/master
