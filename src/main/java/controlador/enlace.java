@@ -1,13 +1,20 @@
 package controlador;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import consultas.bdinstrucciones;
 
+import Negocio.busquedadelugaresporelusuario.Lugar;
+import presentacion.consultaLugaresFacade;
+import presentacion.RegistrarLugarFacade;
+import presentacion.UbicacionFacade;
+import consultas.bdinstrucciones;
+import datos.ConexionMysql;
 /**
  * Servlet implementation class enlace
  */
@@ -20,12 +27,17 @@ public class enlace extends HttpServlet {
      */
     public enlace() {
         // TODO Auto-generated constructor stub
+    	super();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static ArrayList<Lugar> lugares; //
+    public static consultaLugaresFacade lugaresFacade = new consultaLugaresFacade();
+    public static RegistrarLugarFacade registroFacade = new RegistrarLugarFacade();
+    public static UbicacionFacade ubicacionFacade = new UbicacionFacade();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -107,4 +119,6 @@ public class enlace extends HttpServlet {
   		  rd.forward(request, response);
       }
 	}
+	
+	
 }
