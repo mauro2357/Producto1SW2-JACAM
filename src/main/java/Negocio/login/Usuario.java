@@ -1,4 +1,4 @@
-package Negocio.busquedadelugaresporelusuario;
+package Negocio.login;
 
 import java.util.ArrayList;
 
@@ -17,12 +17,7 @@ public class Usuario {
 		this.nombre = nombre;
 		this.gps = gps;
 		this.coordenadas = coordenadas;
-	}
-
-	public Usuario() {
-		// TODO Auto-generated constructor stub
-	}
-	
+	}	
 	public void setCoordenadas(String coordenadas) {
 		this.coordenadas = coordenadas;
 	}
@@ -47,5 +42,4 @@ public class Usuario {
 	public String getNombre() {
 		return nombre;
 	}
-	
 }

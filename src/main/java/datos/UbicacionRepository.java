@@ -3,10 +3,8 @@ package datos;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import Negocio.Localizacion.ubicacion;
-import Negocio.busquedadelugaresporelusuario.Lugar;
 
 public class UbicacionRepository {
 	
@@ -15,7 +13,7 @@ public class UbicacionRepository {
     private String estado;
 	public String GPS(String usuario) throws Exception{
 		
-	Connection con = new conexionMysql().obtenerConexion();
+	Connection con = new ConexionMysql().ObtenerConexion();
 	String query = "SELECT usu_gps, usu_coordenas FROM usuarios where usu_email='"+usuario+"'";
 	
 	
@@ -43,3 +41,4 @@ public class UbicacionRepository {
  }
 
 }
+

@@ -1,12 +1,60 @@
 package Negocio.busquedadelugaresporelusuario;
 
+import Negocio.registro_y_actualizacion_de_datos.Propietario;
+
 public class Lugar {
 	private String nombre;
 	private String descripcion;
 	private String coordenadas;
-	String a;
+	private Propietario propietario;
+	private int telefono;
+	private int categoria;
+	private int id;
+	private String email;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
-	public Lugar(String nombre,String descripcion, String coordenadas){
+	public int getTelefono() {
+		return telefono;
+	}
+	public void setTelefono(int telefono) {
+		this.telefono = telefono;
+	}
+	public int getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(int categoria) {
+		this.categoria = categoria;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Propietario getPropietario() {
+		return propietario;
+	}
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+	
+	public Lugar(int id,String nombre,int telefono,String coordenadas,String email,int categoria,String descripcion) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.coordenadas = coordenadas;
+		this.propietario = propietario;
+		this.email = email;
+		this.telefono = telefono;
+		this.categoria = categoria;
+		this.id = id;
+	}
+	public Lugar(String nombre,String coordenadas,int telefono,String descripcion,String categoria ){
 		this.nombre=nombre;
 		this.descripcion=descripcion;
 		this.coordenadas=coordenadas;
@@ -36,8 +84,9 @@ public class Lugar {
 	}
 	public String getInformacion() {
 		// TODO Auto-generated method stub
-		a = "descripcion";
+		String a = "descripcion";
 		return a;
+	}
 
  }
-}
+

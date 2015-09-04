@@ -1,10 +1,19 @@
 package presentacion;
 
-import datos.lugaresRepository;
+import Negocio.busquedadelugaresporelusuario.Lugar;
+import datos.LugaresRepository;
 
 public class RegistrarLugarFacade {
-	public static void main(String[]args) throws Exception{
+	/*public RegistrarLugarFacade(int id,String nombre,int telefono,String coordenadas,String propietario,int categoria,String descripcion) throws Exception{
 		lugaresRepository lugaresRepository= new lugaresRepository();
-		lugaresRepository.registrarLocal(1233, "Pizzetas", 566666, "566.2255.22", 1040045483 , 1, "Pizzas a la orden llevela");;
+		Lugar lugar = new Lugar(id,nombre,telefono,coordenadas,propietario,categoria,descripcion);
+		lugaresRepository.registrarLugar(lugar);
+	}*/
+	public RegistrarLugarFacade(int id,String nombre,int telefono,String coordenadas,String propietario,int categoria,String descripcion) throws Exception{
+		LugaresRepository lugaresRepository= new LugaresRepository();
+		Lugar lugar = new Lugar(id,nombre,telefono,coordenadas,propietario,3,descripcion);
+		lugaresRepository.registrarLugar(lugar);
 	}
+
+
 }

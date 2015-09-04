@@ -1,6 +1,5 @@
-<!--  -->
 <%if(session.getAttribute("email") != null){%>
-<jsp:forward page="exito.jsp"></jsp:forward>
+<jsp:forward page="Aver.jsp"></jsp:forward>
 <%} %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>East Sites</title>
 <link rel="stylesheet" type="text/css" href="estilo.css">
+<script type="text/javascript" src="validacion.js" ></script>
 </head>
 <body class="cuerpo">
 <section id="ban">
@@ -19,7 +19,9 @@
 
 <button class="button login" id="login" onclick="limpiar();log()">Entrar</button>
 
-<button class="button enter" id="enter" onclick="limpiar();reg()">Registrarse</button></br>
+<button class="button enter" id="enter" onclick="limpiar();reg()">Registrarse</button>
+
+<button class="button login" id="enter" onclick="limpiar();regLugar()">Registrar Lugar</button></br>
 
 <div id="fo" ></div>
 
@@ -65,62 +67,7 @@ Descubre nuevos sitios.</h2>
 
 </section>
 
-<script>
 
-function limpiar() {
-
-var d = document.getElementById("fo");
-
-while (d.hasChildNodes())
-
-d.removeChild(d.firstChild);
-
-}
-
-var xmlhttp;
-
-function loadXMLDoc(url,cfunc){
-
-	if (window.XMLHttpRequest)
-	{// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp=new XMLHttpRequest();
-	}
-
-	else
-
-	{// code for IE6, IE5
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-
-	xmlhttp.onreadystatechange=cfunc;
-	xmlhttp.open("GET",url,true);
-	xmlhttp.send();
-
-	}
-
-function log(){
-
-	loadXMLDoc("log.txt",function()
-{
-
-	if (xmlhttp.readyState==4 && xmlhttp.status==200)
-	{
-		document.getElementById("fo").innerHTML=xmlhttp.responseText;
-	}
-
-});
-
-}
-
-function reg()
-{
-	loadXMLDoc("regi.txt",function(){
-		if (xmlhttp.readyState==4 && xmlhttp.status==200){
-			document.getElementById("fo").innerHTML=xmlhttp.responseText;
-			}
-		});
-}
-</script>
 
 </body>
 
