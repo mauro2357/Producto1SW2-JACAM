@@ -1,6 +1,11 @@
 <%if(session.getAttribute("email") == null){%>
 <jsp:forward page="index.jsp"></jsp:forward>
 <%} %>
+<%if(session.getAttribute("email")!=null && (request.getAttribute("usuario")!="usuario")){%>
+	<script>window.onload=goBack();</script>
+
+	<%} %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,6 +32,10 @@ Tipo:</br>
 </select></br>
 </form>
 </section>
-
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
 </body>
 </html>

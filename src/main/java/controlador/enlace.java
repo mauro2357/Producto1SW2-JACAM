@@ -1,5 +1,6 @@
 package controlador;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Negocio.login.Persona;
+import Negocio.login.Propietario;
 import Negocio.login.Usuario;
 import presentacion.*;
 
@@ -47,25 +49,39 @@ public class enlace extends HttpServlet {
         	email = request.getParameter("mail");
             pass = request.getParameter("password");
             System.out.println(email+"   "+pass);
+            //Usuario usuario;
+            //Propietario propietario;
+            int validar;
             LogInFacade logInFacade = new LogInFacade();
-            try {
-				Usuario usuario = logInFacade.validar(email, pass);
-				System.out.println("DEvolvio:  "+usuario.getEmail()+" "+usuario.getNombre());
-				if(usuario.getEmail() != null && session.getAttribute("email")==null){
-			      //si coincide usuario y password y además no hay sesión iniciada
-		            session.setAttribute("email", email);
-		            //redirijo a página con información de login exitoso
-		            javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("Aver.jsp");
+            //try {
+				validar = logInFacade.validarPro(email, pass);
+				//propietario = logInFacade.validarPro(email, pass);
+				System.out.println("DEvolvio al enlace propieta:  ");
+				if(validar == 1 && session.getAttribute("email")==null){
+					session.setAttribute("email", email);
+					request.setAttribute("propietario", "propietario");
+					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
 		    		rd.forward(request, response);
 				}else{
-					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		    		rd.forward(request, response);
+					validar=logInFacade.validarUs(email, pass);
+					if(validar == 1 && session.getAttribute("email")==null){
+						
+						session.setAttribute("email", email);
+						request.setAttribute("usuario", "usuario");
+						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+			    		rd.forward(request, response);
+						
+					}
+					else{
+						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			    		rd.forward(request, response);
+					}
 				}
 				
-			} catch (Exception e) {
+			/*} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
         }
         if(accion.equalsIgnoreCase("RegistrarLugar")){
         	int id = 0;
@@ -89,6 +105,19 @@ public class enlace extends HttpServlet {
 			}
         	/*javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
     		rd.forward(request, response);*/
+        }
+        if(accion.equalsIgnoreCase("Crear")){
+        	String emaill=request.getParameter("correo");
+        	String nombre=request.getParameter("nombre");
+        	String password=request.getParameter("clave1");
+        	String tipo=request.getParameter("tipo");
+        	if(tipo.equalsIgnoreCase("propietario")){
+        		
+        		
+        	}
+        	if(tipo.equalsIgnoreCase("usuario")){
+        		
+        	}
         }
         
         if(accion.equalsIgnoreCase("salir")){

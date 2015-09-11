@@ -139,3 +139,11 @@ private String sql;
 		}
 	}
 	
+	
+	if(usuario.getEmail() != null && session.getAttribute("email")==null){
+			      //si coincide usuario y password y además no hay sesión iniciada
+		            session.setAttribute("email", email);
+		            request.setAttribute("usuario", "usuario");
+		            //redirijo a página con información de login exitoso
+		            javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+		    		rd.forward(request, response);
