@@ -51,3 +51,17 @@ function reg(){
 	}
 	});
 }
+function pornombre(){
+	loadXMLDoc("pornombre.txt",function(){
+	if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		document.getElementById("fo").innerHTML=xmlhttp.responseText;
+	}
+	});
+}
+function portipo(){
+	loadXMLDoc("portipo.txt",function(){
+	if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		document.getElementById("fo").innerHTML=xmlhttp.responseText;
+	}
+	});
+}

@@ -266,9 +266,17 @@ ALTER TABLE Favoritos ADD CONSTRAINT Relationship6 FOREIGN KEY (lug_id) REFERENC
 ;
 
 
-<<<<<<< HEAD
+<<<<<<< PEQUEÑOS CAMBIOS DE LA NOCHE HASTA LAS 4 A.M
 
 
+ALTER TABLE `bdsoftware2`.`usuarios` 
+CHANGE COLUMN `usu_gps` `usu_gps` VARCHAR(2) NOT NULL DEFAULT 'no' ,
+CHANGE COLUMN `usu_coordenas` `usu_coordenas` VARCHAR(100) NULL ;
+
+ALTER TABLE `bdsoftware2`.`propietario` 
+CHANGE COLUMN `pro_telefono` `pro_telefono` INT(11) NULL ;
+
+<<<<<<< HASTA ACA!!!!!!!!!
 
 INSERT INTO `bdsoftware2`.`categorias` (`cat_id`, `cat_nombre`) VALUES ('1', 'Restaurantes');
 

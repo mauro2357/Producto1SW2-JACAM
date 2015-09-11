@@ -9,6 +9,7 @@ public class Lugar {
 	private Propietario propietario;
 	private int telefono;
 	private int categoria;
+	private String catenom;
 	private int id;
 	private String email;
 	public String getEmail() {
@@ -54,10 +55,18 @@ public class Lugar {
 		this.categoria = categoria;
 		this.id = id;
 	}
-	public Lugar(String nombre,String coordenadas,int telefono,String descripcion,String categoria ){
+	public Lugar(String nombre,String coordenadas,int telefono,String descripcion,String catenom ){
 		this.nombre=nombre;
 		this.descripcion=descripcion;
 		this.coordenadas=coordenadas;
+		this.telefono=telefono;
+		this.catenom=catenom;
+	}
+	public String getCatenom() {
+		return catenom;
+	}
+	public void setCatenom(String catenom) {
+		this.catenom = catenom;
 	}
 	public String getNombre() {
 		return nombre;

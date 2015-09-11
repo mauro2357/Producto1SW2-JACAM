@@ -1,0 +1,11 @@
+<form method="post" action ="control">
+Tipo:</br>
+<select name="tipo">
+<option value="restaurantes">Restaurante</option>
+<option value="hoteles">Hoteles</option>
+<option value="bares">Bares</option>
+<option value="centros comerciales">Centros Comerciales</option>
+<option value="universidades">Universidades</option>
+<input type="submit" name="clugar" value="tipos" class="button">
+</select></br>
+</form>

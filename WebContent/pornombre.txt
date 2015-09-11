@@ -1,0 +1,7 @@
+<form action ="control" method="post">
+Direccion de correo electronico: </br>
+<input type="text" name="nombrelugar" class="textbox" placeholder="Nombre Lugar"autofocus required></br>
+<div class="bsub">
+<input type="submit" name="clugar" value="nombre" class="button login sub">
+</div>
+</form>

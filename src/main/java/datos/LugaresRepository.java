@@ -125,9 +125,13 @@ public class LugaresRepository {
 		    {
 		      
 		      String nombre = rs.getString("lug_nombre");
+		      System.out.println("nombre: "+nombre);
 		      String coordenadas = rs.getString("lug_coordenadas");
+		      System.out.println("coordenadas: "+coordenadas);
 		      int telefono = rs.getInt("lug_telefono");
+		      System.out.println("telefono: "+telefono);
 		      String descripcion = rs.getString("lug_descripcion");
+		      System.out.println("descripcion: "+descripcion);
 		      Lugar lugar = new Lugar(nombre, coordenadas,telefono,descripcion,categoria);
 		      // print the results
 		      lugares.add(lugar);

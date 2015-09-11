@@ -1,5 +1,5 @@
 <%if(session.getAttribute("email") != null){%>
-<jsp:forward page="Aver.jsp"></jsp:forward>
+<jsp:forward page="usuario.jsp"></jsp:forward>
 <%} %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

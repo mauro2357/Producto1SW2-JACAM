@@ -11,7 +11,7 @@ public class RegistrarLugarFacade {
 	}*/
 	public RegistrarLugarFacade(int id,String nombre,int telefono,String coordenadas,String propietario,int categoria,String descripcion) throws Exception{
 		LugaresRepository lugaresRepository= new LugaresRepository();
-		Lugar lugar = new Lugar(id,nombre,telefono,coordenadas,propietario,3,descripcion);
+		Lugar lugar = new Lugar(id,nombre,telefono,coordenadas,propietario,categoria,descripcion);
 		lugaresRepository.registrarLugar(lugar);
 	}
 

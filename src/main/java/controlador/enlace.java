@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Negocio.busquedadelugaresporelusuario.Lugar;
 import Negocio.login.Persona;
 import Negocio.login.Propietario;
 import Negocio.login.Usuario;
@@ -111,12 +112,33 @@ public class enlace extends HttpServlet {
         	String nombre=request.getParameter("nombre");
         	String password=request.getParameter("clave1");
         	String tipo=request.getParameter("tipo");
+        	int si;
+        	RegistrarFacade registro = new RegistrarFacade();
         	if(tipo.equalsIgnoreCase("propietario")){
-        		
+        		si=registro.registrarPropietario(emaill, password, nombre);
+        		if(si==1 && session.getAttribute("email")==null){
+        			session.setAttribute("email", emaill);
+					request.setAttribute("propietario", "propietario");
+        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
+        			rd.forward(request, response);
+        		}
+        		else{
+        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        			rd.forward(request, response);
+        		}
         		
         	}
         	if(tipo.equalsIgnoreCase("usuario")){
-        		
+        		si=registro.registrarUsuario(emaill, password, nombre);
+        		if(si==1 && session.getAttribute("email")==null){
+        		session.setAttribute("email", emaill);
+				request.setAttribute("propietario", "propietario");
+        		javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+	    		rd.forward(request, response);
+        		}else{
+        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        			rd.forward(request, response);
+        		}
         	}
         }
         

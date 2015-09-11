@@ -7,7 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Negocio.busquedadelugaresporelusuario.Lugar;
+import Negocio.registro_y_actualizacion_de_datos.Ppersona;
 import Negocio.login.Persona;
+
 import Negocio.login.Usuario;
 
 public class UsuariosRepository {
@@ -66,23 +68,19 @@ public class UsuariosRepository {
 		    }	    
 		    return usuario;
 	}
-	public void registrarUsuario(Lugar lugar) throws Exception{
-		int id = lugar.getId();
-		String nombre = lugar.getNombre();
-		int telefono = lugar.getTelefono();
-		String coordenadas = lugar.getCoordenadas();
-		String email = lugar.getEmail();
-		int categoria = lugar.getCategoria();
-		String descripcion = lugar.getDescripcion();
+	public int registrarUsuario(Ppersona persona){
+		String email = persona.getEmail();
+		String pass = persona.getPassword();
+		String nombre=persona.getNombre();
 		//Connection con = new ConexionMysql().ObtenerConexion();
-		String query = "INSERT INTO lugar (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_email`, `cat_id`, `lug_descripcion`) VALUES ('"+id+"', '"+nombre+"', '"+telefono+"', '"+coordenadas+"', '"+email+"', '"+categoria+"', '"+descripcion+"')";	
+		String query = "INSERT INTO usuarios (`usu_email`, `usu_password`, `usu_nombre`,`usu_gps`) VALUES ('"+email+"', '"+pass+"', '"+nombre+"','no')";	
 		System.out.println(query);
 	    // create the java statement
 	    // execute the query, and get a java resultset
 	    //int rs = st.executeUpdate(query);
 	    Statement stmt = null;
 	    Connection con = null;
-	    int rs;
+	    int rs=0;
 	    //ArrayList<String> columnNames = new ArrayList<String>();
 	    
 
@@ -95,7 +93,7 @@ public class UsuariosRepository {
 	      stmt = con.createStatement();
 	      rs = stmt.executeUpdate(query);
 	      System.out.println("rs: "+rs);
-	     System.out.println("al crear: "+rs);
+	      System.out.println("al crear: "+rs);
 	    } catch (Exception e) {
 	      e.printStackTrace();
 	    }
@@ -113,6 +111,7 @@ public class UsuariosRepository {
 	        mysqlEx.printStackTrace();
 	      }
 	    }
+	    return rs;
 				
 	}
 }

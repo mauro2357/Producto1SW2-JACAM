@@ -13,6 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>East Sites</title>
 <link rel="stylesheet" type="text/css" href="estilo.css">
+<script type="text/javascript" src="validacion.js" ></script>
 </head>
 <body class="cuerpo">
 <form method="post" action="enlace">    
@@ -20,17 +21,13 @@
 </form>
 <section id="ban">
 <h1>Busqueda de Lugares</h1></br>
-<form method="post" action ="enlace">
-Tipo:</br>
-<select name="tipo">
-<option value="restaurantes">Restaurante</option>
-<option value="hoteles">Hoteles</option>
-<option value="bares">Bares</option>
-<option value="centros comerciales">Centros Comerciales</option>
-<option value="universidades">Universidades</option>
-<input type="submit" name="ok" value="tipos" class="button">
-</select></br>
-</form>
+<section >
+<div class="lad"><button class="button enter" id="enter" onclick="limpiar();portipo()">Tipo</button></div>
+<div class="lad"><form method="post" action="control"><input type="submit" name="clugar" value="todo" class="button login sub"></form></div>
+<div class="lad"><button class="button enter" id="enter" onclick="limpiar();pornombre()">Nombres</button></div>
+</section>
+<div id="fo" ></div>
+<div id="listar" ></div>
 </section>
 <script>
 function goBack() {
