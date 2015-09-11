@@ -44,6 +44,21 @@ function regLugar(){
 	}
 });
 }
+function eliLugar(){
+	loadXMLDoc("eliLugar.txt",function()
+	{
+	if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		document.getElementById("fo").innerHTML=xmlhttp.responseText;
+	}
+});
+}
+function actLugar(){
+	loadXMLDoc("actLugar.txt",function(){
+	if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		document.getElementById("fo").innerHTML=xmlhttp.responseText;
+	}
+	});
+}
 function reg(){
 	loadXMLDoc("regi.txt",function(){
 	if (xmlhttp.readyState==4 && xmlhttp.status==200){

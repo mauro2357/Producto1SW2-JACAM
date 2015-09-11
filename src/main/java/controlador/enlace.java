@@ -98,7 +98,7 @@ public class enlace extends HttpServlet {
         	try {
 				RegistrarLugarFacade registrarLugarFacade = new RegistrarLugarFacade(id, nombre, telefono, coordenadas, propietario, categoria, descripcion);
 				//System.out.println("Su lugar ha sido registrado en la BD");
-				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
 	    		rd.forward(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -106,6 +106,38 @@ public class enlace extends HttpServlet {
 			}
         	/*javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
     		rd.forward(request, response);*/
+        }
+        
+        if (accion.equalsIgnoreCase("Actualizar")){
+            
+        	String nombre = request.getParameter("NombreLugar");
+        	int telefono = Integer.parseInt(request.getParameter("telefono"));
+        	String coordenadas = request.getParameter("coordenadas");
+        	String propietario = request.getParameter("propietario");
+        	int categoria = Integer.parseInt(request.getParameter("categoria"));
+        	String descripcion = request.getParameter("descripcion");
+        	try {
+				ActualizarDatosFacade actualizarLugarFacade = new ActualizarDatosFacade( nombre, telefono, coordenadas, propietario, categoria, descripcion);
+				//System.out.println("Su lugar ha sido registrado en la BD");
+				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
+	    		rd.forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
+        if(accion.equalsIgnoreCase("EliminarLugar")){
+        	int id=0;
+        	String coordenadas = request.getParameter("coordenadas");
+        	try {
+				EliminarLugarFacade eliminarLugarFacade = new EliminarLugarFacade(coordenadas, id);
+				//System.out.println("Su lugar ha sido registrado en la BD");
+				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
+	    		rd.forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
         }
         if(accion.equalsIgnoreCase("Crear")){
         	String emaill=request.getParameter("correo");

@@ -1,0 +1,13 @@
+<form method="post" action="enlace" >
+Id del Lugar: </br>
+<div class="divtext">
+<input type="text" name="IdLugar" class="textbox" placeholder="Id del Lugar"autofocus required></br>
+</div>
+Coordenadas: </br>
+<div class="divtext">
+<input type="text" name="coordenadas" class="textbox" placeholder="Coordenadas del Lugar"autofocus required></br>
+</div>
+<div class="bsub">
+<input type="submit" name="ok" value="EliminarLugar" class="button login sub">
+</div>
+</form>

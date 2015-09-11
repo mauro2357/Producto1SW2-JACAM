@@ -21,7 +21,7 @@
 
 <button class="button enter" id="enter" onclick="limpiar();reg()">Registrarse</button>
 
-<button class="button login" id="enter" onclick="limpiar();regLugar()">Registrar Lugar</button></br>
+<button class="button login" id="enter" >Información</button></br>
 
 <div id="fo" ></div>
 

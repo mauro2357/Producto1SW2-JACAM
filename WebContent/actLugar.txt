@@ -1,0 +1,29 @@
+<form method="post" action="enlace" >
+Nombre del Lugar: </br>
+<div class="divtext">
+<input type="text" name="NombreLugar" class="textbox" placeholder="Nombre del Lugar"autofocus required></br>
+</div>
+Telefono:</br>
+<div class="divtext">
+<input type="text" name="telefono" class="textbox" placeholder="Telefono"></br>
+</div>
+Coordenadas:</br>
+<div class="divtext">
+<input type="text" name="coordenadas" class="textbox" placeholder="Cooordenadas"required></br>
+</div>
+Propietario:</br>
+<div class="divtext">
+<input type="text" name="propietario" class="textbox" placeholder="Propietario"required></br>
+</div>
+Categoria:</br>
+<div class="divtext">
+<input type="text" name="categoria" class="textbox" placeholder="Categoria"required></br>
+</div>
+Descripcion:</br>
+<div class="divtext">
+<input type="text" name="descripcion" class="textbox" placeholder="Descripcion"required></br>
+</div>
+<div class="bsub">
+<input type="submit" name="ok" value="Actualizar" class="button login sub">
+</div>
+</form>	

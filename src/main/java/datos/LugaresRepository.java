@@ -253,5 +253,76 @@ public class LugaresRepository {
 	    }
 				
 	}
+	public void eliminarLugar(Lugar lugar){
+		int id = lugar.getId();
+		String coordenadas = lugar.getCoordenadas();
+		String query = "delete from lugar where lug_coordenadas='"+coordenadas+"'";
+		System.out.println(query);
+		Statement stmt = null;
+	    Connection con = null;
+	    int rs=1;	    
+
+	    try {
+	     	con = new ConexionMysql().ObtenerConexion();
+	    	stmt = con.createStatement();
+	      rs = stmt.executeUpdate(query);
+	      System.out.println("rs: "+rs);
+	     System.out.println("al crear: "+rs);
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    }
+
+	    finally {
+	      try {
+
+	        if (stmt != null) {
+	          stmt.close();
+	        }
+	        if (con != null) {
+	          con.close();
+	        }
+	      } catch (Exception mysqlEx) {
+	        mysqlEx.printStackTrace();
+	      }
+	    	  
+	      }
+	    }
+	public void ActualizarDatos(Lugar lugar)throws Exception{
+		int id = lugar.getId();
+		String nombre = lugar.getNombre();
+		int telefono = lugar.getTelefono();
+		String coordenadas = lugar.getCoordenadas();
+		String email = lugar.getEmail();
+		int categoria = lugar.getCategoria();
+		String descripcion = lugar.getDescripcion();
+		String query = "update lugar set lug_nombre='"+nombre+"', lug_telefono='"+telefono+"',lug_descripcion='"+descripcion+"', pro_email='"+email+"' where lug_coordenadas='"+coordenadas+"'";
+		System.out.println(query);
+		Statement stmt = null;
+	    Connection con = null;
+	    int rs;
+	    try {
+	      con = new ConexionMysql().ObtenerConexion();
+	      stmt = con.createStatement();
+	      rs = stmt.executeUpdate(query);
+	      System.out.println("rs: "+rs);
+	     System.out.println("al crear: "+rs);
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    }
+
+	    finally {
+	      try {
+
+	        if (stmt != null) {
+	          stmt.close();
+	        }
+	        if (con != null) {
+	          con.close();
+	        }
+	      } catch (Exception mysqlEx) {
+	        mysqlEx.printStackTrace();
+	      }
+	    }
+	} 
 	
 }
