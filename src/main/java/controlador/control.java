@@ -111,6 +111,25 @@ public class control extends HttpServlet {
 			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
     		rd.forward(request, response);
 		}
+		if(accion.equalsIgnoreCase("Consultar Mis Lugares")){
+			lugares.clear();
+			consultaLugaresFacade consultarLugarPropietario = new consultaLugaresFacade();
+			try {
+				lugares=consultarLugarPropietario.consultarLugarPropietario(email);
+				if(lugares.isEmpty()){
+					PrintWriter out=response.getWriter();
+					   out.println("Error, no hay lugares.");
+				}
+				else{
+				request.setAttribute("lugares", lugares);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+    		rd.forward(request, response);
+		}
 	}
 
 }

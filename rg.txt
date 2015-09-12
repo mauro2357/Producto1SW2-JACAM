@@ -1,3 +1,2 @@
 2- como usuario quiero almacenar mis lugares favoritos en un botón
-3- como usuario quiero ver el listado de características de un lug
 8- como propietario deseo poder ver mis lugares registrados 

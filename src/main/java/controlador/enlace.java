@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import Negocio.busquedadelugaresporelusuario.Lugar;
 import Negocio.login.Persona;
@@ -62,7 +63,8 @@ public class enlace extends HttpServlet {
 					session.setAttribute("email", email);
 					request.setAttribute("propietario", "propietario");
 					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
-		    		rd.forward(request, response);
+					rd.forward(request, response);
+					JOptionPane.showMessageDialog(null,"bienvenido");
 				}else{
 					validar=logInFacade.validarUs(email, pass);
 					if(validar == 1 && session.getAttribute("email")==null){
@@ -71,11 +73,13 @@ public class enlace extends HttpServlet {
 						request.setAttribute("usuario", "usuario");
 						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
 			    		rd.forward(request, response);
-						
-					}
+						JOptionPane.showMessageDialog(null,"bienvenido");
+						}
 					else{
 						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			    		rd.forward(request, response);
+						JOptionPane.showMessageDialog(null,"Usted no se encuentra registrado");
+
 					}
 				}
 				

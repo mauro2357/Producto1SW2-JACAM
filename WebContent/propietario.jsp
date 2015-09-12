@@ -26,7 +26,7 @@
 
 <button class="button login" id="enter" onclick="limpiar();actLugar()">Actualizar Datos de un Lugar</button>
 
-<button class="button login" id="enter" onclick="limpiar();consLugar()">Consultar Mis Lugares</button></br>
+<form method="post" action="control"><input class="button login" type="submit" name="clugar" value="Consultar Mis Lugares" class="button login sub"></form>
 
 <div id="fo" ></div>
 

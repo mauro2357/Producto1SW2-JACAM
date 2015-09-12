@@ -36,5 +36,10 @@ public class consultaLugaresFacade {
 		ArrayList<Lugar> lugares = lugRepository.consultarTodosLosLugares();
 		return lugares;
 		}
+	public ArrayList<Lugar> consultarLugarPropietario(String email) throws Exception{
+		LugaresRepository lugRepository =  new LugaresRepository();
+		ArrayList<Lugar> lugares = lugRepository.consultarLugaresPropietario(email);
+		return lugares;
+	}
 	
 }

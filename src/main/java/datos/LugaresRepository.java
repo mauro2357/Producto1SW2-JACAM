@@ -204,6 +204,48 @@ public class LugaresRepository {
 	    }	    
 	    return lugares;
 	 }
+	public ArrayList<Lugar> consultarLugaresPropietario(String email) throws Exception {
+		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
+		String query = "select lug_nombre,lug_coordenadas,lug_telefono,lug_descripcion,cat_nombre from lugar natural join categorias where pro_email='"+email+"'";
+		Statement st = null;
+	    ResultSet rs = null;
+	    Connection con = null;
+	    try {
+	    	con = new ConexionMysql().ObtenerConexion();
+	    	st = con.createStatement();
+	    	rs = st.executeQuery(query);
+	    while (rs.next())
+	    {
+	      
+	      String nombre = rs.getString("lug_nombre");
+	      String coordenadas = rs.getString("lug_coordenadas");
+	      int telefono = rs.getInt("lug_telefono");
+	      String descripcion = rs.getString("lug_descripcion");
+	      String categorias = rs.getString("cat_nombre");	      
+	      Lugar lugar = new Lugar(nombre, coordenadas,telefono,descripcion,categorias);
+	      // print the results
+	      lugares.add(lugar);
+	      
+	    }
+		}catch (Exception e) {
+	    	e.printStackTrace();
+	    }finally {
+		      try {
+			        if (rs != null) {
+			          rs.close();
+			        }
+			        if (st != null) {
+			          st.close();
+			        }
+			        if (con != null) {
+			          con.close();
+			        }
+			      } catch (Exception mysqlEx) {
+			    	  mysqlEx.printStackTrace();
+			      }
+	    }	    
+	    return lugares;
+	 }
 	public void registrarLugar(Lugar lugar) throws Exception{
 		int id = lugar.getId();
 		String nombre = lugar.getNombre();
