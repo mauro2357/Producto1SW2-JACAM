@@ -12,7 +12,7 @@ import Negocio.login.Persona;
 
 import Negocio.login.Usuario;
 
-public class UsuariosRepository {
+public class UsuarioRepository {
 	public Usuario consultarUsuario(Persona persona){
 		
 		String email = persona.getEmail();

@@ -2,11 +2,11 @@ package presentacion;
 
 import Negocio.login.Propietario;
 import Negocio.registro_y_actualizacion_de_datos.Ppersona;
-import datos.PropietariosRepository;
-import datos.UsuariosRepository;
+import datos.PropietarioRepository;
+import datos.UsuarioRepository;
 
-public class RegistrarFacade {
-	public RegistrarFacade() {
+public class RegistroFacade {
+	public RegistroFacade() {
 		// TODO Auto-generated constructor stub
 	}
 	public int registrarUsuario(String email,String password,String nombre){
@@ -20,7 +20,7 @@ public class RegistrarFacade {
 		}
 		else{
 			Ppersona persona = new Ppersona(email,password,nombre);
-			UsuariosRepository usuariosRepo = new UsuariosRepository();
+			UsuarioRepository usuariosRepo = new UsuarioRepository();
 			bien=usuariosRepo.registrarUsuario(persona);
 			return bien;
 		}
@@ -36,7 +36,7 @@ public class RegistrarFacade {
 		}
 		else{
 			Ppersona persona = new Ppersona(email,password,nombre);
-			PropietariosRepository propietarioRepo = new PropietariosRepository();
+			PropietarioRepository propietarioRepo = new PropietarioRepository();
 			bien=propietarioRepo.registrarPropietario(persona);
 			return bien;
 		}

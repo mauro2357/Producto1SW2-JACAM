@@ -1,4 +1,4 @@
-package registro_y_actualizacion_de_datos;
+package registroyactualizaciondedatos;
 
 
 import org.junit.runner.RunWith;

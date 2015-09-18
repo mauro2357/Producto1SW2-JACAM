@@ -100,7 +100,7 @@ public class enlace extends HttpServlet {
         	     id = ((int)(Math.random()*6 + 1));
         	}
         	try {
-				RegistrarLugarFacade registrarLugarFacade = new RegistrarLugarFacade(id, nombre, telefono, coordenadas, propietario, categoria, descripcion);
+				RegistroLugarFacade registrarLugarFacade = new RegistroLugarFacade(id, nombre, telefono, coordenadas, propietario, categoria, descripcion);
 				//System.out.println("Su lugar ha sido registrado en la BD");
 				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
 	    		rd.forward(request, response);
@@ -121,7 +121,7 @@ public class enlace extends HttpServlet {
         	int categoria = Integer.parseInt(request.getParameter("categoria"));
         	String descripcion = request.getParameter("descripcion");
         	try {
-				ActualizarDatosFacade actualizarLugarFacade = new ActualizarDatosFacade( nombre, telefono, coordenadas, propietario, categoria, descripcion);
+				ActualizaDatosFacade actualizarLugarFacade = new ActualizaDatosFacade( nombre, telefono, coordenadas, propietario, categoria, descripcion);
 				//System.out.println("Su lugar ha sido registrado en la BD");
 				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
 	    		rd.forward(request, response);
@@ -134,7 +134,7 @@ public class enlace extends HttpServlet {
         	int id=0;
         	String coordenadas = request.getParameter("coordenadas");
         	try {
-				EliminarLugarFacade eliminarLugarFacade = new EliminarLugarFacade(coordenadas, id);
+				EliminaLugarFacade eliminarLugarFacade = new EliminaLugarFacade(coordenadas, id);
 				//System.out.println("Su lugar ha sido registrado en la BD");
 				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
 	    		rd.forward(request, response);
@@ -143,13 +143,28 @@ public class enlace extends HttpServlet {
 				e.printStackTrace();
 			}
         }
+
+          if(accion.equalsIgnoreCase("Favorito")){
+        	int id=0;
+        	String email1= request.getParameter("email");
+        	int id2 = Integer.parseInt(request.getParameter("id"));
+        	try {
+        		RegistroFavoritoFacade registroFavoritoFacade=new RegistroFavoritoFacade(id2,email1);
+				//System.out.println("El lugar ha sido añadido a favoritos");
+				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+	    		rd.forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+}
         if(accion.equalsIgnoreCase("Crear")){
         	String emaill=request.getParameter("correo");
         	String nombre=request.getParameter("nombre");
         	String password=request.getParameter("clave1");
         	String tipo=request.getParameter("tipo");
         	int si;
-        	RegistrarFacade registro = new RegistrarFacade();
+        	RegistroFacade registro = new RegistroFacade();
         	if(tipo.equalsIgnoreCase("propietario")){
         		si=registro.registrarPropietario(emaill, password, nombre);
         		if(si==1 && session.getAttribute("email")==null){
@@ -177,6 +192,7 @@ public class enlace extends HttpServlet {
         		}
         	}
         }
+        
         
         if(accion.equalsIgnoreCase("salir")){
       	  session.invalidate();

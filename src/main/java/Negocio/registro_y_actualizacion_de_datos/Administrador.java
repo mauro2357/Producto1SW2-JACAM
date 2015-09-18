@@ -2,7 +2,7 @@ package Negocio.registro_y_actualizacion_de_datos;
 
 import java.util.ArrayList;
 import Negocio.registro_y_actualizacion_de_datos.Propietario;
-public class Admin {
+public class Administrador {
 	
 	ArrayList<Propietario> listaclientes = new ArrayList<Propietario>();
 	//Lista de clientes.

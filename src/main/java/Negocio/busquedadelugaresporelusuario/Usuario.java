@@ -18,6 +18,11 @@ public class Usuario {
 		this.gps = gps;
 		this.coordenadas = coordenadas;
 	}
+	public Usuario(String email) {
+		this.email = email;
+		
+	}
+	
 
 	public Usuario() {
 		// TODO Auto-generated constructor stub

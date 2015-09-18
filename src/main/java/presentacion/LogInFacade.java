@@ -5,9 +5,9 @@ import Negocio.busquedadelugaresporelusuario.Lugar;
 import Negocio.login.Persona;
 import Negocio.login.Propietario;
 import Negocio.login.Usuario;
-import datos.UsuariosRepository;
-import datos.LugaresRepository;
-import datos.PropietariosRepository;
+import datos.UsuarioRepository;
+import datos.LugarRepository;
+import datos.PropietarioRepository;
 public class LogInFacade {
 	public Usuario usario;
 	public Propietario propietario;
@@ -33,7 +33,7 @@ public class LogInFacade {
 	}*/
 	public int validarUs(String email,String clave){
 		// TODO Auto-generated method stub	
-		UsuariosRepository usuariosRepository = new UsuariosRepository();
+		UsuarioRepository usuariosRepository = new UsuarioRepository();
 		Persona persona = new Persona(email,clave);
 		Usuario usuario = usuariosRepository.consultarUsuario(persona);
 		if (usuario==null){
@@ -45,7 +45,7 @@ public class LogInFacade {
 		}
 	}
 	public int validarPro(String email,String clave){
-		PropietariosRepository propietariosRepository = new PropietariosRepository();
+		PropietarioRepository propietariosRepository = new PropietarioRepository();
 		Persona persona= new Persona(email,clave);
 		Propietario propietario=propietariosRepository.ConsultarPropietario(persona);
 		if (propietario==null){

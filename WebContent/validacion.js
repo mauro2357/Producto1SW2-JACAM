@@ -79,4 +79,12 @@ function portipo(){
 		document.getElementById("fo").innerHTML=xmlhttp.responseText;
 	}
 	});
+	
+}
+function favoritos(){
+	loadXMLDoc("favoritos.txt",function(){
+	if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		document.getElementById("fo").innerHTML=xmlhttp.responseText;
+	}
+	});
 }

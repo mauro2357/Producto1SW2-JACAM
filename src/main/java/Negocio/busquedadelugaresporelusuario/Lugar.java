@@ -15,6 +15,10 @@ public class Lugar {
 	public String getEmail() {
 		return email;
 	}
+	public Lugar(int id) {
+		// TODO Auto-generated constructor stub
+		this.id=id;
+	}
 	public void setEmail(String email) {
 		this.email = email;
 	}

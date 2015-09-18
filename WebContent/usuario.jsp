@@ -25,6 +25,7 @@
 <div class="lad"><button class="button enter" id="enter" onclick="limpiar();portipo()">Tipo</button></div>
 <div class="lad"><form method="post" action="control"><input type="submit" name="clugar" value="todo" class="button login sub"></form></div>
 <div class="lad"><button class="button enter" id="enter" onclick="limpiar();pornombre()">Nombres</button></div>
+<div class="lad"><button class="button enter" id="enter" onclick="limpiar();favoritos()">Añadir a Favoritos</button></div>
 </section>
 <div id="fo" ></div>
 <div id="listar" ></div>

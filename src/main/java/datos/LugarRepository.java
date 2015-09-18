@@ -6,8 +6,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Negocio.busquedadelugaresporelusuario.Lugar;
+import Negocio.busquedadelugaresporelusuario.Usuario;
 
-public class LugaresRepository {
+public class LugarRepository {
 	// our SQL SELECT query. 
     // if you only need a few columns, specify them by name instead of using "*"
 	public ArrayList<Lugar> consultarLugaresporNombre(String nombre) throws Exception{
@@ -366,5 +367,41 @@ public class LugaresRepository {
 	      }
 	    }
 	} 
+	public void RegistroFavorito(Usuario usuario, Lugar lugar){
+		int id = lugar.getId();
+		String email=usuario.getEmail();
+		String query="INSERT INTO `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) VALUES ('"+email+"', '"+id+"')";
+		System.out.println(query);
+		Statement stmt = null;
+	    Connection con = null;
+	    int rs;
+	    try {
+	      con = new ConexionMysql().ObtenerConexion();
+	      stmt = con.createStatement();
+	      rs = stmt.executeUpdate(query);
+	      System.out.println("rs: "+rs);
+	     System.out.println("al crear: "+rs);
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    }
+
+
+	    finally {
+	      try {
+
+
+	        if (stmt != null) {
+	          stmt.close();
+	        }
+	        if (con != null) {
+	          con.close();
+	        }
+	      } catch (Exception mysqlEx) {
+	        mysqlEx.printStackTrace();
+	      }
+	    }
+		
+	}
+	
 	
 }

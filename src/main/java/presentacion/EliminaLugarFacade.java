@@ -1,12 +1,12 @@
 package presentacion;
 
 import Negocio.busquedadelugaresporelusuario.Lugar;
-import datos.LugaresRepository;
+import datos.LugarRepository;
 
-public class EliminarLugarFacade {
+public class EliminaLugarFacade {
 
-	public EliminarLugarFacade(String coordenadas, int ide) throws Exception{
-		LugaresRepository lugaresRepository= new LugaresRepository();
+	public EliminaLugarFacade(String coordenadas, int ide) throws Exception{
+		LugarRepository lugaresRepository= new LugarRepository();
 		Lugar lugar = new Lugar(ide, coordenadas, ide, coordenadas, coordenadas, ide, coordenadas);
 		lugaresRepository.eliminarLugar(lugar);
 	}

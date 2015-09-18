@@ -1,0 +1,14 @@
+<form method="post" action="enlace" >
+
+
+clave del lugar:</br>
+<div class="divtext">
+<input type="text" name="id" class="textbox" placeholder="id"required></br>
+</div>
+<div class="divtext">
+<input type="text" name="email" class="textbox" placeholder="email"required></br>
+</div>
+<div class="bsub">
+<input type="submit" name="ok" value="Favorito" class="button login sub">
+</div>
+</form>	
