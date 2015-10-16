@@ -6,6 +6,7 @@ import Negocio.login.Persona;
 import Negocio.login.Propietario;
 import Negocio.login.Usuario;
 import datos.UsuarioRepository;
+import datos.LogInRepository;
 import datos.LugarRepository;
 import datos.PropietarioRepository;
 public class LogInFacade {
@@ -31,6 +32,15 @@ public class LogInFacade {
 			return(usuario);
 			}
 	}*/
+	public String logIn(Persona persona){
+		Persona p = new LogInRepository().logIn(persona);
+		if(p==null){
+			return "No se encontro registrado en el sistema";
+		}else{
+			p.login();
+		}
+		return "Bienve
+	}
 	public int validarUs(String email,String clave){
 		// TODO Auto-generated method stub	
 		UsuarioRepository usuariosRepository = new UsuarioRepository();

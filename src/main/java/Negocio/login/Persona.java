@@ -1,6 +1,6 @@
 package Negocio.login;
 import presentacion.LogInFacade;
-public class Persona {
+public abstract class Persona {
 	public String email;
 	public String clave;
 	public Persona(String email,String clave){
@@ -18,5 +18,8 @@ public class Persona {
 	}
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+	public  void login(){
+		
 	}
 }
