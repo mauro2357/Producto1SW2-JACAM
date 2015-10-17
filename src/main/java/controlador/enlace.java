@@ -53,28 +53,29 @@ public class enlace extends HttpServlet {
             System.out.println(email+"   "+pass);
             //Usuario usuario;
             //Propietario propietario;
-            int validar;
+            Persona validar;
             LogInFacade logInFacade = new LogInFacade();
             //try {
-				validar = logInFacade.validarPro(email, pass);
+				validar = logInFacade.validar(email, pass);
 				//propietario = logInFacade.validarPro(email, pass);
-				System.out.println("DEvolvio al enlace propieta:  ");
-				if(validar == 1 && session.getAttribute("email")==null){
+				System.out.println("validar O/C: "+validar.tipo);
+				if(validar!=null && session.getAttribute("email")==null){
 					session.setAttribute("email", email);
-					request.setAttribute("propietario", "propietario");
-					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
-					rd.forward(request, response);
-					JOptionPane.showMessageDialog(null,"bienvenido");
-				}else{
-					validar=logInFacade.validarUs(email, pass);
-					if(validar == 1 && session.getAttribute("email")==null){
-						
+					if(validar.getTipo().equalsIgnoreCase("propietario")){
+						request.setAttribute("propietario", "propietario");
+						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
+						rd.forward(request, response);
+						JOptionPane.showMessageDialog(null,"bienvenido");
+					}
+					else{
 						session.setAttribute("email", email);
 						request.setAttribute("usuario", "usuario");
 						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
 			    		rd.forward(request, response);
 						JOptionPane.showMessageDialog(null,"bienvenido");
-						}
+					}
+					
+				}
 					else{
 						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			    		rd.forward(request, response);
@@ -87,7 +88,6 @@ public class enlace extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}*/
-        }
         if(accion.equalsIgnoreCase("RegistrarLugar")){
         	int id = 0;
         	String nombre = request.getParameter("NombreLugar");
@@ -165,32 +165,27 @@ public class enlace extends HttpServlet {
         	String tipo=request.getParameter("tipo");
         	int si;
         	RegistroFacade registro = new RegistroFacade();
-        	if(tipo.equalsIgnoreCase("propietario")){
-        		si=registro.registrarPropietario(emaill, password, nombre);
+        		si=registro.registrar(emaill, password, nombre,tipo);
         		if(si==1 && session.getAttribute("email")==null){
         			session.setAttribute("email", emaill);
-					request.setAttribute("propietario", "propietario");
-        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
-        			rd.forward(request, response);
+        			if(tipo.equalsIgnoreCase("propietario")){
+						request.setAttribute("propietario", "propietario");
+	        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
+	        			rd.forward(request, response);
+        			}
+        			else{
+        				request.setAttribute("usuario", "usuario");
+	        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+	        			rd.forward(request, response);			
+        			}
         		}
         		else{
         			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         			rd.forward(request, response);
         		}
         		
-        	}
-        	if(tipo.equalsIgnoreCase("usuario")){
-        		si=registro.registrarUsuario(emaill, password, nombre);
-        		if(si==1 && session.getAttribute("email")==null){
-        		session.setAttribute("email", emaill);
-				request.setAttribute("propietario", "propietario");
-        		javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
-	    		rd.forward(request, response);
-        		}else{
-        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        			rd.forward(request, response);
-        		}
-        	}
+        	
+        	
         }
         
         

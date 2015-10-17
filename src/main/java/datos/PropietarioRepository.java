@@ -64,7 +64,7 @@ public class PropietarioRepository {
 	}
 	public int registrarPropietario(Ppersona persona){
 		String email = persona.getEmail();
-		String pass = persona.getPassword();
+		String pass = persona.getClave();
 		String nombre=persona.getNombre();
 		//Connection con = new ConexionMysql().ObtenerConexion();
 		String query = "INSERT INTO propietario (`pro_email`, `pro_password`, `pro_nombre`) VALUES ('"+email+"', '"+pass+"', '"+nombre+"')";	

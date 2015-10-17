@@ -70,7 +70,7 @@ public class UsuarioRepository {
 	}
 	public int registrarUsuario(Ppersona persona){
 		String email = persona.getEmail();
-		String pass = persona.getPassword();
+		String pass = persona.getClave();
 		String nombre=persona.getNombre();
 		//Connection con = new ConexionMysql().ObtenerConexion();
 		String query = "INSERT INTO usuarios (`usu_email`, `usu_password`, `usu_nombre`,`usu_gps`) VALUES ('"+email+"', '"+pass+"', '"+nombre+"','no')";	

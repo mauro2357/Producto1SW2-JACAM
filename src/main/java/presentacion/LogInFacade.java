@@ -6,6 +6,7 @@ import Negocio.login.Persona;
 import Negocio.login.Propietario;
 import Negocio.login.Usuario;
 import datos.UsuarioRepository;
+import datos.ValidarRepository;
 import datos.LugarRepository;
 import datos.PropietarioRepository;
 public class LogInFacade {
@@ -31,7 +32,7 @@ public class LogInFacade {
 			return(usuario);
 			}
 	}*/
-	public int validarUs(String email,String clave){
+	/*public int validarUs(String email,String clave){
 		// TODO Auto-generated method stub	
 		UsuarioRepository usuariosRepository = new UsuarioRepository();
 		Persona persona = new Persona(email,clave);
@@ -55,6 +56,15 @@ public class LogInFacade {
 			System.out.println("Propietario: "+propietario.getNombre()+" "+propietario.getEmail());
 			return 1;
 		}
+	}*/
+	public Persona validar(String email,String clave){
+		System.out.println("Vamos en el facade");
+		ValidarRepository validarRepository = new ValidarRepository();
+		Persona persona=validarRepository.consultarPersona(email, clave);
+		//System.out.println(persona.getTipo());
+		return persona;
+			
+		
 	}
 	/*public Usuario verificarPersona(String email,String clave) throws Exception{
 		ArrayList<Usuario> usuario = new ArrayList<>();

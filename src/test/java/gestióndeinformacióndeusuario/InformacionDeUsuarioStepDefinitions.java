@@ -14,7 +14,7 @@ public class InformacionDeUsuarioStepDefinitions {
 	@Given("^el usuario consulta un lugar$")
 	public void El_usuario_consulta_un_lugar() throws Throwable {
 	    // Express the Regexp above with the code you wish you had
-		usuario = new Usuario(null, null, null, null); 
+		usuario = new Usuario(null,null,null,null); 
 	}
 
 	@When("^encuentra el lugar y se almacena en su lista de favoritos$")
