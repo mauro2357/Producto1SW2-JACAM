@@ -2,22 +2,21 @@ package Negocio.login;
 
 public class Propietario extends Persona {
 	private String email;
-	private String password;
+	private String clave;
 	private String nombre;
 	private int telefono;
 	private String tipo="propietario";
 	
-	public Propietario(String email,String password,String nombre,int telefono) {
+	public Propietario(String email,String clave,String nombre,int telefono) {
 		// TODO Auto-generated constructor stub
-		this.email=email;
-		this.password=password;
+		super(email, clave);
 		this.nombre=nombre;
 		this.telefono=telefono;
 	}
 	public String getEmail() {
 		return email;
-	}public String getPassword() {
-		return password;
+	}public String getClave() {
+		return clave;
 	}public String getNombre() {
 		return nombre;
 	}public int getTelefono() {
@@ -26,12 +25,13 @@ public class Propietario extends Persona {
 		this.email = email;
 	}public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}public void setPassword(String password) {
-		this.password = password;
+	}public void setClave(String clave) {
+		this.clave = clave;
 	}public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
 	@Override
+<<<<<<< HEAD
 	public String getClave() {
 		// TODO Auto-generated method stub
 		return password;
@@ -46,4 +46,10 @@ public class Propietario extends Persona {
 		// TODO Auto-generated method stub
 		return tipo;
 	}
+=======
+	public void login() {
+		// TODO Auto-generated method stub
+		
+	}
+>>>>>>> origin/master
 }

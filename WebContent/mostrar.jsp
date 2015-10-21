@@ -22,7 +22,11 @@ lugares=(ArrayList<Lugar>)request.getAttribute("lugares");
 <th>Coordenadas</th>
 <th>decripcion</th>
 <th>categoria</th>
+<<<<<<< HEAD
 <th>Agregar</th>
+=======
+<th>Agregar a Favoritos</th>
+>>>>>>> origin/master
 </tr>
 <%
 
@@ -33,6 +37,7 @@ for (int i=0;i<lugares.size();i++){
 	out.print("<td>"+lugares.get(i).getCoordenadas()+"</td>");
 	out.print("<td>"+lugares.get(i).getDescripcion()+"</td>");
 	out.print("<td>"+lugares.get(i).getCatenom()+"</td>");
+	out.print("<td>"+"<button>   F     	</button>"+"</td>");
 	out.print("</tr>");
 }
 
