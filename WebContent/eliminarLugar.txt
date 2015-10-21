@@ -1,0 +1,10 @@
+<form method="post" action="enlace" >
+
+coordenadas:</br>
+<div class="divtext">
+<input type="text" name="coordenadas" class="textbox" placeholder="Cooordenadas"required></br>
+</div>
+<div class="bsub">
+<input type="submit" name="ok" value="EliminarLugar" class="button login sub">
+</div>
+</form>	

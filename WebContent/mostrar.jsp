@@ -22,6 +22,7 @@ lugares=(ArrayList<Lugar>)request.getAttribute("lugares");
 <th>Coordenadas</th>
 <th>decripcion</th>
 <th>categoria</th>
+<th>Agregar</th>
 </tr>
 <%
 

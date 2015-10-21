@@ -5,9 +5,9 @@ import datos.LugarRepository;
 
 public class ActualizaDatosFacade {
 
-	public ActualizaDatosFacade(String nombre,int telefono,String coordenadas,String propietario,int categoria,String descripcion) throws Exception{
+	public ActualizaDatosFacade(int id,String nombre,int telefono,String coordenadas,String propietario,int categoria,String descripcion) throws Exception{
 		LugarRepository lugaresRepository= new LugarRepository();
-		Lugar lugar = new Lugar(0,nombre,telefono,coordenadas,propietario,3,descripcion);
+		Lugar lugar = new Lugar(id,nombre,telefono,coordenadas,propietario,3,descripcion);
 		lugaresRepository.ActualizarDatos(lugar);
 	}
 }

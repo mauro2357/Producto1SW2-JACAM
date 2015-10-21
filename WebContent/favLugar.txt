@@ -1,0 +1,10 @@
+<form method="post" action="enlace" >
+clave del lugar: </br>
+<div class="divtext">
+<input type="text" name="id" class="textbox" placeholder="id"autofocus required></br>
+</div>
+
+<div class="bsub">
+<input type="submit" name="ok" value="Favoritos" class="button login sub">
+</div>
+</form>	
