@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%if(session.getAttribute("email") == null){%>
+<%if(session.getAttribute("persona") == null){%>
 <jsp:forward page="index.jsp"></jsp:forward>
 <%} %>
-<!--  <%if(session.getAttribute("email")!=null && (request.getAttribute("propietario")!="propietario")){%>
+<!--  <%if(session.getAttribute("email")!=null && (request.getAttribute("propietario")!="propietario")){ %>
 	<script>window.onload=goBack();</script>
 
 	<%} %>-->
@@ -22,15 +22,16 @@
 <section id="ban">
 <button class="button login" id="enter" onclick="limpiar();regLugar()">Registrar Lugar</button>
 
-<button class="button login" id="enter" onclick="limpiar();eliLugar()">Eliminar Lugar</button>
-
 <button class="button login" id="enter" onclick="limpiar();actLugar()">Actualizar Datos de un Lugar</button>
 
-<form method="post" action="control"><input class="button login" type="submit" name="clugar" value="Consultar Mis Lugares" class="button login sub"></form>
+<form method="post" action="PropietarioControl">
+<input type="submit" name="ok" value="consultarlugares" class="button login sub">
+</form>
 
 <div id="fo" ></div>
 
-<%String login= (String) (request.getAttribute("loginvalido"));
+<% 
+String login= (String) (request.getAttribute("loginvalido"));
 
 String reginv= (String) (request.getAttribute("reginvalido"));
 

@@ -1,20 +1,26 @@
 package gestióndeinformacióndeusuario;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 
 import Negocio.Localizacion.ubicacion;
-import Negocio.login.Usuario;
+import Negocio.gestion.Persona;
+import Negocio.gestion.Usuario;
+import Negocio.lugar.Lugar;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import Negocio.busquedadelugaresporelusuario.Lugar;
+import datos.ValidarRepository;
 
-public class InformacionDeUsuarioStepDefinitions {
-	Usuario usuario = null;
+public class RegsitrarFavoritosStepDefinitions {
+	Persona usuario = null;
+	ValidarRepository validar = new ValidarRepository();
+	ArrayList<Lugar> lugares = new ArrayList<Lugar>();
 	@Given("^el usuario consulta un lugar$")
 	public void El_usuario_consulta_un_lugar() throws Throwable {
 	    // Express the Regexp above with the code you wish you had
-		usuario = new Usuario(null,null,null,null); 
+		usuario =validar.consultarPersona("pedro128@hotmail.com", "pam"); 
 	}
 
 	@When("^encuentra el lugar y se almacena en su lista de favoritos$")

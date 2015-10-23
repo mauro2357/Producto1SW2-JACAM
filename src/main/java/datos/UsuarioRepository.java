@@ -6,11 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Negocio.busquedadelugaresporelusuario.Lugar;
-import Negocio.registro_y_actualizacion_de_datos.Ppersona;
-import Negocio.login.Persona;
-
-import Negocio.login.Usuario;
+import Negocio.gestion.Aspirante;
+import Negocio.gestion.Persona;
+import Negocio.gestion.Usuario;
+import Negocio.lugar.Lugar;
 
 public class UsuarioRepository {
 	public Usuario consultarUsuario(Persona persona){
@@ -68,7 +67,7 @@ public class UsuarioRepository {
 		    }	    
 		    return usuario;
 	}
-	public int registrarUsuario(Ppersona persona){
+	public int registrarUsuario(Aspirante persona){
 		String email = persona.getEmail();
 		String pass = persona.getClave();
 		String nombre=persona.getNombre();

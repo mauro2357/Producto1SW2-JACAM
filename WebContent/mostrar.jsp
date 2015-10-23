@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.util.ArrayList" %>
-    <%@page import="Negocio.busquedadelugaresporelusuario.*" %>
+    <%@page import="Negocio.lugar.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,6 +33,15 @@ for (int i=0;i<lugares.size();i++){
 	out.print("<td>"+lugares.get(i).getCoordenadas()+"</td>");
 	out.print("<td>"+lugares.get(i).getDescripcion()+"</td>");
 	out.print("<td>"+lugares.get(i).getCatenom()+"</td>");
+	
+	%>
+	<td>
+	<form method="post" action="control">
+	<input type="hidden" name="favorito" value=<%= lugares.get(i).getCoordenadas() %>>
+	<input type="submit" name="clugar" value="agregar" class="button">
+	</form>
+	</td>
+	<%
 	out.print("</tr>");
 }
 

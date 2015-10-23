@@ -1,6 +1,6 @@
-package Negocio.busquedadelugaresporelusuario;
+package Negocio.lugar;
 
-import Negocio.registro_y_actualizacion_de_datos.Propietario;
+import Negocio.gestion.Propietario;
 
 public class Lugar {
 	private String nombre;
@@ -18,6 +18,36 @@ public class Lugar {
 	public Lugar(int id) {
 		// TODO Auto-generated constructor stub
 		this.id=id;
+	}
+	public Lugar(String nombre,int telefono,String coordenadas,String email,int categoria,String descripcion) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.coordenadas = coordenadas;
+		this.propietario = propietario;
+		this.email = email;
+		this.telefono = telefono;
+		this.categoria = categoria;
+		this.id = id;
+	}
+	public Lugar(int id,String nombre,String coordenadas,int telefono,String descripcion,String catenom) {
+		super();
+		this.id=id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.coordenadas = coordenadas;
+		this.propietario = propietario;
+		this.email = email;
+		this.telefono = telefono;
+		this.categoria = categoria;
+		this.id = id;
+	}
+	public Lugar(String nombre,String coordenadas,int telefono,String descripcion,String catenom ){
+		this.nombre=nombre;
+		this.descripcion=descripcion;
+		this.coordenadas=coordenadas;
+		this.telefono=telefono;
+		this.catenom=catenom;
 	}
 	public void setEmail(String email) {
 		this.email = email;
@@ -46,25 +76,6 @@ public class Lugar {
 	}
 	public void setPropietario(Propietario propietario) {
 		this.propietario = propietario;
-	}
-	
-	public Lugar(int id,String nombre,int telefono,String coordenadas,String email,int categoria,String descripcion) {
-		super();
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.coordenadas = coordenadas;
-		this.propietario = propietario;
-		this.email = email;
-		this.telefono = telefono;
-		this.categoria = categoria;
-		this.id = id;
-	}
-	public Lugar(String nombre,String coordenadas,int telefono,String descripcion,String catenom ){
-		this.nombre=nombre;
-		this.descripcion=descripcion;
-		this.coordenadas=coordenadas;
-		this.telefono=telefono;
-		this.catenom=catenom;
 	}
 	public String getCatenom() {
 		return catenom;

@@ -1,13 +1,15 @@
-package Negocio.registro_y_actualizacion_de_datos;
+package Negocio.gestion;
 
-import Negocio.login.Persona;
+import java.util.ArrayList;
 
-public class Ppersona extends Persona {
+import Negocio.lugar.Lugar;
+
+public class Aspirante extends Persona {
 	private String email;
 	private String password;
 	private String nombre;
 	private String tipo;
-	public Ppersona(String email,String password,String nombre,String tipo) {
+	public Aspirante(String email,String password,String nombre,String tipo) {
 		// TODO Auto-generated constructor stub
 		this.email=email;
 		this.password=password;
@@ -37,6 +39,11 @@ public class Ppersona extends Persona {
 	public void setClave(String clave) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public ArrayList<Lugar> consultarLugar(String forma, String Valor) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

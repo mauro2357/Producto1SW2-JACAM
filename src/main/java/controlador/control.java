@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Negocio.busquedadelugaresporelusuario.Lugar;
-import presentacion.consultaLugaresFacade;
+import Negocio.gestion.Persona;
+import Negocio.lugar.Lugar;
+import presentacion.LugaresFacade;
 
 /**
  * Servlet implementation class control
@@ -44,92 +45,96 @@ public class control extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		HttpSession session = request.getSession();
-		String email = (String)session.getAttribute("email");
+		Persona persona = (Persona)session.getAttribute("persona");
+		//System.out.println("PERSONAAAAA:"+persona.getEmail());
+		String email = persona.getEmail();
         String accion = request.getParameter("clugar");
+        accion = accion.toLowerCase();
         ArrayList<Lugar> lugares = new ArrayList<Lugar>();
+        LugaresFacade lugaresFacade = new LugaresFacade(persona);
         
-        if(accion.equalsIgnoreCase("nombre")){
-        	lugares.clear();
-        	String nombre=request.getParameter("nombrelugar");
-        	consultaLugaresFacade consultarLugar = new consultaLugaresFacade();
-        	try {
-				lugares=consultarLugar.consultarLugarPorNombre(nombre);
-				if(lugares.isEmpty()){
-					PrintWriter out=response.getWriter();
-					out.println("Error, no se encontro el lugar.");
-					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
-		    		rd.forward(request, response);
-				}
-				else{
+        switch (accion){
+        	case ("nombre"):
+        		lugares.clear();
+        		String nombre=request.getParameter("nombrelugar");
+        		
+        		try{
+        			lugares=lugaresFacade.consultarLugares(accion, nombre);
+        			if(lugares.isEmpty()){
+    					PrintWriter out=response.getWriter();
+    					out.println("Error, no se encontro el lugar.");
+    					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+    		    		rd.forward(request, response);
+    				}
+    				else{
+    				request.setAttribute("lugares", lugares);
+    				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+    	    		rd.forward(request, response);
+    				}
+        		}
+        		catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+        		break;
+        	case ("tipos"):
+        		lugares.clear();
+        		String categoria=request.getParameter("tipo");
+        		try{
+        			lugares=lugaresFacade.consultarLugares("categoria", categoria);
+        			if(lugares.isEmpty()){
+    					PrintWriter out=response.getWriter();
+    					out.println("Error, no se encontro el lugar.");
+    					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+    		    		rd.forward(request, response);
+    				}
+    				else{
+    				request.setAttribute("lugares", lugares);
+    				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+    	    		rd.forward(request, response);
+    				}
+        		}
+        		catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+        		break;
+        	case ("todo"):
+        		lugares.clear();
+        		try{
+        			lugares=lugaresFacade.consultarLugares("todos", null);
+        			if(lugares.isEmpty()){
+    					PrintWriter out=response.getWriter();
+    					out.println("Error, no se encontro el lugar.");
+    					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+    		    		rd.forward(request, response);
+    				}
+    				else{
+    				request.setAttribute("lugares", lugares);
+    				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+    	    		rd.forward(request, response);
+    				}
+        		}
+        		catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+        		break;
+        	case "agregar":
+        		String coorde = request.getParameter("favorito");
+			try {
+				lugaresFacade.agregarFavorito(coorde);
 				request.setAttribute("lugares", lugares);
-				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
 	    		rd.forward(request, response);
-				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-        	//javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
-    		//rd.forward(request, response);
+        		
+	    		break;
         }
-		if(accion.equalsIgnoreCase("tipos")){
-			lugares.clear();
-			String tipo = request.getParameter("tipo");
-			consultaLugaresFacade consultarLugar = new consultaLugaresFacade();
-			try {
-				lugares=consultarLugar.consultarLugarPorCategorias(tipo);
-				if(lugares.isEmpty()){
-					PrintWriter out=response.getWriter();
-					   out.println("Error, no se encontro el lugar.");
-				}
-				else{
-				request.setAttribute("lugares", lugares);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
-    		rd.forward(request, response);
-		}
-		if(accion.equalsIgnoreCase("todo")){
-			lugares.clear();
-			consultaLugaresFacade consultarLugar = new consultaLugaresFacade();
-			try {
-				lugares=consultarLugar.consultarTodosLugares();
-				if(lugares.isEmpty()){
-					PrintWriter out=response.getWriter();
-					   out.println("Error, no hay lugares.");
-				}
-				else{
-				request.setAttribute("lugares", lugares);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
-    		rd.forward(request, response);
-		}
-		if(accion.equalsIgnoreCase("Consultar Mis Lugares")){
-			lugares.clear();
-			consultaLugaresFacade consultarLugarPropietario = new consultaLugaresFacade();
-			try {
-				lugares=consultarLugarPropietario.consultarLugarPropietario(email);
-				if(lugares.isEmpty()){
-					PrintWriter out=response.getWriter();
-					   out.println("Error, no hay lugares.");
-				}
-				else{
-				request.setAttribute("lugares", lugares);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
-    		rd.forward(request, response);
-		}
+        
 	}
 
 }

@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import Negocio.login.Persona;
-import Negocio.login.Propietario;
-import Negocio.login.Usuario;
-import Negocio.registro_y_actualizacion_de_datos.Ppersona;
+import Negocio.gestion.Aspirante;
+import Negocio.gestion.Persona;
+import Negocio.gestion.Propietario;
+import Negocio.gestion.Usuario;
 
 public class PropietarioRepository {
 	public Propietario ConsultarPropietario(Persona persona){
@@ -62,7 +62,7 @@ public class PropietarioRepository {
 		    return propietario;
 		
 	}
-	public int registrarPropietario(Ppersona persona){
+	public int registrarPropietario(Aspirante persona){
 		String email = persona.getEmail();
 		String pass = persona.getClave();
 		String nombre=persona.getNombre();

@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import Negocio.busquedadelugaresporelusuario.Lugar;
+import Negocio.lugar.Lugar;
 import presentacion.consultaLugaresFacade;
 
 @Path("ConsultaLugares")

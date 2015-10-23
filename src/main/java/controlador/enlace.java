@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
-import Negocio.busquedadelugaresporelusuario.Lugar;
-import Negocio.login.Persona;
-import Negocio.login.Propietario;
-import Negocio.login.Usuario;
+import Negocio.gestion.Persona;
+import Negocio.gestion.Propietario;
+import Negocio.gestion.Usuario;
+import Negocio.lugar.Lugar;
 import presentacion.*;
 
 /**
@@ -53,111 +53,41 @@ public class enlace extends HttpServlet {
             System.out.println(email+"   "+pass);
             //Usuario usuario;
             //Propietario propietario;
-            Persona validar;
+            Persona persona;
             LogInFacade logInFacade = new LogInFacade();
             //try {
-				validar = logInFacade.validar(email, pass);
+				persona = logInFacade.validar(email, pass);
 				//propietario = logInFacade.validarPro(email, pass);
-				System.out.println("validar O/C: "+validar.tipo);
-				if(validar!=null && session.getAttribute("email")==null){
-					session.setAttribute("email", email);
-					if(validar.getTipo().equalsIgnoreCase("propietario")){
+				System.out.println("validar O/C: "+persona.getTipo());
+				if(persona!=null && session.getAttribute("persona")==null){
+					session.setAttribute("persona", persona);
+					if(persona.getTipo().equalsIgnoreCase("propietario")){
 						request.setAttribute("propietario", "propietario");
 						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
 						rd.forward(request, response);
 						JOptionPane.showMessageDialog(null,"bienvenido");
 					}
-					else{
-						session.setAttribute("email", email);
+					else if(persona.getTipo().equalsIgnoreCase("usuario")){
+						//session.setAttribute("email", email);
 						request.setAttribute("usuario", "usuario");
 						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
 			    		rd.forward(request, response);
 						JOptionPane.showMessageDialog(null,"bienvenido");
 					}
-					
-				}
 					else{
 						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			    		rd.forward(request, response);
 						JOptionPane.showMessageDialog(null,"Usted no se encuentra registrado");
-
 					}
+				}
+					
 				}
 				
 			/*} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}*/
-        if(accion.equalsIgnoreCase("RegistrarLugar")){
-        	int id = 0;
-        	String nombre = request.getParameter("NombreLugar");
-        	int telefono = Integer.parseInt(request.getParameter("telefono"));
-        	String coordenadas = request.getParameter("coordenadas");
-        	String propietario = request.getParameter("propietario");
-        	int categoria = Integer.parseInt(request.getParameter("categoria"));
-        	String descripcion = request.getParameter("descripcion");
-        	for(int i = 1; i<=5; i++){
-        	     id = ((int)(Math.random()*6 + 1));
-        	}
-        	try {
-				RegistroLugarFacade registrarLugarFacade = new RegistroLugarFacade(id, nombre, telefono, coordenadas, propietario, categoria, descripcion);
-				//System.out.println("Su lugar ha sido registrado en la BD");
-				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
-	    		rd.forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	/*javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-    		rd.forward(request, response);*/
-        }
         
-        if (accion.equalsIgnoreCase("Actualizar")){
-            
-        	String nombre = request.getParameter("NombreLugar");
-        	int telefono = Integer.parseInt(request.getParameter("telefono"));
-        	String coordenadas = request.getParameter("coordenadas");
-        	String propietario = request.getParameter("propietario");
-        	int categoria = Integer.parseInt(request.getParameter("categoria"));
-        	String descripcion = request.getParameter("descripcion");
-        	try {
-				ActualizaDatosFacade actualizarLugarFacade = new ActualizaDatosFacade( nombre, telefono, coordenadas, propietario, categoria, descripcion);
-				//System.out.println("Su lugar ha sido registrado en la BD");
-				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
-	    		rd.forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
-        if(accion.equalsIgnoreCase("EliminarLugar")){
-        	int id=0;
-        	String coordenadas = request.getParameter("coordenadas");
-        	try {
-				EliminaLugarFacade eliminarLugarFacade = new EliminaLugarFacade(coordenadas, id);
-				//System.out.println("Su lugar ha sido registrado en la BD");
-				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
-	    		rd.forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        }
-
-          if(accion.equalsIgnoreCase("Favorito")){
-        	int id=0;
-        	String email1= request.getParameter("email");
-        	int id2 = Integer.parseInt(request.getParameter("id"));
-        	try {
-        		RegistroFavoritoFacade registroFavoritoFacade=new RegistroFavoritoFacade(id2,email1);
-				//System.out.println("El lugar ha sido añadido a favoritos");
-				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
-	    		rd.forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-}
         if(accion.equalsIgnoreCase("Crear")){
         	String emaill=request.getParameter("correo");
         	String nombre=request.getParameter("nombre");

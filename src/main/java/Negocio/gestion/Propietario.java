@@ -1,4 +1,9 @@
-package Negocio.login;
+package Negocio.gestion;
+
+import java.util.ArrayList;
+
+import Negocio.lugar.Consulta;
+import Negocio.lugar.Lugar;
 
 public class Propietario extends Persona {
 	private String email;
@@ -45,5 +50,12 @@ public class Propietario extends Persona {
 	public String getTipo() {
 		// TODO Auto-generated method stub
 		return tipo;
+	}
+	@Override
+	public ArrayList<Lugar> consultarLugar(String forma, String valor) throws Exception {
+		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
+		Consulta consulta = new Consulta(forma,valor);
+		lugares=consulta.realizarBusqueda();
+		return lugares;	
 	}
 }

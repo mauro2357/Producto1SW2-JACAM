@@ -1,8 +1,8 @@
 package presentacion;
 
-import Negocio.login.Persona;
-import Negocio.login.Propietario;
-import Negocio.registro_y_actualizacion_de_datos.Ppersona;
+import Negocio.gestion.Aspirante;
+import Negocio.gestion.Persona;
+import Negocio.gestion.Propietario;
 import datos.PropietarioRepository;
 import datos.UsuarioRepository;
 import datos.ValidarRepository;
@@ -52,7 +52,7 @@ public class RegistroFacade {
 			bien=0;
 		}
 		else{
-			Persona persona = new Ppersona(email,password,nombre,tipo);
+			Persona persona = new Aspirante(email,password,nombre,tipo);
 			ValidarRepository registrar = new ValidarRepository();
 			bien=registrar.registrar(persona);
 			bien=1;

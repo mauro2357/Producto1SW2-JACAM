@@ -1,10 +1,10 @@
 package presentacion;
 import java.util.ArrayList;
 
-import Negocio.busquedadelugaresporelusuario.Lugar;
-import Negocio.login.Persona;
-import Negocio.login.Propietario;
-import Negocio.login.Usuario;
+import Negocio.gestion.Persona;
+import Negocio.gestion.Propietario;
+import Negocio.gestion.Usuario;
+import Negocio.lugar.Lugar;
 import datos.UsuarioRepository;
 import datos.ValidarRepository;
 import datos.LugarRepository;
