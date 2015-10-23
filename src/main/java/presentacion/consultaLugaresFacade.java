@@ -2,7 +2,7 @@ package presentacion;
 
 import java.util.ArrayList;
 
-import Negocio.lugar.Lugar;
+import Negocio.busquedadelugaresporelusuario.Lugar;
 import datos.LugarRepository;
 
 public class consultaLugaresFacade {

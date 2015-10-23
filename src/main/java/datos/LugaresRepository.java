@@ -1,4 +1,4 @@
-  package datos;
+package datos;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import Negocio.busquedadelugaresporelusuario.Lugar;
 import Negocio.busquedadelugaresporelusuario.Usuario;
 
-public class LugarRepository {
+public class LugaresRepository {
 	// our SQL SELECT query. 
     // if you only need a few columns, specify them by name instead of using "*"
 	public ArrayList<Lugar> consultarLugaresporNombre(String nombre) throws Exception{
@@ -338,7 +338,7 @@ public class LugarRepository {
 		String email = lugar.getEmail();
 		int categoria = lugar.getCategoria();
 		String descripcion = lugar.getDescripcion();
-		String query = "update lugar set lug_nombre='"+nombre+"', lug_telefono='"+telefono+"',lug_descripcion='"+descripcion+"', pro_email='"+email+"' where lug_id='"+id+"'";
+		String query = "update lugar set lug_nombre='"+nombre+"', lug_telefono='"+telefono+"',lug_descripcion='"+descripcion+"', pro_email='"+email+"' where lug_coordenadas='"+coordenadas+"'";
 		System.out.println(query);
 		Statement stmt = null;
 	    Connection con = null;
@@ -366,7 +366,7 @@ public class LugarRepository {
 	        mysqlEx.printStackTrace();
 	      }
 	    }
-	} 
+	}
 	public void RegistroFavorito(Usuario usuario, Lugar lugar){
 		int id = lugar.getId();
 		String email=usuario.getEmail();
@@ -385,10 +385,8 @@ public class LugarRepository {
 	      e.printStackTrace();
 	    }
 
-
 	    finally {
 	      try {
-
 
 	        if (stmt != null) {
 	          stmt.close();
@@ -400,8 +398,7 @@ public class LugarRepository {
 	        mysqlEx.printStackTrace();
 	      }
 	    }
-		
+
 	}
-	
 	
 }

@@ -1,4 +1,4 @@
-<form method="post" action="PropietarioControl" >
+<form method="post" action="enlace" >
 Nombre del Lugar: </br>
 <div class="divtext">
 <input type="text" name="NombreLugar" class="textbox" placeholder="Nombre del Lugar"autofocus required></br>
@@ -10,6 +10,10 @@ Telefono:</br>
 Coordenadas:</br>
 <div class="divtext">
 <input type="text" name="coordenadas" class="textbox" placeholder="Cooordenadas"required></br>
+</div>
+Propietario:</br>
+<div class="divtext">
+<input type="text" name="propietario" class="textbox" placeholder="Propietario"required></br>
 </div>
 Categoria:</br>
 <div class="divtext">

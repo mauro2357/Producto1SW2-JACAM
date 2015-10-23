@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Negocio.gestion.Aspirante;
-import Negocio.gestion.Persona;
-import Negocio.gestion.Propietario;
-import Negocio.gestion.Usuario;
-import Negocio.lugar.Lugar;
+import Negocio.busquedadelugaresporelusuario.Lugar;
+import Negocio.registro_y_actualizacion_de_datos.Ppersona;
+import Negocio.login.Persona;
+import Negocio.login.Propietario;
+import Negocio.login.Usuario;
 
 public class ValidarRepository {
 	
