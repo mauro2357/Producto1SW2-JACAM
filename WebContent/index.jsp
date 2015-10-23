@@ -1,4 +1,4 @@
-<%if(session.getAttribute("email") != null){%>
+<%if(session.getAttribute("persona") != null){%>
 <jsp:forward page="usuario.jsp"></jsp:forward>
 <%} %>
 

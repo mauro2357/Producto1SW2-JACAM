@@ -1,7 +1,7 @@
-<%if(session.getAttribute("email") == null){%>
+<%if(session.getAttribute("persona") == null){%>
 <jsp:forward page="index.jsp"></jsp:forward>
 <%} %>
-<%if(session.getAttribute("email")!=null && (request.getAttribute("usuario")!="usuario")){%>
+<%if(session.getAttribute("persona")!=null && (request.getAttribute("usuario")!="usuario")){%>
 	<script>window.onload=goBack();</script>
 
 	<%} %>

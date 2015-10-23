@@ -1,11 +1,7 @@
-<form method="post" action="enlace" >
-ID:</br>
-<div class="divtext">
-<input type="text" name="id" class="textbox" placeholder="ID"autofocus required></br>
-</div>
+<form method="post" action="PropietarioControl" >
 Nombre del Lugar: </br>
 <div class="divtext">
-<input type="text" name="NombreLugar" class="textbox" placeholder="Nombre del Lugar"></br>
+<input type="text" name="NombreLugar" class="textbox" placeholder="Nombre del Lugar"autofocus required></br>
 </div>
 Telefono:</br>
 <div class="divtext">
@@ -14,10 +10,6 @@ Telefono:</br>
 Coordenadas:</br>
 <div class="divtext">
 <input type="text" name="coordenadas" class="textbox" placeholder="Cooordenadas"required></br>
-</div>
-Propietario:</br>
-<div class="divtext">
-<input type="text" name="propietario" class="textbox" placeholder="Propietario"required></br>
 </div>
 Categoria:</br>
 <div class="divtext">

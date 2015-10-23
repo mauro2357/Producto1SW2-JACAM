@@ -1,4 +1,5 @@
-Feature: como usuario quiero que mis lugares favoritos se almacenen en un botón
+Feature: Como usuario quiero que mis lugares favoritos se almacenen en un botón.
+
 	Scenario: el usuario consulta un lugar y este se almacena en su lista
 		Given el usuario consulta un lugar
 		When encuentra el lugar y se almacena en su lista de favoritos

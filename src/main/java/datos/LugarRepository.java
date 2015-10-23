@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Negocio.busquedadelugaresporelusuario.Lugar;
-import Negocio.busquedadelugaresporelusuario.Usuario;
+import Negocio.lugar.Lugar;
+import Negocio.gestion.Usuario;
 
 public class LugarRepository {
 	// our SQL SELECT query. 
@@ -64,7 +64,7 @@ public class LugarRepository {
 	public ArrayList<Lugar> consultarLugaresporCoordenadas(String coordenadas) throws Exception{
 		//Connection con = new ConexionMysql().ObtenerConexion();
 		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-		String query = "select lug_nombre,lug_coordenadas,lug_telefono,lug_descripcion,cat_nombre from lugar natural join categorias where lug_coordenadas = '"+coordenadas+"'";
+		String query = "select lug_id,lug_nombre,lug_coordenadas,lug_telefono,lug_descripcion,cat_nombre from lugar natural join categorias where lug_coordenadas = '"+coordenadas+"'";
 		
 	    // create the java statement
 		Statement st = null;
@@ -78,12 +78,12 @@ public class LugarRepository {
 	    	rs = st.executeQuery(query);
 		    while (rs.next())
 		    {
-		      
+		      int id=rs.getInt("lug_id");
 		      String nombre = rs.getString("lug_nombre");
 		      int telefono = rs.getInt("lug_telefono");
 		      String descripcion = rs.getString("lug_descripcion");
 		      String categorias = rs.getString("cat_nombre");	      
-		      Lugar lugar = new Lugar(nombre, coordenadas,telefono,descripcion,categorias);
+		      Lugar lugar = new Lugar(id,nombre, coordenadas,telefono,descripcion,categorias);
 		      // print the results
 		      lugares.add(lugar);
 		      
@@ -256,7 +256,7 @@ public class LugarRepository {
 		int categoria = lugar.getCategoria();
 		String descripcion = lugar.getDescripcion();
 		//Connection con = new ConexionMysql().ObtenerConexion();
-		String query = "INSERT INTO lugar (`lug_id`, `lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_email`, `cat_id`, `lug_descripcion`) VALUES ('"+id+"', '"+nombre+"', '"+telefono+"', '"+coordenadas+"', '"+email+"', '"+categoria+"', '"+descripcion+"')";	
+		String query = "INSERT INTO lugar (`lug_nombre`, `lug_telefono`, `lug_coordenadas`, `pro_email`, `cat_id`, `lug_descripcion`) VALUES ('"+nombre+"', '"+telefono+"', '"+coordenadas+"', '"+email+"', '"+categoria+"', '"+descripcion+"')";	
 		System.out.println(query);
 	    // create the java statement
 	    // execute the query, and get a java resultset
@@ -338,7 +338,7 @@ public class LugarRepository {
 		String email = lugar.getEmail();
 		int categoria = lugar.getCategoria();
 		String descripcion = lugar.getDescripcion();
-		String query = "update lugar set lug_nombre='"+nombre+"', lug_telefono='"+telefono+"',lug_descripcion='"+descripcion+"', pro_email='"+email+"' where lug_id='"+id+"'";
+		String query = "update lugar set lug_nombre='"+nombre+"', lug_telefono='"+telefono+"',lug_descripcion='"+descripcion+"', pro_email='"+email+"' where lug_coordenadas='"+coordenadas+"'";
 		System.out.println(query);
 		Statement stmt = null;
 	    Connection con = null;
@@ -367,9 +367,8 @@ public class LugarRepository {
 	      }
 	    }
 	} 
-	public void RegistroFavorito(Usuario usuario, Lugar lugar){
+	public void RegistroFavorito(String email, Lugar lugar){
 		int id = lugar.getId();
-		String email=usuario.getEmail();
 		String query="INSERT INTO `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) VALUES ('"+email+"', '"+id+"')";
 		System.out.println(query);
 		Statement stmt = null;

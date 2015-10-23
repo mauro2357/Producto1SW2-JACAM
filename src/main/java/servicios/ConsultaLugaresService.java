@@ -8,7 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import Negocio.busquedadelugaresporelusuario.Lugar;
+import Negocio.lugar.Lugar;
 import presentacion.consultaLugaresFacade;
 
 @Path("ConsultaLugares")
@@ -37,8 +37,8 @@ public class ConsultaLugaresService {
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("consultaLugarCategoria/{categoria}")
-	public String ConsultarLugaresTipo(@PathParam("categoria")String tipo) throws Exception{
+	@Path("consultaLugarTipo/{tipo}")
+	public String ConsultarLugaresTipo(@PathParam("tipo")String tipo) throws Exception{
 		ArrayList<Lugar> luga = new ArrayList<Lugar>();
 		consultaLugaresFacade lugares = new consultaLugaresFacade();
 		luga=lugares.consultarLugarPorCategorias(tipo);
@@ -48,7 +48,7 @@ public class ConsultaLugaresService {
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("consultaTodosLugares")
+	@Path("consultaLugarTodos")
 	public String ConsultarLugaresTipo() throws Exception{
 		ArrayList<Lugar> luga = new ArrayList<Lugar>();
 		consultaLugaresFacade lugares = new consultaLugaresFacade();
