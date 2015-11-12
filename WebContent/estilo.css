@@ -276,6 +276,12 @@ border-radius: 4px;
 border: 100;
 padding: 1.5em 0 0 0;
 }
+#map{
+	
+	padding: 10em;
+	height: 100%;
+	
+}
 #listar{
 background-color: transparent;
 font-color:#fff;

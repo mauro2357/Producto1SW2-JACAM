@@ -68,6 +68,7 @@ public class control extends HttpServlet {
     		    		rd.forward(request, response);
     				}
     				else{
+    				request.setAttribute("busqueda",nombre);
     				request.setAttribute("lugares", lugares);
     				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
     	    		rd.forward(request, response);
@@ -90,6 +91,7 @@ public class control extends HttpServlet {
     		    		rd.forward(request, response);
     				}
     				else{
+    					request.setAttribute("busqueda",categoria);
     				request.setAttribute("lugares", lugares);
     				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
     	    		rd.forward(request, response);
@@ -111,6 +113,7 @@ public class control extends HttpServlet {
     		    		rd.forward(request, response);
     				}
     				else{
+    				request.setAttribute("busqueda","Todos los lugares");
     				request.setAttribute("lugares", lugares);
     				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
     	    		rd.forward(request, response);
@@ -165,6 +168,7 @@ public class control extends HttpServlet {
     		    		rd.forward(request, response);
     				}
     				else{
+    				request.setAttribute("busqueda","Lugares Favoritos");
     				request.setAttribute("quitar", "quitar");
     				request.setAttribute("lugares", lugares);
     				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");

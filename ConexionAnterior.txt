@@ -151,3 +151,7 @@ private String sql;
 		    		
 		    		<input type="hidden" id="error1" value=<%= error1 %>>
 	<input type="hidden" id="error2" value=<%= error2 %>>
+	
+	
+	https://geekytheory.com/google-maps-api-v3-introduccion/
+	https://geekytheory.com/google-maps-api-v3-placemarks/

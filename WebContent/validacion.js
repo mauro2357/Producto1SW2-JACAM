@@ -29,7 +29,14 @@ function loadXMLDoc(url,cfunc){
 	xmlhttp.open("GET",url,true);
 	xmlhttp.send();
 }
-
+function mostrar(){
+	loadXMLDoc("mostrar.jsp",function()
+	{
+	if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		document.getElementById("listar").innerHTML=xmlhttp.responseText;
+	}
+});
+}
 function log(){
 	loadXMLDoc("log.txt",function()
 	{

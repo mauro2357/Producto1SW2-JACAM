@@ -48,17 +48,7 @@ if(session.getAttribute("persona")!=null && tipo.equalsIgnoreCase("usuario")){ %
 
 <section class="box special">
 
-<header class="major">
 
-<h2>Be Happy.
-
-<br />
-
-Descubre nuevos sitios.</h2>
-
-<p>Encuentra tus lugares de interes desde el movil.</p>
-
-</header>
 
 </section>
 

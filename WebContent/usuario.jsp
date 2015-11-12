@@ -34,7 +34,9 @@ if(session.getAttribute("persona")!=null && tipo.equalsIgnoreCase("propietario")
 </section>
 <div id="fo" ></div>
 <div id="listar" ></div>
-</section>
+
+
+
 
 </body>
 </html>
