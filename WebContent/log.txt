@@ -1,7 +1,7 @@
 <form method="post" action="enlace">
 Email:</br>
 <div class="divtext">
-<input type="text" name="mail" placeholder="Email" class="textbox" autofocus required></br>
+<input type="email" name="correo" class="textbox" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" maxlength="50" autofocus required></br>
 </div>
 Password: </br>
 <div class="divtext">

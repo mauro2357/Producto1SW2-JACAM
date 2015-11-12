@@ -8,6 +8,8 @@
 	}
 	return true;
 }*/
+
+
 function limpiar() {
 	var d = document.getElementById("fo");
 	while (d.hasChildNodes())
@@ -60,7 +62,7 @@ function actLugar(){
 	});
 }
 function reg(){
-	loadXMLDoc("regi.txt",function(){
+	loadXMLDoc("registrar.jsp",function(){
 	if (xmlhttp.readyState==4 && xmlhttp.status==200){
 		document.getElementById("fo").innerHTML=xmlhttp.responseText;
 	}

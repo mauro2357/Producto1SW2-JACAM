@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Consulta {
 	private String forma;
 	private String valor;
+	private Coordenadas coordenadas;
 	BusquedaDeLugares buscar;
 	ArrayList<Lugar> lugares = new ArrayList<Lugar>();
 	
@@ -23,7 +24,10 @@ public class Consulta {
 				this.lugares=this.buscar.buscar();
 				break;
 			case "ubicacion":
-				this.buscar = new BusquedaPorUbicacion(valor);
+				String[] vec= valor.split(" ");
+				System.out.println("CASE UBICACION: latitud: "+vec[0]+" longitud: "+vec[1]);
+				coordenadas = new Coordenadas(vec[0],vec[1]);
+				this.buscar = new BusquedaPorUbicacion(coordenadas);
 				this.lugares=this.buscar.buscar();
 				break;
 			case "todos":
@@ -33,8 +37,18 @@ public class Consulta {
 			case "propietario":
 				this.buscar = new BusquedaPorPropietario(valor);
 				this.lugares=this.buscar.buscar();
+				break;
+			case "favoritos":
+				this.buscar= new BusquedaPorFavoritos(valor);
+				this.lugares=this.buscar.buscar();
+				break;
+			case "id":
+				this.buscar=new BusquedaPorId(valor);
+				this.lugares=this.buscar.buscar();
+				break;
 				
 		}
+		System.out.println("Consulta.java: arraylugares "+lugares.size());
 		return (this.lugares);
 	}
 }

@@ -2,6 +2,7 @@ package controlador;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,13 +30,17 @@ public class enlace extends HttpServlet {
     public enlace() {
         // TODO Auto-generated constructor stub
     }
-
+   
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setAttribute("error1", null);
+		request.setAttribute("error2", null);
+		 javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+			rd.forward(request, response);
+			doGet(request, response);
 	}
 
 	/**
@@ -43,7 +48,7 @@ public class enlace extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);		
+		//doGet(request, response);		
 		HttpSession session = request.getSession();
         String email, pass;
         String accion = request.getParameter("ok");
@@ -58,27 +63,27 @@ public class enlace extends HttpServlet {
             //try {
 				persona = logInFacade.validar(email, pass);
 				//propietario = logInFacade.validarPro(email, pass);
-				System.out.println("validar O/C: "+persona.getTipo());
 				if(persona!=null && session.getAttribute("persona")==null){
 					session.setAttribute("persona", persona);
 					if(persona.getTipo().equalsIgnoreCase("propietario")){
 						request.setAttribute("propietario", "propietario");
 						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
 						rd.forward(request, response);
-						JOptionPane.showMessageDialog(null,"bienvenido");
+						
 					}
-					else if(persona.getTipo().equalsIgnoreCase("usuario")){
+					if(persona.getTipo().equalsIgnoreCase("usuario")){
 						//session.setAttribute("email", email);
 						request.setAttribute("usuario", "usuario");
 						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
 			    		rd.forward(request, response);
-						JOptionPane.showMessageDialog(null,"bienvenido");
 					}
-					else{
-						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			    		rd.forward(request, response);
-						JOptionPane.showMessageDialog(null,"Usted no se encuentra registrado");
-					}
+					
+				}
+				else{
+					request.setAttribute("error1","error1");
+					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		    		rd.forward(request, response);
+					
 				}
 					
 				}
@@ -93,11 +98,12 @@ public class enlace extends HttpServlet {
         	String nombre=request.getParameter("nombre");
         	String password=request.getParameter("clave1");
         	String tipo=request.getParameter("tipo");
-        	int si;
+        	
         	RegistroFacade registro = new RegistroFacade();
-        		si=registro.registrar(emaill, password, nombre,tipo);
-        		if(si==1 && session.getAttribute("email")==null){
-        			session.setAttribute("email", emaill);
+        	Persona persona=registro.registrar(emaill, password, nombre,tipo);
+    
+        		if(persona!=null && session.getAttribute("persona")==null){
+        			session.setAttribute("persona", persona);
         			if(tipo.equalsIgnoreCase("propietario")){
 						request.setAttribute("propietario", "propietario");
 	        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
@@ -110,6 +116,7 @@ public class enlace extends HttpServlet {
         			}
         		}
         		else{
+        			request.setAttribute("error2", "error2");
         			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         			rd.forward(request, response);
         		}

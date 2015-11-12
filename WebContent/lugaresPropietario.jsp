@@ -18,27 +18,42 @@
 	<table style="whidth:100%;">
 		<tr>
 		<th>Nombre</th>
-		<th>telefono</th>
-		<th>Coordenadas</th>
-		<th>decripcion</th>
-		<th>categoria</th>
+		<th>Telefono</th>
+		<th>Latitud</th>
+		<th>Longitud</th>
+		<th>Decripcion</th>
+		<th>Categoria</th>
 		<th>Eliminar</th>
+		<th>Actualizar</th>
 		</tr>
 	<%
 	
 	for (int i=0;i<lugares.size();i++){
-		out.print("<tr>");
-		out.print("<td>"+lugares.get(i).getNombre()+"</td>");
-		out.print("<td>"+lugares.get(i).getTelefono()+"</td>");
-		out.print("<td>"+lugares.get(i).getCoordenadas()+"</td>");
-		out.print("<td>"+lugares.get(i).getDescripcion()+"</td>");
-		out.print("<td>"+lugares.get(i).getCatenom()+"</td>");%>
-		<td>
+		out.print("<tr>");%>
 		<form method="post" action="PropietarioControl">
-		<input type="hidden" name="elimina" value=<%= lugares.get(i).getCoordenadas() %>>
-		<input type="submit" name="ok" value="eliminar" class="button">
-		</form>
+		<td><input type="text" name ="nombrelugar" maxlength="30" placeholder=<%= lugares.get(i).getNombre() %> required></td>
+		<td><input type="text" name ="telefono"  pattern="[0-9]{4,11}" title="Solo numeros (4-11)" placeholder=<%= lugares.get(i).getTelefono() %> required></td>
+		<td><input type="text" name ="latitud" pattern="[0-9.+-]+" title="numeros y puntos" placeholder=<%= lugares.get(i).getCoordenadas().getLatitud() %> required></td>
+		<td><input type="text" name ="longitud" pattern="[0-9.+-]+" title="numeros y puntos" placeholder=<%= lugares.get(i).getCoordenadas().getLongitud() %> required></td>
+		<td><input type="text" name ="descripcion" placeholder=<%= lugares.get(i).getDescripcion() %>></td>
+		<td><%out.print(lugares.get(i).getCatenom());%>
+		<select name="categoria">
+  			<option value="1">Restaurante</option>
+			<option value="2">Bares</option>
+			<option value="3">Hoteles</option>
+			<option value="4">Universidades</option>
+			<option value="5">Centros Comerciales</option>
+		</select>
 		</td>
+		<!--  <form method="post" action="PropietarioControl"> -->
+		<input type="hidden" name="lug_id" value=<%= lugares.get(i).getId() %>>
+		<td>
+		<input type="submit" name="ok" value="eliminar" class="button">
+		</td>
+		<td>
+		<input type="submit" name="ok" value="actualizar" class="button">
+		</td>
+		</form>
 		<%
 		out.print("</tr>");
 	}
@@ -46,5 +61,6 @@
 	
 	%>
 	</table>
+
 </body>
 </html>

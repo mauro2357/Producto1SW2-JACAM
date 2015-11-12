@@ -11,6 +11,10 @@
 </head>
 <body>
 <%
+String valor= (String)request.getAttribute("quitar");
+if (valor==null){
+	valor="agregar";
+}
 ArrayList<Lugar> lugares = new ArrayList<>(); 
 lugares=(ArrayList<Lugar>)request.getAttribute("lugares");
 
@@ -19,7 +23,8 @@ lugares=(ArrayList<Lugar>)request.getAttribute("lugares");
 <tr>
 <th>Nombre</th>
 <th>telefono</th>
-<th>Coordenadas</th>
+<th>Latitud</th>
+<th>Longitud</th>
 <th>decripcion</th>
 <th>categoria</th>
 <th>Agregar</th>
@@ -30,15 +35,17 @@ for (int i=0;i<lugares.size();i++){
 	out.print("<tr>");
 	out.print("<td>"+lugares.get(i).getNombre()+"</td>");
 	out.print("<td>"+lugares.get(i).getTelefono()+"</td>");
-	out.print("<td>"+lugares.get(i).getCoordenadas()+"</td>");
+	out.print("<td>"+lugares.get(i).getCoordenadas().getLatitud()+"</td>");
+	out.print("<td>"+lugares.get(i).getCoordenadas().getLongitud()+"</td>");
 	out.print("<td>"+lugares.get(i).getDescripcion()+"</td>");
 	out.print("<td>"+lugares.get(i).getCatenom()+"</td>");
 	
 	%>
 	<td>
 	<form method="post" action="control">
-	<input type="hidden" name="favorito" value=<%= lugares.get(i).getCoordenadas() %>>
-	<input type="submit" name="clugar" value="agregar" class="button">
+	<input type="hidden" name="latitud" value=<%= lugares.get(i).getCoordenadas().getLatitud() %>>
+	<input type="hidden" name="longitud" value=<%= lugares.get(i).getCoordenadas().getLongitud() %>>
+	<input type="submit" name="clugar" value=<%= valor %> class="button" id="fav">
 	</form>
 	</td>
 	<%
@@ -48,5 +55,14 @@ for (int i=0;i<lugares.size();i++){
 
 %>
 </table>
+	<script type="text/javascript">
+function onoff() {
+	var x = document.getElementById("fav");
+	if(quitar!=null){
+		
+	}
+	
+}
+</script>
 </body>
 </html>

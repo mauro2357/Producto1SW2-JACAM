@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Negocio.gestion.Persona;
+import Negocio.lugar.Coordenadas;
 import Negocio.lugar.Lugar;
 import presentacion.LugaresFacade;
 
@@ -48,49 +49,56 @@ public class PropietarioControl extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Persona propietario = (Persona)session.getAttribute("persona");
-		System.out.println("PERSONAAAAA:"+propietario.getEmail());
+		System.out.println("PERSONA:"+propietario.getEmail());
 		String email = propietario.getEmail();
         String accion = request.getParameter("ok");
-        String nombre, coordenadas, descripcion;
+        String nombre, latitud, longitud, descripcion,id;
         int telefono, categoria;
         accion=accion.toLowerCase();
         javax.servlet.RequestDispatcher rd;
         switch(accion){
         
         case "registrarlugar":
-        	int id = 0;
+        	
         	nombre = request.getParameter("NombreLugar");
         	telefono = Integer.parseInt(request.getParameter("telefono"));
-        	coordenadas = request.getParameter("coordenadas");
+        	latitud = request.getParameter("latitud");
+        	longitud = request.getParameter("longitud");
         	categoria = Integer.parseInt(request.getParameter("categoria"));
         	descripcion = request.getParameter("descripcion");
-        	for(int i = 1; i<=5; i++){
-        	     id = ((int)(Math.random()*6 + 1));
-        	}
+        	int registro=0;
         	try {
+        		
         		LugaresFacade lugarFacade = new LugaresFacade(propietario);
-        		lugarFacade.RegistrarLugar(id, nombre, telefono, coordenadas, email, categoria, descripcion);
+        		registro=lugarFacade.RegistrarLugar(nombre, telefono,latitud,longitud,categoria, descripcion);
 				//System.out.println("Su lugar ha sido registrado en la BD");
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        	System.out.println("int resgistro: "+registro);
+        	session.setAttribute("registro", registro);
         	session.setAttribute("persona", propietario);
         	rd = request.getRequestDispatcher("propietario.jsp");
     		rd.forward(request, response);
     		break;
         case "actualizar":
-        	nombre = request.getParameter("NombreLugar");
-        	telefono = Integer.parseInt(request.getParameter("telefono"));
-        	coordenadas = request.getParameter("coordenadas");
+        	id= (String)request.getParameter("lug_id");
+        	nombre = request.getParameter("nombrelugar");
+        	System.out.println(nombre);
+        	telefono=Integer.parseInt(request.getParameter("telefono"));
+        	latitud = request.getParameter("latitud");
+        	System.out.println(latitud);
+        	longitud = request.getParameter("longitud");
+        	System.out.println(longitud);
         	categoria = Integer.parseInt(request.getParameter("categoria"));
         	descripcion = request.getParameter("descripcion");
+        	System.out.println(descripcion);
         	try {
         		LugaresFacade lugarFacade = new LugaresFacade(propietario);
-				lugarFacade.ActualizarDatos(nombre, telefono, coordenadas, email, categoria, descripcion);
-				//System.out.println("Su lugar ha sido registrado en la BD");
-				
+				lugarFacade.ActualizarDatos(id,nombre, telefono, latitud,longitud,categoria, descripcion);
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -122,11 +130,13 @@ public class PropietarioControl extends HttpServlet {
         	break;
         case "eliminar":
         	
-        	String coorde = request.getParameter("elimina");
-        	System.out.println("PARA ELIMINR:"+coorde);
+        	id= (String)request.getParameter("lug_id");
+        	//System.out.println("PARA ELIMINR:"+latitud+" "+longitud);
+        	System.out.println("PARA ELIMINR:"+id);
+        	//String coorde = latitud+" "+longitud;
         	try {
         		LugaresFacade lugarFacade = new LugaresFacade(propietario);
-				lugarFacade.EliminarLugar(coorde);
+				lugarFacade.EliminarLugar(id);
 				rd = request.getRequestDispatcher("propietario.jsp");
 	    		rd.forward(request, response);
 			} catch (Exception e) {

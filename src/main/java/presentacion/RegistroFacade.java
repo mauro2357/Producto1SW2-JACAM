@@ -8,56 +8,31 @@ import datos.UsuarioRepository;
 import datos.ValidarRepository;
 
 public class RegistroFacade {
+	
+	ValidarRepository gestion;
+	
 	public RegistroFacade() {
-		// TODO Auto-generated constructor stub
+		gestion= new ValidarRepository();
 	}
-	/*public int registrarUsuario(String email,String password,String nombre){
-		int bien;
-		LogInFacade verificar = new LogInFacade();
-		Persona siPro=verificar.validarPro(email, password);
-		int siUs=verificar.validarUs(email,password);
-		if (siPro==1 && siUs==1){
-			bien=0;
-			return bien;
-		}
-		else{
-			Ppersona persona = new Ppersona(email,password,nombre);
-			UsuarioRepository usuariosRepo = new UsuarioRepository();
-			bien=usuariosRepo.registrarUsuario(persona);
-			return bien;
-		}
+
+	public String verificar(String email){
+		String correo=gestion.consultarEmail(email);
+		return correo;
 	}
-	public int registrarPropietario(String email,String password,String nombre){
-		int bien;
-		LogInFacade verificar = new LogInFacade();
-		int siPro=verificar.validarPro(email, password);
-		int siUs=verificar.validarUs(email,password);
-		if (siPro==1 && siUs==1){
-			bien=0;
-			return bien;
+	public Persona registrar(String email,String password,String nombre,String tipo){
+		String correo=this.verificar(email);
+		int existe=0;
+		Persona persona=null;
+		if (correo!=null){
+			existe=0;
+			System.out.println("existe correo para registo: "+existe);
 		}
 		else{
-			Ppersona persona = new Ppersona(email,password,nombre);
-			PropietarioRepository propietarioRepo = new PropietarioRepository();
-			bien=propietarioRepo.registrarPropietario(persona);
-			return bien;
+			persona = new Aspirante(email,password,nombre,tipo);
+			existe=gestion.registrar(persona);
+			System.out.println("no existe correo para registo: "+existe);
 		}
-		
-	}*/
-	public int registrar(String email,String password,String nombre,String tipo){
-		LogInFacade verificar = new LogInFacade();
-		int bien=0;
-		Persona personaYa=verificar.validar(email, password);
-		if (personaYa!=null){
-			bien=0;
-		}
-		else{
-			Persona persona = new Aspirante(email,password,nombre,tipo);
-			ValidarRepository registrar = new ValidarRepository();
-			bien=registrar.registrar(persona);
-			bien=1;
-		}
-		return(bien);
+		return(persona);
 		
 	}
 }

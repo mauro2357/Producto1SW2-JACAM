@@ -1,12 +1,17 @@
+<%@page import="Negocio.gestion.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%if(session.getAttribute("persona") == null){%>
 <jsp:forward page="index.jsp"></jsp:forward>
 <%} %>
-<!--  <%if(session.getAttribute("email")!=null && (request.getAttribute("propietario")!="propietario")){ %>
-	<script>window.onload=goBack();</script>
+<%
+Persona persona= (Persona)session.getAttribute("persona");
+String tipo=persona.getTipo();
+if(session.getAttribute("persona")!=null && tipo.equalsIgnoreCase("usuario")){ %>
+	<jsp:forward page="usuario.jsp"></jsp:forward>
+	
 
-	<%} %>-->
+	<%} %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -31,21 +36,7 @@
 <div id="fo" ></div>
 
 <% 
-String login= (String) (request.getAttribute("loginvalido"));
 
-String reginv= (String) (request.getAttribute("reginvalido"));
-
-if(login==null){
-
-System.out.println(login);
-
-}
-
-if(reginv!=null){
-
-System.out.println(reginv);
-
-}
 
 %>
 

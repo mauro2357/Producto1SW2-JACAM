@@ -2,6 +2,7 @@ package presentacion;
 
 import java.util.ArrayList;
 
+import Negocio.lugar.Coordenadas;
 import Negocio.lugar.Lugar;
 import datos.LugarRepository;
 
@@ -26,7 +27,8 @@ public class consultaLugaresFacade {
 		}
 		return lugares;
 		}
-	public ArrayList<Lugar> consultarLugarPorCoordenadas(String coordenadas) throws Exception{
+	public ArrayList<Lugar> consultarLugarPorCoordenadas(String latitud,String longitud) throws Exception{
+		Coordenadas coordenadas = new Coordenadas(latitud,longitud);
 		LugarRepository lugRepository =  new LugarRepository();
 		ArrayList<Lugar> lugares = lugRepository.consultarLugaresporCoordenadas(coordenadas);
 		return lugares;

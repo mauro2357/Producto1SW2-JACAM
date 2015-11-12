@@ -4,21 +4,19 @@ import java.util.ArrayList;
 
 import datos.LugarRepository;
 
-public class BusquedaPorUbicacion extends BusquedaDeLugares {
+public class BusquedaPorId extends BusquedaDeLugares {
+	private String id;
 	private ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-	private Coordenadas coordenadas;
-	
-	public BusquedaPorUbicacion(Coordenadas coordenadas) {
+	public BusquedaPorId(String id) {
 		// TODO Auto-generated constructor stub
-		this.coordenadas=coordenadas;
+		this.id=id;
 	}
-
 	@Override
 	public ArrayList<Lugar> buscar() throws Exception {
 		// TODO Auto-generated method stub
 		LugarRepository lugarRepository = new LugarRepository();
-		this.lugares=lugarRepository.consultarLugaresporCoordenadas(this.coordenadas);
+		this.lugares=lugarRepository.consultarLugaresporId(this.id);
 		return this.lugares;
 	}
-
+	
 }

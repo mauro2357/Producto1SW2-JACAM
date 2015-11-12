@@ -20,36 +20,40 @@ public class ConsultaLugaresService {
 		ArrayList<Lugar> luga = new ArrayList<Lugar>();
 		consultaLugaresFacade lugares = new consultaLugaresFacade();
 		luga=lugares.consultarLugarPorNombre(nombre);
-		return luga.toString();
-		
+		if(!luga.isEmpty()){
+			return luga.get(0).getCoordenadas().getLatitud()+","+luga.get(0).getCoordenadas().getLongitud();
+		}
+		else{
+			return "[]";
+		}		
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("consultaLugarCoordenadas/{coordenadas}")
-	public String ConsultarLugaresCoordenadas(@PathParam("coordenadas")String coordenadas) throws Exception{
+	@Path("consultaLugarCoordenadas/{latitud}/{longitud}")
+	public String ConsultarLugaresCoordenadas(@PathParam("latitud")String latitud,@PathParam("longitud")String longitud) throws Exception{
 		ArrayList<Lugar> luga = new ArrayList<Lugar>();
 		consultaLugaresFacade lugares = new consultaLugaresFacade();
-		luga=lugares.consultarLugarPorCoordenadas(coordenadas);
+		luga=lugares.consultarLugarPorCoordenadas(latitud,longitud);
 		return luga.toString();
 		
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("consultaLugarTipo/{tipo}")
-	public String ConsultarLugaresTipo(@PathParam("tipo")String tipo) throws Exception{
+	@Path("consultaLugarCategoria/{categoria}")
+	public String ConsultarLugaresCategoria(@PathParam("categoria")String categoria) throws Exception{
 		ArrayList<Lugar> luga = new ArrayList<Lugar>();
 		consultaLugaresFacade lugares = new consultaLugaresFacade();
-		luga=lugares.consultarLugarPorCategorias(tipo);
+		luga=lugares.consultarLugarPorCategorias(categoria);
 		return luga.toString();
 		
 	}
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@Path("consultaLugarTodos")
-	public String ConsultarLugaresTipo() throws Exception{
+	@Path("consultaTodosLugares")
+	public String ConsultarTodosLugares() throws Exception{
 		ArrayList<Lugar> luga = new ArrayList<Lugar>();
 		consultaLugaresFacade lugares = new consultaLugaresFacade();
 		luga=lugares.consultarTodosLugares();

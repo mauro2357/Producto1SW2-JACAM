@@ -25,12 +25,17 @@ public class Usuario extends Persona {
 		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
 		Consulta consulta = new Consulta(forma,valor);
 		lugares=consulta.realizarBusqueda();
+		System.out.println("Usuario.java: arraylugares "+lugares.size());
 		return lugares;	
 	}
 	public void agregarFavorito(Lugar lugar){
 		LugarRepository lugarRepository=new LugarRepository();
 		lugarRepository.RegistroFavorito(this.email, lugar);
 		
+	}
+	public void quitarFavorito(Lugar lugar){
+		LugarRepository lugarRepository=new LugarRepository();
+		lugarRepository.quitarFavorito(this.email, lugar);
 	}
 	
 	public String getEmail() {

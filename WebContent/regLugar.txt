@@ -1,19 +1,29 @@
 <form method="post" action="PropietarioControl" >
 Nombre del Lugar: </br>
 <div class="divtext">
-<input type="text" name="NombreLugar" class="textbox" placeholder="Nombre del Lugar"autofocus required></br>
+<input type="text" name="NombreLugar" class="textbox" maxlength="3" placeholder="Nombre del Lugar" autofocus required></br>
 </div>
 Telefono:</br>
 <div class="divtext">
-<input type="text" name="telefono" class="textbox" placeholder="Telefono"></br>
+<input type="text" name="telefono" class="textbox" pattern="[0-9]{4,11}" title="Solo numeros (4-11)" placeholder="Telefono"></br>
 </div>
-Coordenadas:</br>
+Latitud:</br>
 <div class="divtext">
-<input type="text" name="coordenadas" class="textbox" placeholder="Cooordenadas"required></br>
+<input type="text" name="latitud" class="textbox" pattern="[0-9.+-]+" title="numeros y puntos" placeholder="latitud" required></br>
+</div>
+Longitud:</br>
+<div class="divtext">
+<input type="text" name="longitud" class="textbox" pattern="[0-9.+-]+" title="numeros y puntos" placeholder="longitud" required></br>
 </div>
 Categoria:</br>
 <div class="divtext">
-<input type="text" name="categoria" class="textbox" placeholder="Categoria"required></br>
+<select name="categoria">
+<option value="1">Restaurante</option>
+<option value="2">Bares</option>
+<option value="3">Hoteles</option>
+<option value="4">Universidades</option>
+<option value="5">Centros Comerciales</option>
+</select></br>
 </div>
 Descripcion:</br>
 <div class="divtext">

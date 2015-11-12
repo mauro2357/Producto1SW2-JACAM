@@ -1,9 +1,12 @@
+<%@page import="Negocio.gestion.*" %>
 <%if(session.getAttribute("persona") == null){%>
 <jsp:forward page="index.jsp"></jsp:forward>
 <%} %>
-<%if(session.getAttribute("persona")!=null && (request.getAttribute("usuario")!="usuario")){%>
-	<script>window.onload=goBack();</script>
-
+<%
+Persona persona= (Persona)session.getAttribute("persona");
+String tipo=persona.getTipo();
+if(session.getAttribute("persona")!=null && tipo.equalsIgnoreCase("propietario")){%>
+	<jsp:forward page="propietario.jsp"></jsp:forward>
 	<%} %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -25,15 +28,13 @@
 <div class="lad"><button class="button enter" id="enter" onclick="limpiar();portipo()">Tipo</button></div>
 <div class="lad"><form method="post" action="control"><input type="submit" name="clugar" value="todo" class="button login sub"></form></div>
 <div class="lad"><button class="button enter" id="enter" onclick="limpiar();pornombre()">Nombres</button></div>
-<div class="lad"><button class="button enter" id="enter" onclick="limpiar();favoritos()">Añadir a Favoritos</button></div>
+<div class="lad"><form method="post" action="control">
+	<input type="submit" name="clugar" value="favoritos" class="button enter" onclick="limpiar();" >
+</form></div>
 </section>
 <div id="fo" ></div>
 <div id="listar" ></div>
 </section>
-<script>
-function goBack() {
-    window.history.back();
-}
-</script>
+
 </body>
 </html>

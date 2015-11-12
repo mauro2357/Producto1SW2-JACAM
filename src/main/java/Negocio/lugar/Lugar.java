@@ -3,56 +3,40 @@ package Negocio.lugar;
 import Negocio.gestion.Propietario;
 
 public class Lugar {
+	private int id;
 	private String nombre;
 	private String descripcion;
-	private String coordenadas;
-	private Propietario propietario;
+	private Coordenadas coordenadas;
+	private String propietario;
 	private int telefono;
 	private int categoria;
 	private String catenom;
-	private int id;
-	private String email;
-	public String getEmail() {
-		return email;
-	}
+	
+	
 	public Lugar(int id) {
 		// TODO Auto-generated constructor stub
 		this.id=id;
 	}
-	public Lugar(String nombre,int telefono,String coordenadas,String email,int categoria,String descripcion) {
-		super();
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.coordenadas = coordenadas;
-		this.propietario = propietario;
-		this.email = email;
-		this.telefono = telefono;
-		this.categoria = categoria;
-		this.id = id;
-	}
-	public Lugar(int id,String nombre,String coordenadas,int telefono,String descripcion,String catenom) {
+	public Lugar(int id,String nombre,int telefono,Coordenadas coordenadas,String email,int categoria,String descripcion) {
 		super();
 		this.id=id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.coordenadas = coordenadas;
-		this.propietario = propietario;
-		this.email = email;
+		this.propietario = email;
 		this.telefono = telefono;
 		this.categoria = categoria;
+	}
+	public Lugar(int id,String nombre,Coordenadas coordenadas,int telefono,String descripcion,String catenom) {
+		super();
+		this.id=id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.coordenadas = coordenadas;
+		this.telefono = telefono;
+		this.catenom = catenom;
 		this.id = id;
 	}
-	public Lugar(String nombre,String coordenadas,int telefono,String descripcion,String catenom ){
-		this.nombre=nombre;
-		this.descripcion=descripcion;
-		this.coordenadas=coordenadas;
-		this.telefono=telefono;
-		this.catenom=catenom;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
 	public int getTelefono() {
 		return telefono;
 	}
@@ -71,10 +55,10 @@ public class Lugar {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Propietario getPropietario() {
+	public String getPropietario() {
 		return propietario;
 	}
-	public void setPropietario(Propietario propietario) {
+	public void setPropietario(String propietario) {
 		this.propietario = propietario;
 	}
 	public String getCatenom() {
@@ -95,10 +79,10 @@ public class Lugar {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public String getCoordenadas() {
+	public Coordenadas getCoordenadas() {
 		return coordenadas;
 	}
-	public void setCoordenadas(String coordenadas) {
+	public void setCoordenadas(Coordenadas coordenadas) {
 		this.coordenadas = coordenadas;
 	}
 	@Override

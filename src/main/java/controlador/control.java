@@ -50,6 +50,7 @@ public class control extends HttpServlet {
 		String email = persona.getEmail();
         String accion = request.getParameter("clugar");
         accion = accion.toLowerCase();
+        String latitud, longitud;
         ArrayList<Lugar> lugares = new ArrayList<Lugar>();
         LugaresFacade lugaresFacade = new LugaresFacade(persona);
         
@@ -121,7 +122,9 @@ public class control extends HttpServlet {
     			}
         		break;
         	case "agregar":
-        		String coorde = request.getParameter("favorito");
+        		latitud = request.getParameter("latitud");
+        		longitud = request.getParameter("longitud");
+        		String coorde=latitud+" "+longitud;
 			try {
 				lugaresFacade.agregarFavorito(coorde);
 				request.setAttribute("lugares", lugares);
@@ -133,6 +136,46 @@ public class control extends HttpServlet {
 			}
         		
 	    		break;
+        	case "quitar":
+        		latitud = request.getParameter("latitud");
+        		longitud = request.getParameter("longitud");
+        		String coord=latitud+" "+longitud;
+			try {
+				lugaresFacade.quitarFavorito(coord);
+				request.setAttribute("lugares", lugares);
+				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+	    		rd.forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        		
+	    		break;
+        	case "favoritos":
+        		lugares.clear();
+        		try{
+        			System.out.println("favorietos Email: "+email);
+        			lugares=lugaresFacade.consultarLugares("favoritos", email);
+        			
+        			if(lugares.isEmpty()){
+        				System.out.println("MIERDADAaaaaaaaaaa");
+    					PrintWriter out=response.getWriter();
+    					out.println("Error, no se encontro el lugar.");
+    					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+    		    		rd.forward(request, response);
+    				}
+    				else{
+    				request.setAttribute("quitar", "quitar");
+    				request.setAttribute("lugares", lugares);
+    				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+    	    		rd.forward(request, response);
+    				}
+        		}
+        		catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+        		
         }
         
 	}

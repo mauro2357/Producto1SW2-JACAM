@@ -3,7 +3,9 @@ package Negocio.gestion;
 import java.util.ArrayList;
 
 import Negocio.lugar.Consulta;
+import Negocio.lugar.Coordenadas;
 import Negocio.lugar.Lugar;
+import datos.LugarRepository;
 
 public class Propietario extends Persona {
 	private String email;
@@ -18,6 +20,26 @@ public class Propietario extends Persona {
 		this.password=password;
 		this.nombre=nombre;
 		this.telefono=telefono;
+	}
+	@Override
+	public ArrayList<Lugar> consultarLugar(String forma, String valor) throws Exception {
+		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
+		Consulta consulta = new Consulta(forma,valor);
+		lugares=consulta.realizarBusqueda();
+		return lugares;	
+	}
+	public void registrarLugar(Lugar lugar) throws Exception{
+		LugarRepository lugaresRepository= new LugarRepository();
+		lugaresRepository.registrarLugar(lugar);
+	}
+	public void actualizarLugar(Lugar lugar) throws Exception{
+		LugarRepository lugaresRepository= new LugarRepository();
+		lugaresRepository.ActualizarDatos(lugar);
+	}
+	public void eliminarLugar(Lugar lugar){
+		LugarRepository lugaresRepository= new LugarRepository();
+		System.out.println("ELIMINR LUGAR ID: "+lugar.getId());
+		lugaresRepository.eliminarLugar(lugar);
 	}
 	public String getEmail() {
 		return email;
@@ -51,11 +73,5 @@ public class Propietario extends Persona {
 		// TODO Auto-generated method stub
 		return tipo;
 	}
-	@Override
-	public ArrayList<Lugar> consultarLugar(String forma, String valor) throws Exception {
-		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-		Consulta consulta = new Consulta(forma,valor);
-		lugares=consulta.realizarBusqueda();
-		return lugares;	
-	}
+	
 }

@@ -6,6 +6,6 @@ Tipo:</br>
 <option value="bares">Bares</option>
 <option value="centros comerciales">Centros Comerciales</option>
 <option value="universidades">Universidades</option>
-<input type="submit" name="clugar" value="tipos" class="button">
 </select></br>
+<input type="submit" name="clugar" value="tipos" class="button">
 </form>

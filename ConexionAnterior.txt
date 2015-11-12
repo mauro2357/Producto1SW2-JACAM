@@ -147,3 +147,7 @@ private String sql;
 		            //redirijo a página con información de login exitoso
 		            javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
 		    		rd.forward(request, response);
+
+		    		
+		    		<input type="hidden" id="error1" value=<%= error1 %>>
+	<input type="hidden" id="error2" value=<%= error2 %>>
