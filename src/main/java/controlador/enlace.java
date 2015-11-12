@@ -53,7 +53,7 @@ public class enlace extends HttpServlet {
         String email, pass;
         String accion = request.getParameter("ok");
         if(accion.equalsIgnoreCase("Entrar")){
-        	email = request.getParameter("mail");
+        	email=request.getParameter("correo");
             pass = request.getParameter("password");
             System.out.println(email+"   "+pass);
             //Usuario usuario;
@@ -128,6 +128,8 @@ public class enlace extends HttpServlet {
         
         if(accion.equalsIgnoreCase("salir")){
       	  session.invalidate();
+      	  request.setAttribute("error1", null);
+      	  request.setAttribute("error2", null);
       	  javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
     		rd.forward(request, response);
         }

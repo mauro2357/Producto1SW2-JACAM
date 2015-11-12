@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -16,7 +16,7 @@ Confirmar Password:</br>
 <input type="password" name="clave2" id="clave2" class="textbox" placeholder="Confirm Password" maxlength="30" required></br>
 <div id="errorClave"  style="color:#FF0000;"></div>
 Nombre(s) y Apellidos:</br>
-<input type="text" name="nombre" class="textbox" pattern="[A-Za-z]{3,40}" title="Solo letras (3-40)" placeholder="Nombre" required></br>
+<input type="text" name="nombre" class="textbox" pattern="[A-Za-z ]{3,40}" title="Solo letras (3-40)" placeholder="Nombre" required></br>
 Tipo:</br>
 <select name="tipo">
 <option value="usuario">Usuario</option>

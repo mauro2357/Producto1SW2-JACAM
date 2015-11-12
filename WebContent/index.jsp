@@ -91,8 +91,6 @@ function errors(){
 
 	var error1 = document.getElementById("error1").value;
 	var error2 = document.getElementById("error2").value;
-	alert(error1);
-	alert(error2);
 	
 	if (error1!=null){
 		document.getElementById("fo").innerHTML = "Usuario o contraseña incorrectos";

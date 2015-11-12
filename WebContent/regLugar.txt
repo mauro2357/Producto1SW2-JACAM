@@ -1,7 +1,7 @@
 <form method="post" action="PropietarioControl" >
 Nombre del Lugar: </br>
 <div class="divtext">
-<input type="text" name="NombreLugar" class="textbox" maxlength="3" placeholder="Nombre del Lugar" autofocus required></br>
+<input type="text" name="NombreLugar" class="textbox" maxlength="30" placeholder="Nombre del Lugar" autofocus required></br>
 </div>
 Telefono:</br>
 <div class="divtext">
