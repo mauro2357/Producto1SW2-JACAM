@@ -19,9 +19,11 @@ if(session.getAttribute("persona")!=null && tipo.equalsIgnoreCase("propietario")
 <script type="text/javascript" src="validacion.js" ></script>
 </head>
 <body class="cuerpo">
+<div id="salir">
 <form method="post" action="enlace">    
     <input type="submit" name="ok" value="Salir" class="button salir">
 </form>
+</div>
 <section id="ban">
 <h1>Busqueda de Lugares</h1></br>
 <section >

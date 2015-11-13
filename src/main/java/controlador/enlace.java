@@ -36,102 +36,90 @@ public class enlace extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("error1", null);
-		request.setAttribute("error2", null);
 		 javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 			rd.forward(request, response);
-			doGet(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);		
+		// TODO Auto-generated method stub		
 		HttpSession session = request.getSession();
         String email, pass;
         String accion = request.getParameter("ok");
-        if(accion.equalsIgnoreCase("Entrar")){
-        	email=request.getParameter("correo");
-            pass = request.getParameter("password");
-            System.out.println(email+"   "+pass);
-            //Usuario usuario;
-            //Propietario propietario;
-            Persona persona;
-            LogInFacade logInFacade = new LogInFacade();
-            //try {
-				persona = logInFacade.validar(email, pass);
-				//propietario = logInFacade.validarPro(email, pass);
-				if(persona!=null && session.getAttribute("persona")==null){
-					session.setAttribute("persona", persona);
-					if(persona.getTipo().equalsIgnoreCase("propietario")){
-						request.setAttribute("propietario", "propietario");
-						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
-						rd.forward(request, response);
-						
-					}
-					if(persona.getTipo().equalsIgnoreCase("usuario")){
-						//session.setAttribute("email", email);
-						request.setAttribute("usuario", "usuario");
-						javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
-			    		rd.forward(request, response);
-					}
-					
-				}
-				else{
-					request.setAttribute("error1","error1");
-					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		    		rd.forward(request, response);
-					
-				}
-					
-				}
+        String pagina=null;
+        switch(accion){
+        case"Entrar":
+        	pagina=Login(request, session);
+        	break;
+        case"Crear":
+        	pagina=NuevaPersona(request,session);
+        	break;
+        case"Salir":
+        	pagina="index.jsp";
+        	session.invalidate();
+        	break;
+        }
+        
+        javax.servlet.RequestDispatcher rd = request.getRequestDispatcher(pagina);
+		rd.forward(request, response);
+	}
+	public String Login(HttpServletRequest request, HttpSession session){
+		String email, pass;
+		email = request.getParameter("correo");
+        pass = request.getParameter("password");
+        System.out.println(email+"   "+pass);
+        Persona persona;
+        LogInFacade logInFacade = new LogInFacade();
+        String df=null;
+		persona = logInFacade.validar(email, pass);
+		if(persona!=null && session.getAttribute("persona")==null){
+			session.setAttribute("persona", persona);
+			if(persona.getTipo().equalsIgnoreCase("propietario")){
+				request.setAttribute("propietario", "propietario");
+				df="propietario.jsp";	
+			}
+			if(persona.getTipo().equalsIgnoreCase("usuario")){
+				request.setAttribute("usuario", "usuario");
+				df="usuario.jsp";
+			}
 				
-			/*} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
-        
-        if(accion.equalsIgnoreCase("Crear")){
-        	String emaill=request.getParameter("correo");
-        	String nombre=request.getParameter("nombre");
-        	String password=request.getParameter("clave1");
-        	String tipo=request.getParameter("tipo");
-        	
-        	RegistroFacade registro = new RegistroFacade();
-        	Persona persona=registro.registrar(emaill, password, nombre,tipo);
-    
-        		if(persona!=null && session.getAttribute("persona")==null){
-        			session.setAttribute("persona", persona);
-        			if(tipo.equalsIgnoreCase("propietario")){
-						request.setAttribute("propietario", "propietario");
-	        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("propietario.jsp");
-	        			rd.forward(request, response);
-        			}
-        			else{
-        				request.setAttribute("usuario", "usuario");
-	        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
-	        			rd.forward(request, response);			
-        			}
-        		}
-        		else{
-        			request.setAttribute("error2", "error2");
-        			javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        			rd.forward(request, response);
-        		}
-        		
-        	
-        	
-        }
-        
-        
-        if(accion.equalsIgnoreCase("salir")){
-      	  session.invalidate();
-      	  request.setAttribute("error1", null);
-      	  request.setAttribute("error2", null);
-      	  javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-    		rd.forward(request, response);
-        }
+			}
+			else{
+				JOptionPane.showMessageDialog(null,"Email o contraseña incorrectos.");
+				df="index.jsp";
+			}
+
+		return df;
+	}
+	public String NuevaPersona(HttpServletRequest request, HttpSession session){
+		String emaill=request.getParameter("correo");
+    	String nombre=request.getParameter("nombre");
+    	String password=request.getParameter("clave1");
+    	String tipo=request.getParameter("tipo");
+    	String df;
+    	RegistroFacade registro = new RegistroFacade();
+    	Persona persona=registro.registrar(emaill, password, nombre,tipo);
+    	
+    		if(persona!=null && session.getAttribute("persona")==null){
+    			session.setAttribute("persona", persona);
+    			if(tipo.equalsIgnoreCase("propietario")){
+					request.setAttribute("propietario", "propietario");
+					df=Login(request, session);
+    			}
+    			else{
+    				request.setAttribute("usuario", "usuario");
+    				df=Login(request, session);
+    			}
+    		}
+    		else{
+    			//request.setAttribute("error2", "error2");
+    			JOptionPane.showMessageDialog(null,"El email se encuentra ocupado, intente nuevamente.");
+    			df="index.jsp";
+    		}
+    		
+    		return df;
 	}
 }
+

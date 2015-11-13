@@ -21,18 +21,25 @@ if(session.getAttribute("persona")!=null && tipo.equalsIgnoreCase("usuario")){ %
 <script type="text/javascript" src="validacion.js" ></script>
 </head>
 <body class = "cuerpo">
+<div id="salir">
 <form method="post" action="enlace">    
     <input type="submit" name="ok" value="Salir" class="button salir">
 </form>
-<section id="ban">
-<button class="button login" id="enter" onclick="limpiar();regLugar()">Registrar Lugar</button>
+</div>
 
-<button class="button login" id="enter" onclick="limpiar();actLugar()">Actualizar Datos de un Lugar</button>
+
+<section id="ban">
+<div><h1>Bienvenido</h1>
+<p style="color:black;">Desde aqui puedes gestionar tus lugares. Registra tu local en la aplicacion para que los usuarios puedan conocerlo.
+</br>Actualiza los datos de tu lugar siempre que sea necesario, tener informacion correcta evita malos entendidos.
+</p></div>
+<div id="propbuttons">
+<button class="button login" id="enter" onclick="limpiar();regLugar();initialize();">Registrar Lugar</button>
 
 <form method="post" action="PropietarioControl">
-<input type="submit" name="ok" value="consultarlugares" class="button login sub">
+<input  type="submit" name="ok" value="consultarlugares" class="button login">
 </form>
-
+</div>
 <div id="fo" ></div>
 
 <% 
@@ -48,15 +55,60 @@ if(session.getAttribute("persona")!=null && tipo.equalsIgnoreCase("usuario")){ %
 
 <section class="box special">
 
+<div>
+<p style="color:orange;">Descrubre las coordenadas de tu local posicionando el marcador en el lugar que se encuentra.
+</br>
+</p></div>
 
+<div id="map"></div>
 
 </section>
 
 </section>
+<script type="text/javascript">
+var map = null;
+	var infoWindow = null;
+
+	function openInfoWindow(marker) {
+		var markerLatLng = marker.getPosition();
+		infoWindow.setContent(
+			"La posicion del marcador es: "+'</br>'+"Latitud: "+markerLatLng.lat()+" Longitud: "+markerLatLng.lng()+'</br>'+"Haz click en el marcador para actualizar"
+			
+		);
+		infoWindow.open(map, marker);
+	}
+
+	function initialize() {
+		var myLatlng = new google.maps.LatLng(6.148699, -75.356351);
+		var myOptions = {
+		  zoom: 13,
+		  center: myLatlng,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+
+		map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+		infoWindow = new google.maps.InfoWindow();
+
+		var marker = new google.maps.Marker({
+		    position: myLatlng,
+		    draggable: true,
+		    map: map,
+		    title:"Ejemplo marcador arrastrable"
+		});
+
+		google.maps.event.addListener(marker, 'click', function(){
+			openInfoWindow(marker);
+		});
+	}
+	       
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjaBtBYyGYRQ1_x-MYLZjSpLbGWcFQrMk&libraries=places">
+    </script>
 
 
 
-</section>
 <script>
 function goBack() {
     window.history.back();

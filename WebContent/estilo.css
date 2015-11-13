@@ -223,6 +223,7 @@ background:rgb(210, 210, 210);
 box-shadow: inset 0 0 0 2px #C8C8C8;
 background: #C8C8C8;
 color: #228C87;
+margin: 1em 0 1em 0;
 }
 
 .enter{
@@ -270,7 +271,7 @@ outline: 0;
 #fo{
 background-color: transparent;
 font-color:#fff;
-display: inline-block;
+display: block;
 /*background: rgb(82, 86, 95);*/
 border-radius: 4px;
 border: 100;
@@ -422,7 +423,23 @@ width: 6.5em;
 padding: 0 1.2em 0 1.2em ;
 color:#444;
 }
-
+#salir{
+	background: #218B85;
+}
+#propbuttons{
+	text-align:center;
+	display: block;
+	padding: 1em 1.2em 1em 1.2em ;
+}
+#table{
+	border-radius: 6px;
+	background: #fff;
+	text-align: center;
+	display: inline-block;
+	padding: 1em 1.2em 1em 1.2em ;
+}
 table, th, td {
-border: 1px solid black;
+color:#000000;
+padding: 1 em 0 1em 0 ;
+border: 0.5px solid black;
 }

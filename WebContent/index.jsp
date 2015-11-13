@@ -26,7 +26,7 @@ if(session.getAttribute("persona") != null ){
 	
 %>
 </head>
-<body class="cuerpo" onload="errors()">
+<body class="cuerpo">
 <section id="ban">
 <h1>East Sites </h1></br>
 
@@ -34,7 +34,6 @@ if(session.getAttribute("persona") != null ){
 
 <button class="button enter" id="enter" onclick="limpiar();reg()">Registrarse</button>
 
-<button class="button login" id="enter" >Información</button></br>
 
 
 
@@ -86,21 +85,6 @@ function comprobarClave(){
 	      correcto=false;
       	}
     return correcto;
-} 
-function errors(){
-
-	var error1 = document.getElementById("error1").value;
-	var error2 = document.getElementById("error2").value;
-	
-	if (error1!=null){
-		document.getElementById("fo").innerHTML = "Usuario o contraseña incorrectos";
-	}
-	else if (error2!=null){
-		document.getElementById("fo").innerHTML = "El correo ya se encuentra registrado";
-	}
-	else{
-		document.getElementById("fo").innerHTML = "";
-	}
 }
 
 </script>

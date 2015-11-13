@@ -56,97 +56,108 @@ public class PropietarioControl extends HttpServlet {
         int telefono, categoria;
         accion=accion.toLowerCase();
         javax.servlet.RequestDispatcher rd;
+        String pagina=null;
         switch(accion){
         
         case "registrarlugar":
-        	
-        	nombre = request.getParameter("NombreLugar");
-        	telefono = Integer.parseInt(request.getParameter("telefono"));
-        	latitud = request.getParameter("latitud");
-        	longitud = request.getParameter("longitud");
-        	categoria = Integer.parseInt(request.getParameter("categoria"));
-        	descripcion = request.getParameter("descripcion");
-        	int registro=0;
-        	try {
-        		
-        		LugaresFacade lugarFacade = new LugaresFacade(propietario);
-        		registro=lugarFacade.RegistrarLugar(nombre, telefono,latitud,longitud,categoria, descripcion);
-				//System.out.println("Su lugar ha sido registrado en la BD");
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	System.out.println("int resgistro: "+registro);
-        	session.setAttribute("registro", registro);
-        	session.setAttribute("persona", propietario);
-        	rd = request.getRequestDispatcher("propietario.jsp");
-    		rd.forward(request, response);
+        	pagina=registraLugar(request, propietario, session);
     		break;
         case "actualizar":
-        	id= (String)request.getParameter("lug_id");
-        	nombre = request.getParameter("nombrelugar");
-        	System.out.println(nombre);
-        	telefono=Integer.parseInt(request.getParameter("telefono"));
-        	latitud = request.getParameter("latitud");
-        	System.out.println(latitud);
-        	longitud = request.getParameter("longitud");
-        	System.out.println(longitud);
-        	categoria = Integer.parseInt(request.getParameter("categoria"));
-        	descripcion = request.getParameter("descripcion");
-        	System.out.println(descripcion);
-        	try {
-        		LugaresFacade lugarFacade = new LugaresFacade(propietario);
-				lugarFacade.ActualizarDatos(id,nombre, telefono, latitud,longitud,categoria, descripcion);
-
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	session.setAttribute("persona", propietario);
-        	rd = request.getRequestDispatcher("propietario.jsp");
-    		rd.forward(request, response);
+        	pagina=actualizaLugar(request, propietario, session);
     		break;
-        case ("consultarlugares"):
-        	ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-        	LugaresFacade lugaresFacade = new LugaresFacade(propietario);
-        	try {
-				lugares=lugaresFacade.consultarLugares("propietario", email);
-				if(lugares.isEmpty()){
-					PrintWriter out=response.getWriter();
-					   out.println("Error, no hay lugares.");
-					   rd = request.getRequestDispatcher("propietario.jsp");
-			    		rd.forward(request, response);
-				}
-				else{
-					request.setAttribute("lugares", lugares);
-					rd = request.getRequestDispatcher("lugaresPropietario.jsp");
-		    		rd.forward(request, response);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        case"consultarlugares":
+        	pagina=consultaLugar(request, propietario, session);
         	break;
         case "eliminar":
-        	
-        	id= (String)request.getParameter("lug_id");
-        	//System.out.println("PARA ELIMINR:"+latitud+" "+longitud);
-        	System.out.println("PARA ELIMINR:"+id);
-        	//String coorde = latitud+" "+longitud;
-        	try {
-        		LugaresFacade lugarFacade = new LugaresFacade(propietario);
-				lugarFacade.EliminarLugar(id);
-				rd = request.getRequestDispatcher("propietario.jsp");
-	    		rd.forward(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-        	
+        	pagina=eliminaLugar(request, propietario, session);
         	break;
-        	
         }
+        rd = request.getRequestDispatcher(pagina);
+		rd.forward(request, response);
 	}
+	public String registraLugar(HttpServletRequest request, Persona propietario, HttpSession session){
+		String nombre, latitud, longitud, descripcion,id;
+        int telefono, categoria;
+		nombre = request.getParameter("NombreLugar");
+    	telefono = Integer.parseInt(request.getParameter("telefono"));
+    	latitud = request.getParameter("latitud");
+    	longitud = request.getParameter("longitud");
+    	categoria = Integer.parseInt(request.getParameter("categoria"));
+    	descripcion = request.getParameter("descripcion");
+    	int registro=0;
+    	try {
+    		
+    		LugaresFacade lugarFacade = new LugaresFacade(propietario);
+    		registro=lugarFacade.RegistrarLugar(nombre, telefono,latitud,longitud,categoria, descripcion);
+			//System.out.println("Su lugar ha sido registrado en la BD");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	System.out.println("int resgistro: "+registro);
+    	session.setAttribute("registro", registro);
+    	session.setAttribute("persona", propietario);
+    	return"propietario.jsp";
+	}
+	public String actualizaLugar(HttpServletRequest request, Persona propietario, HttpSession session){
+		String nombre, latitud, longitud, descripcion,id;
+        int telefono, categoria;
+		id= (String)request.getParameter("lug_id");
+    	nombre = request.getParameter("nombrelugar");
+    	System.out.println(nombre);
+    	telefono=Integer.parseInt(request.getParameter("telefono"));
+    	latitud = request.getParameter("latitud");
+    	System.out.println(latitud);
+    	longitud = request.getParameter("longitud");
+    	System.out.println(longitud);
+    	categoria = Integer.parseInt(request.getParameter("categoria"));
+    	descripcion = request.getParameter("descripcion");
+    	System.out.println(descripcion);
+    	try {
+    		LugaresFacade lugarFacade = new LugaresFacade(propietario);
+			lugarFacade.ActualizarDatos(id,nombre, telefono, latitud,longitud,categoria, descripcion);
 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	session.setAttribute("persona", propietario);
+    	return"propietario.jsp";
+	}
+	public String consultaLugar(HttpServletRequest request, Persona propietario, HttpSession session){
+		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
+    	LugaresFacade lugaresFacade = new LugaresFacade(propietario);
+    	String email = propietario.getEmail();
+    	String df;
+    	try {
+			lugares=lugaresFacade.consultarLugares("propietario", email);
+			if(lugares.isEmpty()){
+				df="propietario.jsp";
+			}
+			else{
+				request.setAttribute("lugares", lugares);
+				df="lugaresPropietario.jsp";
+			}
+		} catch (Exception e) {
+			df="propietario.jsp";
+			e.printStackTrace();
+		}
+    	return df;
+	}
+	public String eliminaLugar(HttpServletRequest request, Persona propietario, HttpSession session){
+		String id;
+    	id= (String)request.getParameter("lug_id");
+    	//System.out.println("PARA ELIMINR:"+latitud+" "+longitud);
+    	System.out.println("PARA ELIMINR:"+id);
+    	//String coorde = latitud+" "+longitud;
+    	try {
+    		LugaresFacade lugarFacade = new LugaresFacade(propietario);
+			lugarFacade.EliminarLugar(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return"propietario.jsp";
+	}
 }
