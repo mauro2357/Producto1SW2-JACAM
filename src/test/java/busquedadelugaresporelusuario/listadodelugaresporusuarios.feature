@@ -1,17 +1,17 @@
 Feature: Como usuario quiero tener un listado de las caracteristicas del lugar que quiero visitar
 	
-	Scenario: el usuario consulta los lugares pero no se encuentra ninguno en la aplicación
-		Given: el usuario va a consultar los lugares
-		When: los lugares no existen
-		Then: se notifica que no hay lugares
-
-	Scenario: el usuario consulta los lugares y encuentra sus características
-		Given: el usuario va a consultar los lugares
-		When: encuentra los lugares
-		Then: visualiza sus característicascas
-     
-
-
+	Scenario: El usuario consulta un lugar especifico y ya no existe
+		Given El usuario va a consultar el lugar
+		When El lugar ya no existe
+		Then Se notifica que este lugar ya no existe
+	Scenario: El usuario consulta un lugar especifico y encuentra sus caracteristicas
+		Given El usuario va a consultar el lugar
+		When Encuentra el lugar
+		Then Visualiza sus caracteristicas
+	Scenario: el usuario consulta un lugar y este ha cambiado su ubicación
+		Given: el usuario consulta el lugar
+		When: encuentra el lugar pero este cambio su ubicación
+		Then: se notifica la nueva ubicación y se visualizan sus características
 	
 
 

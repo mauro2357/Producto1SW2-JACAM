@@ -9,3 +9,4 @@ Feature: Como usuario quiero tener la opcion que al precionar un boton active o 
 		Given Presiona el boton para activar localizacion
 		When GPS del telefono desactivado
 		Then Mostrar aviso indicando que el GPS esta desactivado.
+

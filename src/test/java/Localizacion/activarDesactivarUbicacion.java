@@ -20,14 +20,14 @@ public class ActivarDesactivarUbicacion {
 	@When("^GPS del telefono activado$")
 	public void GPS_del_telefono_activado() throws Throwable {
 	    // Express the Regexp above with the code you wish you had
-	    Assert.assertFalse(ubicacion.gps());
+	    Assert.assertTrue(ubicacion.gps());;
 	    
 	}
 
 	@Then("^Mostrar ubicacion en la app.$")
 	public void Mostrar_ubicacion_en_la_app() throws Throwable {
 	    // Express the Regexp above with the code you wish you had
-	    Assert.assertEquals(ubicacion.getCoordenadas(), ubicacion.getCoordenadas());
+	    Assert.assertEquals("Ubicado", ubicacion.getCoordenadas());
 	}
 
 
