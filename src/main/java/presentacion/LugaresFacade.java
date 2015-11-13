@@ -19,7 +19,6 @@ public class LugaresFacade {
 	public ArrayList<Lugar> consultarLugares(String forma, String valor) throws Exception{
 		System.out.println("forma: "+forma+" Valor: "+valor);
 		this.lugares=persona.consultarLugar(forma, valor);
-		System.out.println(lugares.size());
 		return(lugares);
 	}
 	public void ActualizarDatos(String id,String nombre,int telefono,String latitud, String longitud,int categoria,String descripcion) throws Exception{

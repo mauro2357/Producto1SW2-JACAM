@@ -35,6 +35,7 @@ public class control extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -52,158 +53,135 @@ public class control extends HttpServlet {
         String latitud, longitud;
         ArrayList<Lugar> lugares = new ArrayList<Lugar>();
         LugaresFacade lugaresFacade = new LugaresFacade(persona);
-        String pagina=null;
+        
         switch (accion){
-        	case"nombre":
-        		pagina=busquedaPorNombre(accion, request, persona);  		
+        	case ("nombre"):
+        		lugares.clear();
+        		String nombre=request.getParameter("nombrelugar");
+        		
+        		try{
+        			lugares=lugaresFacade.consultarLugares(accion, nombre);
+        			if(lugares.isEmpty()){
+    					PrintWriter out=response.getWriter();
+    					out.println("Error, no se encontro el lugar.");
+    					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+    		    		rd.forward(request, response);
+    				}
+    				else{
+    				request.setAttribute("busqueda",nombre);
+    				request.setAttribute("lugares", lugares);
+    				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+    	    		rd.forward(request, response);
+    				}
+        		}
+        		catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
         		break;
-        	case"tipos":
-        		pagina=busquedaPorTipo(accion, request, persona);  		
+        	case ("tipos"):
+        		lugares.clear();
+        		String categoria=request.getParameter("tipo");
+        		try{
+        			lugares=lugaresFacade.consultarLugares("categoria", categoria);
+        			if(lugares.isEmpty()){
+    					PrintWriter out=response.getWriter();
+    					out.println("Error, no se encontro el lugar.");
+    					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+    		    		rd.forward(request, response);
+    				}
+    				else{
+    					request.setAttribute("busqueda",categoria);
+    				request.setAttribute("lugares", lugares);
+    				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+    	    		rd.forward(request, response);
+    				}
+        		}
+        		catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
         		break;
-        	case"todo":
-        		pagina=todosLosLugares(accion, request, persona);  		
+        	case ("todo"):
+        		lugares.clear();
+        		try{
+        			lugares=lugaresFacade.consultarLugares("todos", null);
+        			if(lugares.isEmpty()){
+    					PrintWriter out=response.getWriter();
+    					out.println("Error, no se encontro el lugar.");
+    					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+    		    		rd.forward(request, response);
+    				}
+    				else{
+    				request.setAttribute("busqueda","Todos los lugares");
+    				request.setAttribute("lugares", lugares);
+    				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+    	    		rd.forward(request, response);
+    				}
+        		}
+        		catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
         		break;
         	case "agregar":
-        		pagina=agregaFavorito(request, persona);
-        		break;
+        		latitud = request.getParameter("latitud");
+        		longitud = request.getParameter("longitud");
+        		String coorde=latitud+" "+longitud;
+			try {
+				lugaresFacade.agregarFavorito(coorde);
+				request.setAttribute("lugares", lugares);
+				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+	    		rd.forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        		
+	    		break;
         	case "quitar":
-        		pagina=quitaFavorito(request, persona);
+        		latitud = request.getParameter("latitud");
+        		longitud = request.getParameter("longitud");
+        		String coord=latitud+" "+longitud;
+			try {
+				lugaresFacade.quitarFavorito(coord);
+				request.setAttribute("lugares", lugares);
+				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+	    		rd.forward(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        		
 	    		break;
         	case "favoritos":
-        		pagina=Favoritos(request, persona);
-        		break;		
+        		lugares.clear();
+        		try{
+        			System.out.println("favorietos Email: "+email);
+        			lugares=lugaresFacade.consultarLugares("favoritos", email);
+        			
+        			if(lugares.isEmpty()){
+        				System.out.println("holi");
+    					PrintWriter out=response.getWriter();
+    					out.println("Error, no se encontro el lugar.");
+    					javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("usuario.jsp");
+    		    		rd.forward(request, response);
+    				}
+    				else{
+    				request.setAttribute("busqueda","Lugares Favoritos");
+    				request.setAttribute("quitar", "quitar");
+    				request.setAttribute("lugares", lugares);
+    				javax.servlet.RequestDispatcher rd = request.getRequestDispatcher("mostrar.jsp");
+    	    		rd.forward(request, response);
+    				}
+        		}
+        		catch (Exception e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+        		
         }
-        javax.servlet.RequestDispatcher rd = request.getRequestDispatcher(pagina);
-		rd.forward(request, response);
         
-	}
-	public String Favoritos(HttpServletRequest request, Persona persona){
-		LugaresFacade lugaresFacade = new LugaresFacade(persona);
-		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-		lugares.clear();
-		String email = persona.getEmail();
-		String df;
-		try{
-			lugares=lugaresFacade.consultarLugares("favoritos", email);
-			
-			if(lugares.isEmpty()){
-				df="usuario.jsp";
-			}
-			else{
-			request.setAttribute("busqueda","Lugares Favoritos");
-			request.setAttribute("quitar", "quitar");
-			request.setAttribute("lugares", lugares);
-			df="mostrar.jsp";
-			}
-			
-		}
-		catch (Exception e) {
-			df="usuario.jsp";
-			e.printStackTrace();
-		}
-		return df;
-	}
-	public String quitaFavorito(HttpServletRequest request, Persona persona){
-		LugaresFacade lugaresFacade = new LugaresFacade(persona);
-		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-		String latitud, longitud;
-		latitud = request.getParameter("latitud");
-		longitud = request.getParameter("longitud");
-		String coord=latitud+" "+longitud;
-	try {
-		lugaresFacade.quitarFavorito(coord);
-		request.setAttribute("lugares", lugares);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	return"usuario.jsp";
-	}
-	public String agregaFavorito(HttpServletRequest request, Persona persona){
-		LugaresFacade lugaresFacade = new LugaresFacade(persona);
-		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-		String latitud, longitud;
-		latitud = request.getParameter("latitud");
-		longitud = request.getParameter("longitud");
-		String coorde=latitud+" "+longitud;
-	try {
-		lugaresFacade.agregarFavorito(coorde);
-		request.setAttribute("lugares", lugares);
-		
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	return"usuario.jsp";
-	}
-	public String todosLosLugares(String accion, HttpServletRequest request,Persona persona){
-		LugaresFacade lugaresFacade = new LugaresFacade(persona);
-		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-		lugares.clear();
-		String df;
-		try{
-			lugares=lugaresFacade.consultarLugares("todos", null);
-			if(lugares.isEmpty()){
-				df="usuario.jsp";
-			}
-			else{
-				request.setAttribute("busqueda","Todos los Lugares");
-			request.setAttribute("lugares", lugares);
-			df="mostrar.jsp";
-			}
-		}
-		catch (Exception e) {
-			df="usuario.jsp";
-			e.printStackTrace();
-		}
-		return df;
-	}
-	public String busquedaPorNombre(String accion, HttpServletRequest request,Persona persona){
-		LugaresFacade lugaresFacade = new LugaresFacade(persona);
-		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-		lugares.clear();
-		String df;
-		String nombre=request.getParameter("nombrelugar");	
-		try{
-			lugares=lugaresFacade.consultarLugares(accion, nombre);
-			if(lugares.isEmpty()){
-				df="usuario.jsp";
-			}
-			else{
-				request.setAttribute("busqueda",nombre);
-				request.setAttribute("lugares", lugares);
-				df="mostrar.jsp";
-			}
-		}
-		catch (Exception e) {
-			df="usuario.jsp";
-			e.printStackTrace();
-		}
-		return df;
-	}
-	public String busquedaPorTipo(String accion, HttpServletRequest request,Persona persona){
-		LugaresFacade lugaresFacade = new LugaresFacade(persona);
-		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
-		lugares.clear();
-		String df;
-		String categoria=request.getParameter("tipo");
-		try{
-			lugares=lugaresFacade.consultarLugares("categoria", categoria);
-			if(lugares.isEmpty()){
-				df="usuario.jsp";
-			}
-			else{
-			request.setAttribute("busqueda",categoria);
-			request.setAttribute("lugares", lugares);
-			df="mostrar.jsp";
-
-			}
-		}
-		catch (Exception e) {
-			df="usuario.jsp";
-			e.printStackTrace();
-		}
-		return df;
 	}
 
 }
