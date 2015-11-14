@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EastSites</string>
+    <string name="title_activity_maps">East Sites</string>
+    <string name="action_settings">Acerca de...</string>
+    <string name="drawer_open">Open Navigation Drawer</string>
+    <string name="drawer_close">Close Navigation Drawer</string>
+
+    <string-array name="categorias">
+        <item>Restaurantes</item>
+        <item>Bares</item>
+        <item>Hoteles</item>
+        <item>Universidades</item>
+        <item>Centros Coomerciales</item>
+    </string-array>
+    <string-array name="idcategorias">
+        <item>1-Restaurantes</item>
+        <item>2-Bares</item>
+        <item>3-Hoteles</item>
+        <item>4-Universidades</item>
+        <item>5-Centros Coomerciales</item>
+    </string-array>
+    <string-array name="tipos">
+        <item>Usuario</item>
+        <item>Propietario</item>
+    </string-array>
+    <string-array name="busquedasUsuario">
+        <item>Por Coordenadas</item>
+        <item>Por Nombre</item>
+        <item>Todos Los Lugares</item>
+        <item>Consultar Mis Favoritos</item>
+        <item>Por Categoria</item>
+        <item>Cerrar Sesión</item>
+        <item>Acerca de</item>
+    </string-array>
+    <string-array name="busquedasPropietario">
+        <item>Agregar Lugar</item>
+        <item>Consultar Mis Lugares</item>
+        <item>Consultar Lugares por Nombre</item>
+        <item>Cerrar Sesión</item>
+        <item>Acerca de</item>
+    </string-array>
+    <string-array name="Vistas">
+        <item>Satélite</item>
+        <item>Híbrido</item>
+        <item>Terreno</item>
+        <item>Normal</item>
+    </string-array>
+
+    <string name="title_activity_log_in">East Sites</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_maps_activity_propietario">East Sites</string>
+    <string name="title_activity_registro">Registro</string>
+
+</resources>

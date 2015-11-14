@@ -16,7 +16,7 @@ public class PropietarioRepository {
 		System.out.println("usuarioRepository :"+correo);
 		System.out.println("usuarioRepository :"+password);
 		//Connection con = new ConexionMysql().ObtenerConexion();
-		String query = "SELECT * FROM propietario WHERE pro_email='"+correo+"' AND pro_password='"+password+"'";	
+		String query = "select * from propietario where pro_email='"+correo+"' and pro_password='"+password+"'";	
 		//"SELECT usu_nombre, usu_gps, usu_coordenas FROM usuarios WHERE usu_email='"+us_email+"' AND usu_password='"++"'";
 		// create the java statement
 	    //Statement st = con.createStatement();	     

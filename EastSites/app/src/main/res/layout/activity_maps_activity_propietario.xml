@@ -1,0 +1,200 @@
+<android.support.v4.widget.DrawerLayout
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/map"
+            tools:context="com.example.mauricio.eastsites.MapsActivityPropietario"
+            android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:visibility="visible"
+            android:id="@+id/rlAgregarLugar"
+            android:background="#c888e9ff"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etLatitud"
+                android:inputType="numberDecimal|numberSigned"
+                android:hint="Latitud"
+                android:layout_below="@+id/etTelefono"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etLongitud"
+                android:hint="Longitud"
+                android:inputType="numberDecimal|numberSigned"
+                android:layout_below="@+id/etLatitud"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etTelefono"
+                android:inputType="number"
+                android:hint="Telefono"
+                android:layout_below="@+id/etNombre"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etNombre"
+                android:hint="Nombre de Lugar"
+                android:layout_marginTop="93dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+           <!-- <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etCategoria"
+                android:hint="Categoria"
+                android:layout_below="@+id/etLongitud"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />-->
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etDescripcion"
+                android:hint="Descripción del Lugar"
+                android:layout_below="@+id/spinnerCat"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Agregar Lugar"
+                android:id="@+id/btnAgregarLugar"
+                android:onClick="accionAgregarLugar"
+                android:layout_below="@+id/etDescripcion"
+                android:layout_centerHorizontal="true" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinnerCat"
+                android:entries="@array/idcategorias"
+                android:layout_below="@id/etLongitud"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/rlLugaresPropietario"
+            android:visibility="invisible">
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listaLugaresPropietario"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="47dp"
+                android:background="#e54682b4" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Consultar Mis Lugares"
+                android:id="@+id/button2"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:onClick="accionLugaresPropietario" />
+        </RelativeLayout>
+
+        <Spinner
+            style="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerVistas"
+            android:entries="@array/Vistas"
+            android:background="#b0fffce4"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/rlConsultaNombrePropietario"
+            android:visibility="invisible">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etConsultaNombre"
+                android:hint="Ingrese el Nombre que desea buscar"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:background="#cceeecf1" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buscar"
+                android:id="@+id/btnBuscarPorNombre"
+                android:layout_below="@+id/etConsultaNombre"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+    <ListView
+        android:background="#e864ffea"
+        android:divider="@null"
+        android:visibility="invisible"
+        android:id="@+id/drawerList"
+        android:entries="@array/busquedasPropietario"
+        android:layout_gravity="left"
+        android:layout_width="240dp"
+        android:layout_height="match_parent">
+    </ListView>
+</android.support.v4.widget.DrawerLayout>

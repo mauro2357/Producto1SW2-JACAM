@@ -371,7 +371,7 @@ public class LugarRepository {
 		int categoria = lugar.getCategoria();
 		String descripcion = lugar.getDescripcion();
 		//Connection con = new ConexionMysql().ObtenerConexion();
-		String query = "INSERT INTO lugar (`lug_nombre`, `lug_telefono`, `lug_latitud`, `lug_longitud`, `pro_email`, `cat_id`, `lug_descripcion`) VALUES ('"+nombre+"', '"+telefono+"', '"+latitud+"','"+longitud+"', '"+email+"', '"+categoria+"', '"+descripcion+"')";	
+		String query = "insert into lugar (`lug_nombre`, `lug_telefono`, `lug_latitud`, `lug_longitud`, `pro_email`, `cat_id`, `lug_descripcion`) values ('"+nombre+"', '"+telefono+"', '"+latitud+"','"+longitud+"', '"+email+"', '"+categoria+"', '"+descripcion+"')";	
 		System.out.println(query);
 	    // create the java statement
 	    // execute the query, and get a java resultset
@@ -488,7 +488,7 @@ public class LugarRepository {
 	} 
 	public void RegistroFavorito(String email, Lugar lugar){
 		int id = lugar.getId();
-		String query="INSERT INTO `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) VALUES ('"+email+"', '"+id+"')";
+		String query="insert into `bdsoftware2`.`favoritos` (`usu_email`, `lug_id`) values ('"+email+"', '"+id+"')";
 		System.out.println(query);
 		Statement stmt = null;
 	    Connection con = null;

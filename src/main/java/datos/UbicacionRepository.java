@@ -14,7 +14,7 @@ public class UbicacionRepository {
 	public String GPS(String usuario) throws Exception{
 		
 	Connection con = new ConexionMysql().ObtenerConexion();
-	String query = "SELECT usu_gps, usu_coordenas FROM usuarios where usu_email='"+usuario+"'";
+	String query = "select usu_gps, usu_coordenas from usuarios where usu_email='"+usuario+"'";
 	
 	
     // create the java statement

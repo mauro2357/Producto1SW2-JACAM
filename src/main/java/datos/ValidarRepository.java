@@ -22,7 +22,7 @@ public Persona consultarPersona(String emaill, String clavee){
 		System.out.println("usuarioRepository :"+email);
 		System.out.println("usuarioRepository :"+clave);
 		//Connection con = new ConexionMysql().ObtenerConexion();
-		String query = "SELECT usu_nombre, usu_gps, usu_coordenas FROM usuarios WHERE usu_email='"+email+"' AND usu_password='"+clave+"'";;		
+		String query = "select usu_nombre, usu_gps, usu_coordenas from usuarios where usu_email='"+email+"' and usu_password='"+clave+"'";;		
 		//"SELECT usu_nombre, usu_gps, usu_coordenas FROM usuarios WHERE usu_email='"+us_email+"' AND usu_password='"++"'";
 		// create the java statement
 	    //Statement st = con.createStatement();	     
@@ -73,7 +73,7 @@ public Persona consultarPersona(String emaill, String clavee){
 	    		System.out.println("propRepository :"+email);
 	    		System.out.println("propRepository :"+clave);
 	    		//Connection con = new ConexionMysql().ObtenerConexion();
-	    		String query2 = "SELECT * FROM propietario WHERE pro_email='"+email+"' AND pro_password='"+clave+"'";	
+	    		String query2 = "select * from propietario where pro_email='"+email+"' and pro_password='"+clave+"'";	
 	    		//"SELECT usu_nombre, usu_gps, usu_coordenas FROM usuarios WHERE usu_email='"+us_email+"' AND usu_password='"++"'";
 	    		// create the java statement
 	    	    //Statement st = con.createStatement();	     
@@ -126,10 +126,11 @@ public Persona consultarPersona(String emaill, String clavee){
 		String nombre=persona.getNombre();
 		String tipo= persona.getTipo();
 		int rs=0;
+		int r=0;
 		if (tipo.equalsIgnoreCase("propietario")){
 			
 			//Connection con = new ConexionMysql().ObtenerConexion();
-			String query = "INSERT INTO propietario (`pro_email`, `pro_password`, `pro_nombre`) VALUES ('"+email+"', '"+pass+"', '"+nombre+"')";	
+			String query = "insert into propietario (`pro_email`, `pro_password`, `pro_nombre`) VALUES ('"+email+"', '"+pass+"', '"+nombre+"')";	
 			System.out.println(query);
 		    // create the java statement
 		    // execute the query, and get a java resultset
@@ -148,6 +149,9 @@ public Persona consultarPersona(String emaill, String clavee){
 		      // Execute SQL query
 		      stmt = con.createStatement();
 		      rs = stmt.executeUpdate(query);
+		      if(rs==1){
+		    	  r=1;
+		      }
 		      System.out.println("rs: "+rs);
 		     System.out.println("al crear: "+rs);
 		    } catch (Exception e) {
@@ -171,7 +175,7 @@ public Persona consultarPersona(String emaill, String clavee){
 		}
 		else{
 			//Connection con = new ConexionMysql().ObtenerConexion();
-			String query = "INSERT INTO usuarios (`usu_email`, `usu_password`, `usu_nombre`,`usu_gps`) VALUES ('"+email+"', '"+pass+"', '"+nombre+"','no')";	
+			String query = "insert into usuarios (`usu_email`, `usu_password`, `usu_nombre`,`usu_gps`) values ('"+email+"', '"+pass+"', '"+nombre+"','no')";	
 			System.out.println(query);
 		    // create the java statement
 		    // execute the query, and get a java resultset
@@ -190,6 +194,9 @@ public Persona consultarPersona(String emaill, String clavee){
 		      // Execute SQL query
 		      stmt = con.createStatement();
 		      rs = stmt.executeUpdate(query);
+		      if(rs==1){
+		    	  r=2;
+		      }
 		      System.out.println("rs: "+rs);
 		      System.out.println("al crear: "+rs);
 		    } catch (Exception e) {
@@ -212,7 +219,7 @@ public Persona consultarPersona(String emaill, String clavee){
 			
 	    
 	}
-		return rs;
+		return r;
 		
 	}
 public String consultarEmail(String emaill){
@@ -221,7 +228,7 @@ public String consultarEmail(String emaill){
 		String nombre= null;
 		System.out.println("usuarioRepository :"+email);
 
-		String query = "SELECT usu_nombre, usu_email FROM usuarios WHERE usu_email='"+email+"'";;		
+		String query = "select usu_nombre, usu_email from usuarios where usu_email='"+email+"'";;		
 
 	    System.out.println(query);
 	    Statement st = null;
@@ -264,7 +271,7 @@ public String consultarEmail(String emaill){
 	    	if(nombre==null){
 	    		System.out.println("propRepository :"+email);
 	    		//Connection con = new ConexionMysql().ObtenerConexion();
-	    		String query2 = "SELECT * FROM propietario WHERE pro_email='"+email+"'";	
+	    		String query2 = "select * from propietario where pro_email='"+email+"'";	
 	    		//"SELECT usu_nombre, usu_gps, usu_coordenas FROM usuarios WHERE usu_email='"+us_email+"' AND usu_password='"++"'";
 	    		// create the java statement
 	    	    //Statement st = con.createStatement();	     

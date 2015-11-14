@@ -15,6 +15,12 @@ public class Usuario extends Persona {
 	public String coordenadas;
 	public final String tipo= "usuario";
 	
+	public Usuario(){
+		
+	}
+	public Usuario(String email){
+		this.email = email;
+	}
 	public Usuario(String email, String nombre, String gps, String coordenadas) {
 		this.email = email;
 		this.nombre = nombre;

@@ -19,7 +19,7 @@ public class UsuarioRepository {
 		System.out.println("usuarioRepository :"+email);
 		System.out.println("usuarioRepository :"+clave);
 		//Connection con = new ConexionMysql().ObtenerConexion();
-		String query = "SELECT usu_nombre, usu_gps, usu_coordenas FROM usuarios WHERE usu_email='"+email+"' AND usu_password='"+clave+"'";;		
+		String query = "select usu_nombre, usu_gps, usu_coordenas from usuarios where usu_email='"+email+"' and usu_password='"+clave+"'";;		
 		//"SELECT usu_nombre, usu_gps, usu_coordenas FROM usuarios WHERE usu_email='"+us_email+"' AND usu_password='"++"'";
 		// create the java statement
 	    //Statement st = con.createStatement();	     
@@ -72,7 +72,7 @@ public class UsuarioRepository {
 		String pass = persona.getClave();
 		String nombre=persona.getNombre();
 		//Connection con = new ConexionMysql().ObtenerConexion();
-		String query = "INSERT INTO usuarios (`usu_email`, `usu_password`, `usu_nombre`,`usu_gps`) VALUES ('"+email+"', '"+pass+"', '"+nombre+"','no')";	
+		String query = "insert into usuarios (`usu_email`, `usu_password`, `usu_nombre`,`usu_gps`) VALUES ('"+email+"', '"+pass+"', '"+nombre+"','no')";	
 		System.out.println(query);
 	    // create the java statement
 	    // execute the query, and get a java resultset

@@ -13,7 +13,9 @@ public class Propietario extends Persona {
 	private String nombre;
 	private int telefono;
 	private String tipo="propietario";
-	
+	public Propietario(String email){
+		this.email = email;
+	}
 	public Propietario(String email,String password,String nombre,int telefono) {
 		// TODO Auto-generated constructor stub
 		this.email=email;

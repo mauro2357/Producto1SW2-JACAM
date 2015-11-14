@@ -9,7 +9,7 @@ import cucumber.api.java.en.When;
 
 
 
-public class ActivarDesactivarUbicacion {
+public class activarDesactivarUbicacion {
 	ubicacion ubicacion = null;
 	@Given("^Presionar el boton para activar localizacion$")
 	public void Presionar_el_boton_para_activar_localizacion() throws Throwable {
